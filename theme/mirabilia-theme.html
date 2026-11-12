@@ -38,8 +38,8 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 img{max-width:100%;height:auto;display:block;}
-body a{color:inherit !important;text-decoration:none !important;}
-a:hover{opacity:.6;}
+.siteHeader a,.siteFooter a,.typeTile a,.itemCard a,.childCats a,.breadcrumb a,.carousel__slide a,.moreBtn{color:inherit;text-decoration:none;}
+.siteHeader a:hover,.siteFooter a:hover,.itemCard a:hover,.childCats a:hover,.breadcrumb a:hover{opacity:.6;}
 ul{list-style:none;margin:0;padding:0;}
 h1,h2,h3,p{margin:0;}
 .inner{max-width:var(--max);margin:0 auto;padding:0 var(--pad);}
@@ -89,7 +89,10 @@ h1,h2,h3,p{margin:0;}
 
 /* ===== hero ===== */
 .hero{border-bottom:1px solid var(--c-line);}
-.hero img{width:100%;}
+.hero img{width:100%;height:54svh;object-fit:cover;object-position:center;}
+.concept{text-align:center;}
+.concept__lead{font-family:var(--f-ja);font-size:24px;font-weight:500;letter-spacing:.14em;line-height:1.6;}
+.concept__text{margin:22px auto 0;max-width:34em;font-size:14px;line-height:2;color:#333;}
 
 /* ===== author carousel ===== */
 .carousel{position:relative;}
@@ -104,9 +107,8 @@ h1,h2,h3,p{margin:0;}
 }
 .carousel__track::-webkit-scrollbar{display:none;}
 .carousel__slide{
-  flex:0 0 88%;
-  max-width:660px;
-  scroll-snap-align:center;
+  flex:0 0 84%;
+  scroll-snap-align:start;
   border:1px solid var(--c-line);
 }
 .carousel__slide a{display:block;}
@@ -148,9 +150,11 @@ h1,h2,h3,p{margin:0;}
 /* ===== type tiles ===== */
 .typeTiles{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--c-line);border-left:1px solid var(--c-line);}
 .typeTile{border-right:1px solid var(--c-line);border-bottom:1px solid var(--c-line);}
-.typeTile a{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:140px;padding:20px 10px;transition:background .2s;}
+.typeTile a{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;min-height:140px;padding:0 10px 20px;transition:background .2s;}
+.typeTile__img{display:block;width:calc(100% + 20px);margin:0 -10px;border-bottom:1px solid var(--c-line);aspect-ratio:1/1;overflow:hidden;background:#f5f5f5;}
+.typeTile__img img{width:100%;height:100%;object-fit:cover;}
 .typeTile a:hover{background:#f7f7f7;opacity:1;}
-.typeTile__en{font-family:var(--f-en);font-size:12px;letter-spacing:.28em;color:var(--c-sub);}
+.typeTile__en{margin-top:16px;font-family:var(--f-en);font-size:12px;letter-spacing:.28em;color:var(--c-sub);}
 .typeTile__name{margin-top:4px;font-size:18px;letter-spacing:.12em;}
 .typeTile__price{margin-top:10px;padding-top:10px;border-top:1px solid var(--c-line);font-family:var(--f-en);font-size:16px;letter-spacing:.08em;min-width:84px;}
 
@@ -167,9 +171,11 @@ h1,h2,h3,p{margin:0;}
 .limited__label{display:inline-block;color:var(--c-red);font-family:var(--f-en);font-size:13px;letter-spacing:.3em;border-top:1px solid var(--c-red);border-bottom:1px solid var(--c-red);padding:4px 14px;}
 .limited__title{margin-top:20px;font-family:var(--f-en);font-weight:400;font-size:36px;letter-spacing:.18em;line-height:1.2;}
 .limited__title span{color:var(--c-red);}
-.limited__text{margin:22px auto 0;max-width:32em;font-size:14px;color:#ddd;text-wrap:balance;}
+.limited__items{display:flex;justify-content:center;align-items:flex-start;gap:18px;margin-top:32px;}
+.limited__items img{width:46%;max-width:280px;height:auto;}
+.limited__text{margin:26px auto 0;max-width:32em;font-size:14px;color:#ddd;text-wrap:balance;}
 .limited__text em{font-style:normal;color:var(--c-red);}
-.limited__btn{display:inline-block;margin-top:30px;padding:12px 44px;border:1px solid var(--c-red);color:#fff !important;font-family:var(--f-en);font-size:14px;letter-spacing:.22em;}
+.limited__btn{display:inline-block;margin-top:30px;padding:12px 44px;border:1px solid var(--c-red);color:#fff !important;text-decoration:none;font-family:var(--f-en);font-size:14px;letter-spacing:.22em;}
 .limited__btn:hover{background:var(--c-red);opacity:1;}
 
 /* ===== category / search header ===== */
@@ -240,12 +246,12 @@ h1,h2,h3,p{margin:0;}
   :root{--pad:40px;}
   .sec{padding:84px 0;}
   .secHead__en{font-size:38px;}
-  .hero img{max-height:86vh;object-fit:cover;}
-  .carousel__track{padding:0 max(var(--pad), calc((100% - 660px) / 2));scroll-padding:0 max(var(--pad), calc((100% - 660px) / 2));}
-  .carousel__slide{flex-basis:660px;}
+  .concept__lead{font-size:32px;}
+  .hero img{height:62vh;}
+  .carousel__slide{flex-basis:47.5%;}
   .itemGrid{grid-template-columns:repeat(3,1fr);gap:48px 24px;}
   .typeTiles{grid-template-columns:repeat(4,1fr);}
-  .typeTile a{min-height:190px;}
+  .typeTile a{min-height:190px;padding-bottom:24px;}
   .quality__body{grid-template-columns:1.1fr 1fr;align-items:center;gap:48px;}
   .itemPage{padding:56px 0 96px;}
   .itemPage__layout{grid-template-columns:1.15fr 1fr;gap:56px;align-items:start;}
@@ -306,6 +312,14 @@ h1,h2,h3,p{margin:0;}
     <img src="__IMG_EYECATCH__" alt="MIRABILIA ミラビリア — 失われた記憶を身にまとう。" width="1920" height="1080">
   </section>
 
+  <!-- 1.5 CONCEPT -->
+  <section class="sec concept">
+    <div class="inner">
+      <p class="concept__lead">失われた記憶を身にまとう。</p>
+      <p class="concept__text">数百年前に刻まれた、銅版画と木版画。物語とともに忘れられていった図版たちを、高精度スキャンでよみがえらせ、身に着ける一着に仕立てました。紙の質感も、染みも、かすれも、時を経た証としてそのままに。</p>
+    </div>
+  </section>
+
   <!-- 2. 作者から探す -->
   <section class="sec" id="authors">
     <h2 class="secHead"><span class="secHead__en">AUTHORS</span><span class="secHead__ja">作者から探す</span></h2>
@@ -355,10 +369,10 @@ h1,h2,h3,p{margin:0;}
     <div class="inner">
       <h2 class="secHead"><span class="secHead__en">ITEMS</span><span class="secHead__ja">商品種類から探す</span></h2>
       <ul class="typeTiles">
-        <li class="typeTile"><a href="__LINK_CAT_TSHIRT__"><span class="typeTile__en">T-SHIRT</span><span class="typeTile__name">Tシャツ</span><span class="typeTile__price">¥9,980</span></a></li>
-        <li class="typeTile"><a href="__LINK_CAT_LONGT__"><span class="typeTile__en">LONG SLEEVE</span><span class="typeTile__name">ロンT</span><span class="typeTile__price">¥11,980</span></a></li>
-        <li class="typeTile"><a href="__LINK_CAT_PARKA__"><span class="typeTile__en">HOODIE</span><span class="typeTile__name">パーカー</span><span class="typeTile__price">¥14,980</span></a></li>
-        <li class="typeTile"><a href="__LINK_CAT_TOTE__"><span class="typeTile__en">TOTE BAG</span><span class="typeTile__name">トート</span><span class="typeTile__price">¥5,980</span></a></li>
+        <li class="typeTile"><a href="__LINK_CAT_TSHIRT__"><span class="typeTile__img"><img src="https://baseec-img-mng.akamaized.net/images/item/origin/9f3cdbdf91d7b8cc58cecd4ca38e13da.png?imformat=generic&q=90&im=Resize,width=800,type=normal" alt="Tシャツ（ホワイト）リヴァイアサン" loading="lazy"></span><span class="typeTile__en">T-SHIRT</span><span class="typeTile__name">Tシャツ</span><span class="typeTile__price">¥9,980</span></a></li>
+        <li class="typeTile"><a href="__LINK_CAT_LONGT__"><span class="typeTile__img"><img src="https://baseec-img-mng.akamaized.net/images/item/origin/df322f9db0644280999081b7a2f38674.png?imformat=generic&q=90&im=Resize,width=800,type=normal" alt="ロンT（ホワイト）リヴァイアサン" loading="lazy"></span><span class="typeTile__en">LONG SLEEVE</span><span class="typeTile__name">ロンT</span><span class="typeTile__price">¥11,980</span></a></li>
+        <li class="typeTile"><a href="__LINK_CAT_PARKA__"><span class="typeTile__img"><img src="https://baseec-img-mng.akamaized.net/images/item/origin/09e7ab190df542a0f3335fe64838e3e8.png?imformat=generic&q=90&im=Resize,width=800,type=normal" alt="パーカー（ホワイト）リヴァイアサン" loading="lazy"></span><span class="typeTile__en">HOODIE</span><span class="typeTile__name">パーカー</span><span class="typeTile__price">¥14,980</span></a></li>
+        <li class="typeTile"><a href="__LINK_CAT_TOTE__"><span class="typeTile__img"><img src="https://baseec-img-mng.akamaized.net/images/item/origin/3e7e5553fed97d0afc69eb226384074b.png?imformat=generic&q=90&im=Resize,width=800,type=normal" alt="トート リヴァイアサン" loading="lazy"></span><span class="typeTile__en">TOTE BAG</span><span class="typeTile__name">トート</span><span class="typeTile__price">¥5,980</span></a></li>
       </ul>
     </div>
   </section>
@@ -385,6 +399,10 @@ h1,h2,h3,p{margin:0;}
     <div class="inner">
       <span class="limited__label">LIMITED EDITION</span>
       <h2 class="limited__title">THE <span>RED</span> LINE</h2>
+      <div class="limited__items">
+        <img src="https://basefile.akamaized.net/mirabilia-base-shop/6af5939a0ee93/red-t-cut-s.png" alt="Tシャツ（レッド）リヴァイアサン" loading="lazy">
+        <img src="https://basefile.akamaized.net/mirabilia-base-shop/6af5936fa8853/red-longt-cut.png" alt="ロンT（レッド）リヴァイアサン" loading="lazy">
+      </div>
       <p class="limited__text">赤いTシャツとロンTは、<em>各サイズ3着限り</em>の限定モデルです。なくなり次第、販売終了となります。</p>
       <a class="limited__btn" href="__LINK_CAT_RED__">VIEW LIMITED</a>
     </div>
@@ -557,13 +575,29 @@ h1,h2,h3,p{margin:0;}
 
 <script>
 (function(){
-  /* --- author carousel: scroll-snap + dots / arrows --- */
+  /* --- author carousel: infinite loop (cloned slides) + dots / arrows --- */
   var root = document.querySelector('[data-carousel]');
   if (root) {
     var track = root.querySelector('[data-carousel-track]');
+    var originals = Array.prototype.slice.call(track.children);
+    var N = originals.length;
+    var CL = 2; /* clones on each side */
+    for (var i = N - CL; i < N; i++) {
+      var cp = originals[i].cloneNode(true);
+      cp.setAttribute('aria-hidden', 'true');
+      track.insertBefore(cp, track.firstChild);
+    }
+    for (var j = 0; j < CL; j++) {
+      var ca = originals[j].cloneNode(true);
+      ca.setAttribute('aria-hidden', 'true');
+      track.appendChild(ca);
+    }
     var slides = Array.prototype.slice.call(track.children);
+    var padL = parseFloat(getComputedStyle(track).paddingLeft) || 0;
+    function period(){ return slides[CL + N].offsetLeft - slides[CL].offsetLeft; }
+    function targetLeft(idx){ return slides[idx].offsetLeft - padL; }
     var dotsWrap = root.querySelector('[data-carousel-dots]');
-    var dots = slides.map(function(_, i){
+    var dots = originals.map(function(_, i){
       var b = document.createElement('button');
       b.type = 'button';
       b.className = 'carousel__dot';
@@ -574,26 +608,31 @@ h1,h2,h3,p{margin:0;}
     });
     var current = 0;
     function go(i){
-      if (i < 0) i = slides.length - 1;
-      if (i >= slides.length) i = 0;
-      var s = slides[i];
-      track.scrollTo({ left: s.offsetLeft - (track.clientWidth - s.clientWidth) / 2, behavior: 'smooth' });
+      i = ((i % N) + N) % N;
+      track.scrollTo({ left: targetLeft(i + CL), behavior: 'smooth' });
     }
-    function update(){
-      var center = track.scrollLeft + track.clientWidth / 2, best = 0, min = Infinity;
-      slides.forEach(function(s, i){
-        var d = Math.abs(s.offsetLeft + s.clientWidth / 2 - center);
+    function nearest(){
+      var x = track.scrollLeft + padL, best = 0, min = Infinity;
+      slides.forEach(function(sl, i){
+        var d = Math.abs(sl.offsetLeft - x);
         if (d < min) { min = d; best = i; }
       });
-      current = best;
-      dots.forEach(function(d, i){ d.setAttribute('aria-current', i === best ? 'true' : 'false'); });
+      return best;
+    }
+    function settle(){
+      var k = nearest();
+      if (k < CL) { track.scrollLeft += period(); k += N; }
+      else if (k >= CL + N) { track.scrollLeft -= period(); k -= N; }
+      current = k - CL;
+      dots.forEach(function(d, i){ d.setAttribute('aria-current', i === current ? 'true' : 'false'); });
     }
     var t;
-    track.addEventListener('scroll', function(){ clearTimeout(t); t = setTimeout(update, 60); }, { passive: true });
-    window.addEventListener('resize', update);
+    track.addEventListener('scroll', function(){ clearTimeout(t); t = setTimeout(settle, 90); }, { passive: true });
+    window.addEventListener('resize', function(){ track.scrollLeft = targetLeft(current + CL); settle(); });
     root.querySelector('[data-carousel-prev]').addEventListener('click', function(){ go(current - 1); });
     root.querySelector('[data-carousel-next]').addEventListener('click', function(){ go(current + 1); });
-    update();
+    track.scrollLeft = targetLeft(CL);
+    settle();
   }
 
   /* --- close category dropdown on outside click --- */
