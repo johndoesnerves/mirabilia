@@ -1,0 +1,624 @@
+{block:NotLoadItemsPage}<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{PageTitle}</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Serif+JP:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ===== MIRABILIA base ===== */
+:root{
+  --c-bg:#fff;
+  --c-fg:#000;
+  --c-sub:#666;
+  --c-line:#000;
+  --c-line-soft:#d9d9d9;
+  --c-red:#b3121b;
+  --f-en:"Cormorant Garamond", "Noto Serif JP", serif;
+  --f-ja:"Noto Serif JP", "Cormorant Garamond", serif;
+  --pad:20px;
+  --max:1120px;
+}
+*,*::before,*::after{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0;
+  background:var(--c-bg);
+  color:var(--c-fg);
+  font-family:var(--f-ja);
+  font-size:14px;
+  line-height:1.9;
+  letter-spacing:.04em;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;height:auto;display:block;}
+a{color:inherit;text-decoration:none;}
+a:hover{opacity:.7;}
+ul{list-style:none;margin:0;padding:0;}
+h1,h2,h3,p{margin:0;}
+.inner{max-width:var(--max);margin:0 auto;padding:0 var(--pad);}
+.en{font-family:var(--f-en);letter-spacing:.12em;}
+
+/* ===== header ===== */
+.siteHeader{
+  position:sticky;top:0;z-index:50;
+  background:var(--c-bg);
+  border-bottom:1px solid var(--c-line);
+}
+.siteHeader__inner{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:12px;min-height:60px;
+}
+.siteHeader__logo{margin:0;font-family:var(--f-en);font-weight:500;font-size:22px;letter-spacing:.2em;line-height:1;}
+.siteHeader__logo a{display:inline-block;}
+.siteHeader__logo img{max-height:32px;width:auto;}
+.gNav{display:flex;align-items:center;gap:18px;font-family:var(--f-en);font-size:14px;letter-spacing:.16em;}
+.gNav__item{position:relative;}
+.gNav details summary{list-style:none;cursor:pointer;}
+.gNav details summary::-webkit-details-marker{display:none;}
+.gNav__drop{
+  position:absolute;right:-12px;top:calc(100% + 18px);
+  min-width:220px;background:var(--c-bg);border:1px solid var(--c-line);
+  padding:14px 18px;font-family:var(--f-ja);font-size:13px;letter-spacing:.06em;
+}
+.gNav__drop li{border-bottom:1px solid var(--c-line-soft);}
+.gNav__drop li:last-child{border-bottom:0;}
+.gNav__drop a{display:block;padding:8px 0;}
+.gNav__drop .category--medium{padding-left:1em;}
+.gNav__drop .category--medium li{border-bottom:0;}
+.gNav__drop .category--medium a{padding:4px 0;color:var(--c-sub);}
+.gNav__cart{display:flex;align-items:center;}
+
+/* ===== section common ===== */
+.sec{padding:64px 0;border-bottom:1px solid var(--c-line);}
+.sec:last-of-type{border-bottom:0;}
+.secHead{text-align:center;margin-bottom:32px;}
+.secHead__en{display:block;font-family:var(--f-en);font-size:28px;font-weight:400;letter-spacing:.18em;line-height:1.2;}
+.secHead__ja{display:block;margin-top:8px;font-size:12px;letter-spacing:.2em;color:var(--c-sub);}
+.secHead::after{content:"";display:block;width:32px;height:1px;background:var(--c-line);margin:18px auto 0;}
+
+/* ===== hero ===== */
+.hero{border-bottom:1px solid var(--c-line);}
+.hero img{width:100%;}
+
+/* ===== author carousel ===== */
+.carousel{position:relative;}
+.carousel__track{
+  display:flex;gap:12px;
+  overflow-x:auto;overscroll-behavior-x:contain;
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+  padding:0 var(--pad);
+  scroll-padding:0 var(--pad);
+}
+.carousel__track::-webkit-scrollbar{display:none;}
+.carousel__slide{
+  flex:0 0 86%;
+  max-width:640px;
+  scroll-snap-align:center;
+  border:1px solid var(--c-line);
+}
+.carousel__slide a{display:block;}
+.carousel__slide img{width:100%;max-height:200px;object-fit:cover;}
+.carousel__ui{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:18px;}
+.carousel__arrow{
+  appearance:none;background:none;border:1px solid var(--c-line);
+  width:34px;height:34px;border-radius:0;cursor:pointer;
+  font-family:var(--f-en);font-size:16px;line-height:1;color:var(--c-fg);
+}
+.carousel__dots{display:flex;gap:10px;}
+.carousel__dot{
+  appearance:none;padding:0;border:1px solid var(--c-line);background:transparent;
+  width:8px;height:8px;border-radius:50%;cursor:pointer;
+}
+.carousel__dot[aria-current="true"]{background:var(--c-fg);}
+
+/* ===== item grid ===== */
+.itemGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px 14px;}
+.itemCard a{display:block;}
+.itemCard__img{position:relative;aspect-ratio:1/1;overflow:hidden;background:#f5f5f5;}
+.itemCard__img img{width:100%;height:100%;object-fit:cover;}
+.itemCard__sold{
+  position:absolute;left:0;bottom:0;background:var(--c-fg);color:var(--c-bg);
+  font-family:var(--f-en);font-size:12px;letter-spacing:.16em;padding:2px 10px;
+}
+.itemCard__title{margin-top:10px;font-size:13px;line-height:1.6;}
+.itemCard__price{margin-top:4px;font-family:var(--f-en);font-size:15px;letter-spacing:.06em;}
+.itemCard__price s{color:var(--c-sub);margin-right:6px;font-size:13px;}
+.noItems{text-align:center;color:var(--c-sub);}
+.moreBtn{
+  display:block;margin:40px auto 0;padding:12px 40px;
+  background:none;border:1px solid var(--c-line);border-radius:0;cursor:pointer;
+  font-family:var(--f-en);font-size:14px;letter-spacing:.2em;color:var(--c-fg);
+}
+
+/* ===== type tiles ===== */
+.typeTiles{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--c-line);border-left:1px solid var(--c-line);}
+.typeTile{border-right:1px solid var(--c-line);border-bottom:1px solid var(--c-line);}
+.typeTile a{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:150px;padding:20px 10px;}
+.typeTile__en{font-family:var(--f-en);font-size:12px;letter-spacing:.24em;color:var(--c-sub);}
+.typeTile__name{margin-top:4px;font-size:17px;letter-spacing:.12em;}
+.typeTile__price{margin-top:10px;padding-top:10px;border-top:1px solid var(--c-line);font-family:var(--f-en);font-size:15px;letter-spacing:.08em;min-width:80px;}
+
+/* ===== quality ===== */
+.quality__body{display:grid;gap:24px;}
+.quality__fig{margin:0;}
+.quality__fig img{width:100%;border:1px solid var(--c-line);}
+.credit{margin-top:6px;font-family:var(--f-en);font-size:11px;line-height:1.5;letter-spacing:.02em;color:var(--c-sub);}
+.quality__text p+p{margin-top:1.2em;}
+.quality__text strong{font-weight:500;border-bottom:1px solid var(--c-line);}
+
+/* ===== limited ===== */
+.limited{background:#000;color:#fff;padding:72px 0;text-align:center;border-bottom:0;}
+.limited__label{display:inline-block;color:var(--c-red);font-family:var(--f-en);font-size:13px;letter-spacing:.3em;border-top:1px solid var(--c-red);border-bottom:1px solid var(--c-red);padding:4px 14px;}
+.limited__title{margin-top:20px;font-family:var(--f-en);font-weight:400;font-size:34px;letter-spacing:.18em;line-height:1.2;}
+.limited__title span{color:var(--c-red);}
+.limited__text{margin:22px auto 0;max-width:30em;font-size:13px;color:#ddd;}
+.limited__text em{font-style:normal;color:var(--c-red);}
+.limited__btn{display:inline-block;margin-top:30px;padding:12px 40px;border:1px solid var(--c-red);color:#fff;font-family:var(--f-en);font-size:14px;letter-spacing:.22em;}
+.limited__btn:hover{background:var(--c-red);opacity:1;}
+
+/* ===== category / search header ===== */
+.listHead{padding:40px 0 0;}
+.breadcrumb{font-size:12px;color:var(--c-sub);margin-bottom:20px;}
+.breadcrumb a{text-decoration:underline;text-underline-offset:3px;}
+.childCats{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:-8px 0 32px;}
+.childCats a{border:1px solid var(--c-line);padding:4px 14px;font-size:12px;}
+
+/* ===== item page ===== */
+.itemPage{padding:32px 0 64px;}
+.itemPage__layout{display:grid;gap:28px;}
+.itemGallery__main{
+  display:flex;overflow-x:auto;scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;scrollbar-width:none;border:1px solid var(--c-line);
+}
+.itemGallery__main::-webkit-scrollbar{display:none;}
+.itemGallery__main figure{flex:0 0 100%;margin:0;scroll-snap-align:start;}
+.itemGallery__main img{width:100%;}
+.itemGallery__hint{margin-top:6px;font-family:var(--f-en);font-size:11px;letter-spacing:.2em;color:var(--c-sub);text-align:right;}
+.itemInfo__title{font-size:20px;font-weight:500;line-height:1.6;letter-spacing:.06em;}
+.itemInfo__price{margin-top:12px;padding-bottom:18px;border-bottom:1px solid var(--c-line);font-family:var(--f-en);font-size:22px;letter-spacing:.06em;}
+.itemInfo__price s{color:var(--c-sub);font-size:16px;margin-right:8px;}
+.itemInfo__rate{font-size:13px;color:var(--c-red);margin-left:4px;}
+.itemInfo__status{display:inline-block;margin-top:14px;font-family:var(--f-en);font-size:12px;letter-spacing:.18em;border:1px solid var(--c-line);padding:0 10px;}
+.itemInfo__attention{margin-top:14px;font-size:12px;color:var(--c-sub);}
+.itemInfo__form{margin-top:22px;}
+.itemInfo__form select{
+  width:100%;margin-bottom:12px;padding:10px 12px;
+  font-family:var(--f-ja);font-size:14px;color:var(--c-fg);
+  background:var(--c-bg);border:1px solid var(--c-line);border-radius:0;
+}
+.purchaseButton__btn{
+  width:100%;padding:14px;border:1px solid var(--c-fg);border-radius:0;
+  background:var(--c-fg);color:var(--c-bg);cursor:pointer;
+  font-family:var(--f-ja);font-size:14px;letter-spacing:.2em;
+}
+.purchaseButton__btn--soldOut,
+.purchaseButton__btn--endOfSale{background:var(--c-bg);color:var(--c-sub);border-color:var(--c-line-soft);cursor:default;}
+.purchaseButton__btn--comingSoon,
+.purchaseButton__btn--comingSoonStay,
+.purchaseButton__btn--requestRestockMail{background:var(--c-bg);color:var(--c-fg);}
+.itemInfo__detail{margin-top:36px;padding-top:24px;border-top:1px solid var(--c-line);font-size:13px;}
+.itemInfo__detailHead{font-family:var(--f-en);font-size:14px;letter-spacing:.2em;margin-bottom:12px;}
+.itemInfo__report{margin-top:28px;font-size:11px;color:var(--c-sub);}
+
+/* ===== about / other pages ===== */
+.pageBody{padding:48px 0 72px;}
+.pageBody__text{max-width:40em;margin:0 auto;}
+.pageContents{padding:0 0 72px;}
+.pageContents:empty{display:none;}
+
+/* ===== footer ===== */
+.siteFooter{border-top:1px solid var(--c-line);padding:44px 0 28px;text-align:center;}
+.fNav{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 22px;font-family:var(--f-en);font-size:13px;letter-spacing:.14em;}
+.fNav a{white-space:nowrap;}
+.fLegal{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 18px;margin-top:16px;font-size:11px;color:var(--c-sub);}
+.fCredit{margin:28px auto 0;max-width:36em;}
+.fCopy{margin-top:18px;font-family:var(--f-en);font-size:12px;letter-spacing:.2em;}
+
+/* ===== tablet / pc ===== */
+@media (min-width:768px){
+  :root{--pad:40px;}
+  .sec{padding:96px 0;}
+  .secHead__en{font-size:34px;}
+  .carousel__track{padding:0 max(var(--pad), calc((100% - 640px) / 2));scroll-padding:0 max(var(--pad), calc((100% - 640px) / 2));}
+  .carousel__slide{flex-basis:640px;}
+  .itemGrid{grid-template-columns:repeat(3,1fr);gap:44px 24px;}
+  .typeTiles{grid-template-columns:repeat(4,1fr);}
+  .typeTile a{min-height:200px;}
+  .quality__body{grid-template-columns:1.1fr 1fr;align-items:center;gap:48px;}
+  .itemPage{padding:56px 0 96px;}
+  .itemPage__layout{grid-template-columns:1.15fr 1fr;gap:56px;align-items:start;}
+  .itemInfo{position:sticky;top:90px;}
+  .limited{padding:110px 0;}
+  .limited__title{font-size:44px;}
+}
+@media (min-width:1024px){
+  .itemGrid{grid-template-columns:repeat(4,1fr);}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="siteHeader">
+  <div class="inner siteHeader__inner">
+    <h1 class="siteHeader__logo"><a href="{IndexPageURL}">{LogoTag}</a></h1>
+    <nav class="gNav" aria-label="グローバルナビゲーション">
+      <div class="gNav__item">
+        {block:AppsItemCategory}
+        <details class="gNav__cat">
+          <summary>CATEGORY</summary>
+          <div class="gNav__drop">
+            <ul class="category">
+              {block:AppsItemCategoryCategories}
+              <li><a href="{AppsItemCategoryCategoryPageURL}">{AppsItemCategoryCategoryName}</a>
+                <ul class="category category--medium">
+                  {block:AppsItemCategoryMediumCategories}
+                  <li><a href="{AppsItemCategoryMediumCategoryPageURL}">{AppsItemCategoryMediumCategoryName}</a></li>
+                  {/block:AppsItemCategoryMediumCategories}
+                </ul>
+              </li>
+              {/block:AppsItemCategoryCategories}
+            </ul>
+          </div>
+        </details>
+        {/block:AppsItemCategory}
+      </div>
+      <a class="gNav__item" href="{AboutPageURL}">ABOUT</a>
+      <div class="gNav__item gNav__cart">{BASEMenuTag}</div>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+{block:IndexPage}
+
+  {block:NoIndexPageCategory}{block:NoIndexPageSearch}
+  <!-- ================= TOP PAGE ================= -->
+
+  <!-- 1. HERO -->
+  <section class="hero">
+    <img src="__IMG_EYECATCH__" alt="MIRABILIA ミラビリア — 失われた記憶を身にまとう。" width="1920" height="1080">
+  </section>
+
+  <!-- 2. 作者から探す -->
+  <section class="sec" id="authors">
+    <h2 class="secHead"><span class="secHead__en">AUTHORS</span><span class="secHead__ja">作者から探す</span></h2>
+    <div class="carousel" data-carousel>
+      <ul class="carousel__track" data-carousel-track>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7824127"><img src="__IMG_AUTHOR_DORE__" alt="ギュスターヴ・ドレ" loading="lazy"></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7824128"><img src="__IMG_AUTHOR_DURER__" alt="アルブレヒト・デューラー" loading="lazy"></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7824129"><img src="__IMG_AUTHOR_GRANDVILLE__" alt="グランヴィル" loading="lazy"></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7824130"><img src="__IMG_AUTHOR_TENNIEL__" alt="ジョン・テニエル" loading="lazy"></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7824131"><img src="__IMG_AUTHOR_CLARKE__" alt="ハリー・クラーク" loading="lazy"></a></li>
+      </ul>
+      <div class="carousel__ui">
+        <button type="button" class="carousel__arrow" data-carousel-prev aria-label="前へ">&lsaquo;</button>
+        <div class="carousel__dots" data-carousel-dots></div>
+        <button type="button" class="carousel__arrow" data-carousel-next aria-label="次へ">&rsaquo;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. 作品から探す -->
+  <section class="sec" id="works">
+    <div class="inner">
+      <h2 class="secHead"><span class="secHead__en">WORKS</span><span class="secHead__ja">作品から探す</span></h2>
+      {block:HasItems}
+      <ul class="itemGrid" data-item-list>
+        {block:Items}
+        <li class="itemCard">
+          <a href="{ItemPageURL}">
+            <div class="itemCard__img">
+              {block:ItemImage1}<img src="{ItemImage1URL-500}" alt="{ItemTitle}" loading="lazy">{/block:ItemImage1}
+              {block:NoItemImage1}<img src="{ItemNoImageURL}" alt="{ItemTitle}" loading="lazy">{/block:NoItemImage1}
+              {block:NoItemStock}<span class="itemCard__sold">SOLD OUT</span>{/block:NoItemStock}
+            </div>
+            <p class="itemCard__title">{ItemTitle}</p>
+            <p class="itemCard__price">{block:HasItemProperPrice}<s>{ItemProperPrice}</s>{/block:HasItemProperPrice}{ItemPrice}</p>
+          </a>
+        </li>
+        {/block:Items}
+      </ul>
+      {/block:HasItems}
+      {block:NoItems}<p class="noItems">現在、商品はありません。</p>{/block:NoItems}
+    </div>
+  </section>
+
+  <!-- 4. 商品種類から探す -->
+  <section class="sec" id="types">
+    <div class="inner">
+      <h2 class="secHead"><span class="secHead__en">ITEMS</span><span class="secHead__ja">商品種類から探す</span></h2>
+      <ul class="typeTiles">
+        <li class="typeTile"><a href="__LINK_CAT_TSHIRT__"><span class="typeTile__en">T-SHIRT</span><span class="typeTile__name">Tシャツ</span><span class="typeTile__price">¥9,980</span></a></li>
+        <li class="typeTile"><a href="__LINK_CAT_LONGT__"><span class="typeTile__en">LONG SLEEVE</span><span class="typeTile__name">ロンT</span><span class="typeTile__price">¥11,980</span></a></li>
+        <li class="typeTile"><a href="__LINK_CAT_PARKA__"><span class="typeTile__en">HOODIE</span><span class="typeTile__name">パーカー</span><span class="typeTile__price">¥14,980</span></a></li>
+        <li class="typeTile"><a href="__LINK_CAT_TOTE__"><span class="typeTile__en">TOTE BAG</span><span class="typeTile__name">トート</span><span class="typeTile__price">¥5,980</span></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 5. 品質 -->
+  <section class="sec" id="quality">
+    <div class="inner">
+      <h2 class="secHead"><span class="secHead__en">QUALITY</span><span class="secHead__ja">品質へのこだわり</span></h2>
+      <div class="quality__body">
+        <figure class="quality__fig">
+          <img src="__IMG_SCAN__" alt="古典資料を高精度スキャンする様子" loading="lazy">
+          <figcaption class="credit">"Book scanner digitization lab university of Liège" by Sam.Donvil, CC BY-SA 4.0, via Wikimedia Commons</figcaption>
+        </figure>
+        <div class="quality__text">
+          <p>図版はすべて、古典資料を<strong>高精度スキャン</strong>したデータから起こしています。線の細部だけでなく、紙の質感や経年による染み・かすれといった表情まで含めて再現しました。</p>
+          <p>ボディには <strong>United Athle</strong> のヘビーウェイト生地を採用。しっかりとした厚みで、長く着るほど身体に馴染みます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. LIMITED EDITION -->
+  <section class="sec limited" id="limited">
+    <div class="inner">
+      <span class="limited__label">LIMITED EDITION</span>
+      <h2 class="limited__title">THE <span>RED</span> LINE</h2>
+      <p class="limited__text">赤いTシャツとロンTは、<em>各サイズ3着限り</em>の限定モデルです。なくなり次第、販売終了となります。</p>
+      <a class="limited__btn" href="__LINK_CAT_RED__">VIEW LIMITED</a>
+    </div>
+  </section>
+
+  {/block:NoIndexPageSearch}{/block:NoIndexPageCategory}
+
+  {block:IndexPageCategory}
+  <!-- ================= CATEGORY PAGE ================= -->
+  <section class="sec listHead">
+    <div class="inner">
+      {block:BreadcrumbTag}<div class="breadcrumb">{BreadcrumbTag}</div>{/block:BreadcrumbTag}
+      <h2 class="secHead"><span class="secHead__en">CATEGORY</span><span class="secHead__ja">{IndexPageCategory}</span></h2>
+      {block:AppsItemCategory}
+      {block:HasAppsItemCategoryChildCategories}
+      <div class="childCats">
+        {block:AppsItemCategoryChildCategories}<a href="{AppsItemCategoryChildCategoryPageURL}">{AppsItemCategoryChildCategoryName}</a>{/block:AppsItemCategoryChildCategories}
+      </div>
+      {/block:HasAppsItemCategoryChildCategories}
+      {/block:AppsItemCategory}
+      {block:HasItems}
+      <ul class="itemGrid" data-item-list>
+        {block:Items}
+        <li class="itemCard">
+          <a href="{ItemPageURL}">
+            <div class="itemCard__img">
+              {block:ItemImage1}<img src="{ItemImage1URL-500}" alt="{ItemTitle}" loading="lazy">{/block:ItemImage1}
+              {block:NoItemImage1}<img src="{ItemNoImageURL}" alt="{ItemTitle}" loading="lazy">{/block:NoItemImage1}
+              {block:NoItemStock}<span class="itemCard__sold">SOLD OUT</span>{/block:NoItemStock}
+            </div>
+            <p class="itemCard__title">{ItemTitle}</p>
+            <p class="itemCard__price">{block:HasItemProperPrice}<s>{ItemProperPrice}</s>{/block:HasItemProperPrice}{ItemPrice}</p>
+          </a>
+        </li>
+        {/block:Items}
+      </ul>
+      <button type="button" class="moreBtn" data-load-more data-url="{LoadItemsPageURL}" data-params="{LoadItemsPageURLParams}" data-next="{NextPageNumber}" data-max="{MaxPageNumber}">MORE</button>
+      {/block:HasItems}
+      {block:NoItems}<p class="noItems">このカテゴリには、現在商品がありません。</p>{/block:NoItems}
+    </div>
+  </section>
+  {/block:IndexPageCategory}
+
+  {block:IndexPageSearch}
+  <!-- ================= SEARCH RESULT ================= -->
+  <section class="sec listHead">
+    <div class="inner">
+      <h2 class="secHead"><span class="secHead__en">SEARCH</span><span class="secHead__ja">{lang:ItemSearchResult}</span></h2>
+      {block:HasItems}
+      <ul class="itemGrid" data-item-list>
+        {block:Items}
+        <li class="itemCard">
+          <a href="{ItemPageURL}">
+            <div class="itemCard__img">
+              {block:ItemImage1}<img src="{ItemImage1URL-500}" alt="{ItemTitle}" loading="lazy">{/block:ItemImage1}
+              {block:NoItemImage1}<img src="{ItemNoImageURL}" alt="{ItemTitle}" loading="lazy">{/block:NoItemImage1}
+              {block:NoItemStock}<span class="itemCard__sold">SOLD OUT</span>{/block:NoItemStock}
+            </div>
+            <p class="itemCard__title">{ItemTitle}</p>
+            <p class="itemCard__price">{block:HasItemProperPrice}<s>{ItemProperPrice}</s>{/block:HasItemProperPrice}{ItemPrice}</p>
+          </a>
+        </li>
+        {/block:Items}
+      </ul>
+      {/block:HasItems}
+      {block:NoItems}<p class="noItems">該当する商品が見つかりませんでした。</p>{/block:NoItems}
+    </div>
+  </section>
+  {/block:IndexPageSearch}
+
+{/block:IndexPage}
+
+{block:ItemPage}
+<!-- ================= ITEM PAGE ================= -->
+<article class="itemPage">
+  <div class="inner">
+    {IllegalReportMessageTag}
+    <div class="itemPage__layout">
+
+      <div class="itemGallery">
+        <div class="itemGallery__main">
+          {block:ItemImage1}<figure><img src="{ItemImage1URL-1280}" alt="{ItemTitle}"></figure>{/block:ItemImage1}
+          {block:NoItemImage1}<figure><img src="{ItemNoImageURL}" alt="{ItemTitle}"></figure>{/block:NoItemImage1}
+          {block:ItemImage2}<figure><img src="{ItemImage2URL-1280}" alt="{ItemTitle}" loading="lazy"></figure>{/block:ItemImage2}
+          {block:ItemImage3}<figure><img src="{ItemImage3URL-1280}" alt="{ItemTitle}" loading="lazy"></figure>{/block:ItemImage3}
+          {block:ItemImage4}<figure><img src="{ItemImage4URL-1280}" alt="{ItemTitle}" loading="lazy"></figure>{/block:ItemImage4}
+          {block:ItemImage5}<figure><img src="{ItemImage5URL-1280}" alt="{ItemTitle}" loading="lazy"></figure>{/block:ItemImage5}
+          {block:ItemImage6}<figure><img src="{ItemImage6URL-1280}" alt="{ItemTitle}" loading="lazy"></figure>{/block:ItemImage6}
+          {block:ItemImage7}<figure><img src="{ItemImage7URL-1280}" alt="{ItemTitle}" loading="lazy"></figure>{/block:ItemImage7}
+          {block:ItemImage8}<figure><img src="{ItemImage8URL-1280}" alt="{ItemTitle}" loading="lazy"></figure>{/block:ItemImage8}
+          {block:ItemImage9}<figure><img src="{ItemImage9URL-1280}" alt="{ItemTitle}" loading="lazy"></figure>{/block:ItemImage9}
+          {block:ItemImage10}<figure><img src="{ItemImage10URL-1280}" alt="{ItemTitle}" loading="lazy"></figure>{/block:ItemImage10}
+        </div>
+        <p class="itemGallery__hint">SWIPE &rarr; ({ItemImageCount})</p>
+      </div>
+
+      <div class="itemInfo">
+        <h1 class="itemInfo__title">{ItemTitle}{block:ItemDigitalContent}（{ItemDigitalContent}）{/block:ItemDigitalContent}</h1>
+
+        <p class="itemInfo__price">
+          {block:NoItemProperPrice}{ItemPrice}{/block:NoItemProperPrice}
+          {block:HasItemProperPrice}<s>{ItemProperPrice}</s>{ItemPrice}<span class="itemInfo__rate">{ItemDiscountRate}</span>{/block:HasItemProperPrice}
+        </p>
+
+        {block:HasItemStock}
+          {block:ItemWaitingForSale}<span class="itemInfo__status">COMING SOON</span>{/block:ItemWaitingForSale}
+          {block:ItemNowOnSale}{block:ItemPreOrder}<span class="itemInfo__status">PRE-ORDER</span>{/block:ItemPreOrder}{/block:ItemNowOnSale}
+          {block:ItemEndOfSale}<span class="itemInfo__status">END OF SALE</span>{/block:ItemEndOfSale}
+        {/block:HasItemStock}
+        {block:NoItemStock}
+          {block:ItemWaitingForSale}<span class="itemInfo__status">COMING SOON</span>{/block:ItemWaitingForSale}
+          {block:ItemNowOnSale}<span class="itemInfo__status">SOLD OUT</span>{/block:ItemNowOnSale}
+          {block:ItemEndOfSale}<span class="itemInfo__status">END OF SALE</span>{/block:ItemEndOfSale}
+        {/block:NoItemStock}
+
+        <div class="itemInfo__attention">{ItemAttentionTag}</div>
+
+        <div class="itemInfo__form">
+          {block:PurchaseForm}
+            {ItemSelectTag}
+            {PurchaseButton}
+          {/block:PurchaseForm}
+        </div>
+
+        <div class="itemInfo__detail">
+          <h2 class="itemInfo__detailHead">DESCRIPTION</h2>
+          {ItemDetail}
+        </div>
+
+        <div class="itemInfo__report">{IllegalReportTag}</div>
+      </div>
+
+    </div>
+  </div>
+</article>
+{/block:ItemPage}
+
+{block:AboutPage}
+<!-- ================= ABOUT PAGE ================= -->
+<section class="pageBody">
+  <div class="inner">
+    <h2 class="secHead"><span class="secHead__en">ABOUT</span><span class="secHead__ja">ミラビリアについて</span></h2>
+    <div class="pageBody__text">{ShopIntroduction}</div>
+  </div>
+</section>
+{/block:AboutPage}
+
+<!-- お問い合わせ・プライバシーポリシー・特商法などの標準コンテンツ -->
+<div class="pageContents inner">{PageContents}</div>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="siteFooter">
+  <div class="inner">
+    <nav class="fNav" aria-label="フッターナビゲーション">
+      <a href="{IndexPageURL}">HOME</a>
+      <a href="{AboutPageURL}">ABOUT</a>
+      <a href="{ContactPageURL}">CONTACT</a>
+      <a href="https://www.instagram.com/mirabilia.curio" target="_blank" rel="noopener">INSTAGRAM</a>
+    </nav>
+    <div class="fLegal">
+      <a href="{PrivacyPageURL}">{lang:Privacy}</a>
+      <a href="{LawPageURL}">{lang:Law}</a>
+    </div>
+    <p class="credit fCredit">"Book scanner digitization lab university of Liège" by Sam.Donvil, CC BY-SA 4.0, via Wikimedia Commons</p>
+    <p class="fCopy">&copy; {ShopName}</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* --- author carousel: scroll-snap + dots / arrows --- */
+  var root = document.querySelector('[data-carousel]');
+  if (root) {
+    var track = root.querySelector('[data-carousel-track]');
+    var slides = Array.prototype.slice.call(track.children);
+    var dotsWrap = root.querySelector('[data-carousel-dots]');
+    var dots = slides.map(function(_, i){
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'carousel__dot';
+      b.setAttribute('aria-label', (i + 1) + '枚目へ');
+      b.addEventListener('click', function(){ go(i); });
+      dotsWrap.appendChild(b);
+      return b;
+    });
+    var current = 0;
+    function go(i){
+      if (i < 0) i = slides.length - 1;
+      if (i >= slides.length) i = 0;
+      var s = slides[i];
+      track.scrollTo({ left: s.offsetLeft - (track.clientWidth - s.clientWidth) / 2, behavior: 'smooth' });
+    }
+    function update(){
+      var center = track.scrollLeft + track.clientWidth / 2, best = 0, min = Infinity;
+      slides.forEach(function(s, i){
+        var d = Math.abs(s.offsetLeft + s.clientWidth / 2 - center);
+        if (d < min) { min = d; best = i; }
+      });
+      current = best;
+      dots.forEach(function(d, i){ d.setAttribute('aria-current', i === best ? 'true' : 'false'); });
+    }
+    var t;
+    track.addEventListener('scroll', function(){ clearTimeout(t); t = setTimeout(update, 60); }, { passive: true });
+    window.addEventListener('resize', update);
+    root.querySelector('[data-carousel-prev]').addEventListener('click', function(){ go(current - 1); });
+    root.querySelector('[data-carousel-next]').addEventListener('click', function(){ go(current + 1); });
+    update();
+  }
+
+  /* --- close category dropdown on outside click --- */
+  document.addEventListener('click', function(e){
+    var d = document.querySelector('.gNav__cat');
+    if (d && d.open && !d.contains(e.target)) d.open = false;
+  });
+
+  /* --- category page: load more items via LoadItemsPage --- */
+  var more = document.querySelector('[data-load-more]');
+  if (more) {
+    var list = document.querySelector('[data-item-list]');
+    var next = parseInt(more.getAttribute('data-next'), 10);
+    var max = parseInt(more.getAttribute('data-max'), 10);
+    if (!next || !max || next > max) { more.style.display = 'none'; }
+    more.addEventListener('click', function(){
+      more.disabled = true;
+      var url = more.getAttribute('data-url') + '/' + next + more.getAttribute('data-params');
+      fetch(url, { credentials: 'same-origin' })
+        .then(function(r){ return r.text(); })
+        .then(function(html){
+          list.insertAdjacentHTML('beforeend', html);
+          next++;
+          more.disabled = false;
+          if (next > max) more.style.display = 'none';
+        })
+        .catch(function(){ more.disabled = false; });
+    });
+  }
+})();
+</script>
+</body>
+</html>
+{/block:NotLoadItemsPage}{block:LoadItemsPage}{block:Items}
+<li class="itemCard">
+  <a href="{ItemPageURL}">
+    <div class="itemCard__img">
+      {block:ItemImage1}<img src="{ItemImage1URL-500}" alt="{ItemTitle}" loading="lazy">{/block:ItemImage1}
+      {block:NoItemImage1}<img src="{ItemNoImageURL}" alt="{ItemTitle}" loading="lazy">{/block:NoItemImage1}
+      {block:NoItemStock}<span class="itemCard__sold">SOLD OUT</span>{/block:NoItemStock}
+    </div>
+    <p class="itemCard__title">{ItemTitle}</p>
+    <p class="itemCard__price">{block:HasItemProperPrice}<s>{ItemProperPrice}</s>{/block:HasItemProperPrice}{ItemPrice}</p>
+  </a>
+</li>
+{/block:Items}{/block:LoadItemsPage}
