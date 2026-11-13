@@ -59,7 +59,7 @@ h1,h2,h3,p{margin:0;}
 .siteHeader__logo img{max-height:26px;width:auto;}
 .gNav{display:flex;align-items:center;gap:22px;font-family:var(--f-en);font-size:13px;letter-spacing:.16em;}
 .gNav__item{position:relative;}
-.gNav details summary{list-style:none;cursor:pointer;}
+.gNav details summary{list-style:none;cursor:pointer;white-space:nowrap;}
 .gNav details summary::-webkit-details-marker{display:none;}
 .gNav__drop{
   position:absolute;right:-12px;top:calc(100% + 14px);
@@ -77,6 +77,10 @@ h1,h2,h3,p{margin:0;}
 .gNav__cart div,.gNav__cart span,.gNav__cart ul{display:inline-flex;align-items:center;gap:16px;}
 .gNav__cart a{display:inline-flex;align-items:center;line-height:1;}
 .gNav__cart img{width:auto !important;height:20px !important;max-width:none !important;}
+/* v3.4: BASEメニュータグ内の BASE ロゴだけ隠す（カートは残す）。リンクごと・空になる li ごと畳む */
+.gNav__cart img[src*="/img/shop/base.png"],
+.gNav__cart a:has(img[src*="/img/shop/base.png"]),
+.gNav__cart li:has(img[src*="/img/shop/base.png"]):not(:has(img:not([src*="/img/shop/base.png"]))){display:none !important;}
 
 /* ===== section common ===== */
 .sec{padding:56px 0;border-bottom:1px solid var(--c-line);}
@@ -297,13 +301,6 @@ html#mrbHtml body#mrbBody a.limited__btn:visited{color:#fff !important;text-deco
 /* 一覧カードは常時不透明（v3.3） */
 html#mrbHtml body#mrbBody .itemCard a,
 html#mrbHtml body#mrbBody .itemCard a:hover{opacity:1 !important;}
-/* v3.4: 基本リンクルール削除に伴う代替（.moreBtn の色）と体裁調整 */
-html#mrbHtml body#mrbBody .moreBtn{color:#000 !important;}
-html#mrbHtml body#mrbBody .moreBtn:hover{color:#fff !important;}
-html#mrbHtml body#mrbBody .gNav__cart img[src*="/img/shop/base.png"],
-html#mrbHtml body#mrbBody .gNav__cart a:has(img[src*="/img/shop/base.png"]),
-html#mrbHtml body#mrbBody .gNav__cart li:has(img[src*="/img/shop/base.png"]):not(:has(img:not([src*="/img/shop/base.png"]))){display:none !important;}
-html#mrbHtml body#mrbBody .gNav__cat summary{white-space:nowrap;}
 </style>
 {GoogleAnalyticsTag}
 {FaviconTag}
