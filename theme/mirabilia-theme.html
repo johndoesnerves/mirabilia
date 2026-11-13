@@ -1133,6 +1133,43 @@ html#mrbHtml body#mrbBody .itemCard a:hover{opacity:1 !important;}
     var list = document.querySelector('[data-item-list]');
     if (!list || !document.querySelector('[data-load-more]')) return;
     var state = { type: 'all', color: 'all', stock: false };
+    var loadedAll = false, loadingAll = false;
+    function loadAllPages(){
+      if (loadedAll || loadingAll) return;
+      var btn = document.querySelector('[data-load-more]');
+      var wrap = btn ? btn.closest('.itemGrid__more') : null;
+      if (!btn || !wrap || wrap.style.display === 'none') { loadedAll = true; return; }
+      var url = btn.getAttribute('data-url'), params = btn.getAttribute('data-params') || '';
+      var next = parseInt(btn.getAttribute('data-next'), 10), max = parseInt(btn.getAttribute('data-max'), 10);
+      if (!url || isNaN(next) || isNaN(max) || next > max) { loadedAll = true; return; }
+      loadingAll = true;
+      note.textContent = 'すべての商品を読み込んでいます…';
+      note.style.display = '';
+      var chain = Promise.resolve();
+      for (var pg = next; pg <= max; pg++) {
+        (function(pg){
+          chain = chain.then(function(){
+            return fetch(url + pg + params, { credentials: 'same-origin' })
+              .then(function(r){ return r.text(); })
+              .then(function(html){
+                var tmp = document.createElement('div');
+                tmp.innerHTML = html;
+                Array.prototype.slice.call(tmp.children).forEach(function(el){
+                  if (el.classList && el.classList.contains('itemCard')) list.appendChild(el);
+                });
+              })
+              .catch(function(){});
+          });
+        })(pg);
+      }
+      chain.then(function(){
+        loadedAll = true; loadingAll = false;
+        btn.setAttribute('data-next', String(max + 1));
+        wrap.style.display = 'none';
+        apply();
+      });
+    }
+    function applyAndLoad(){ apply(); loadAllPages(); }
     function classify(card){
       var t = (card.querySelector('.itemCard__title') || {}).textContent || '';
       var type = t.indexOf('ロンT') >= 0 ? 'longt' : t.indexOf('Tシャツ') >= 0 ? 'tshirt' : t.indexOf('パーカー') >= 0 ? 'parka' : t.indexOf('トート') >= 0 ? 'tote' : 'other';
@@ -1149,8 +1186,10 @@ html#mrbHtml body#mrbBody .itemCard a:hover{opacity:1 !important;}
         card.style.display = ok ? '' : 'none';
         if (ok) n++;
       });
-      note.textContent = n === 0 ? '該当する商品がありません' : '';
-      note.style.display = n === 0 ? '' : 'none';
+      if (!loadingAll) {
+        note.textContent = n === 0 ? '該当する商品がありません' : '';
+        note.style.display = n === 0 ? '' : 'none';
+      }
     }
     function chipRow(label, group, options){
       var row = document.createElement('div');
@@ -1169,7 +1208,7 @@ html#mrbHtml body#mrbBody .itemCard a:hover{opacity:1 !important;}
           state[group] = o[0];
           Array.prototype.forEach.call(row.querySelectorAll('.listFilter__chip'), function(x){ x.setAttribute('aria-pressed', 'false'); });
           b.setAttribute('aria-pressed', 'true');
-          apply();
+          applyAndLoad();
         });
         row.appendChild(b);
       });
@@ -1185,7 +1224,7 @@ html#mrbHtml body#mrbBody .itemCard a:hover{opacity:1 !important;}
     lab.className = 'listFilter__stock';
     var cb = document.createElement('input');
     cb.type = 'checkbox';
-    cb.addEventListener('change', function(){ state.stock = cb.checked; apply(); });
+    cb.addEventListener('change', function(){ state.stock = cb.checked; applyAndLoad(); });
     lab.appendChild(cb);
     lab.appendChild(document.createTextNode('在庫ありのみ'));
     row3.appendChild(lab);
