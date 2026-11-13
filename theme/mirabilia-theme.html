@@ -202,6 +202,14 @@ h1,h2,h3,p{margin:0;}
 .catWorks{margin:0 0 44px;}
 .catWorks__head{font-size:13px;letter-spacing:.14em;margin-bottom:14px;}
 .catWorks__head .en{font-family:var(--f-en);font-size:12px;letter-spacing:.22em;color:var(--c-sub);margin-right:12px;}
+/* v3.7: 一覧フィルター（種類・色・在庫） */
+.listFilter{margin:0 0 22px;display:flex;flex-direction:column;gap:10px;}
+.listFilter__row{display:flex;align-items:center;flex-wrap:wrap;gap:8px;}
+.listFilter__label{font-size:12px;letter-spacing:.14em;color:var(--c-sub);margin-right:2px;}
+.listFilter__chip{appearance:none;background:var(--c-bg);border:1px solid var(--c-line);border-radius:999px;padding:6px 14px;font-size:12.5px;letter-spacing:.06em;cursor:pointer;color:var(--c-fg);}
+.listFilter__chip[aria-pressed="true"]{background:var(--c-fg);border-color:var(--c-fg);color:#fff;}
+.listFilter__stock{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;letter-spacing:.06em;cursor:pointer;}
+.listFilter__note{font-size:12.5px;color:var(--c-sub);letter-spacing:.06em;}
 @media (max-width:767px){
   .catIntro{flex-direction:column;gap:18px;}
   .catIntro__img{flex:none;width:100%;max-width:420px;}
@@ -1118,6 +1126,77 @@ html#mrbHtml body#mrbBody .itemCard a:hover{opacity:1 !important;}
         if (d.works.length >= 3) initCarousel(car);
       }
     }
+  })();
+
+  /* --- list filter (v3.7): 種類・色・在庫で絞り込み（読み込み済み商品が対象、MORE追加分にも自動適用） --- */
+  (function(){
+    var list = document.querySelector('[data-item-list]');
+    if (!list || !document.querySelector('[data-load-more]')) return;
+    var state = { type: 'all', color: 'all', stock: false };
+    function classify(card){
+      var t = (card.querySelector('.itemCard__title') || {}).textContent || '';
+      var type = t.indexOf('ロンT') >= 0 ? 'longt' : t.indexOf('Tシャツ') >= 0 ? 'tshirt' : t.indexOf('パーカー') >= 0 ? 'parka' : t.indexOf('トート') >= 0 ? 'tote' : 'other';
+      var color = t.indexOf('（ホワイト）') >= 0 ? 'white' : t.indexOf('（ブラック）') >= 0 ? 'black' : t.indexOf('（レッド）') >= 0 ? 'red' : 'none';
+      return { type: type, color: color, sold: !!card.querySelector('.itemCard__sold') };
+    }
+    function apply(){
+      var n = 0;
+      Array.prototype.forEach.call(list.children, function(card){
+        var c = classify(card);
+        var ok = (state.type === 'all' || c.type === state.type)
+          && (state.color === 'all' || c.color === state.color)
+          && (!state.stock || !c.sold);
+        card.style.display = ok ? '' : 'none';
+        if (ok) n++;
+      });
+      note.textContent = n === 0 ? '該当する商品がありません' : '';
+      note.style.display = n === 0 ? '' : 'none';
+    }
+    function chipRow(label, group, options){
+      var row = document.createElement('div');
+      row.className = 'listFilter__row';
+      var lb = document.createElement('span');
+      lb.className = 'listFilter__label';
+      lb.textContent = label;
+      row.appendChild(lb);
+      options.forEach(function(o){
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'listFilter__chip';
+        b.textContent = o[1];
+        b.setAttribute('aria-pressed', o[0] === 'all' ? 'true' : 'false');
+        b.addEventListener('click', function(){
+          state[group] = o[0];
+          Array.prototype.forEach.call(row.querySelectorAll('.listFilter__chip'), function(x){ x.setAttribute('aria-pressed', 'false'); });
+          b.setAttribute('aria-pressed', 'true');
+          apply();
+        });
+        row.appendChild(b);
+      });
+      return row;
+    }
+    var box = document.createElement('div');
+    box.className = 'listFilter';
+    box.appendChild(chipRow('種類', 'type', [['all', 'すべて'], ['tshirt', 'Tシャツ'], ['longt', 'ロンT'], ['parka', 'パーカー'], ['tote', 'トート']]));
+    box.appendChild(chipRow('色', 'color', [['all', 'すべて'], ['white', 'ホワイト'], ['black', 'ブラック'], ['red', 'レッド']]));
+    var row3 = document.createElement('div');
+    row3.className = 'listFilter__row';
+    var lab = document.createElement('label');
+    lab.className = 'listFilter__stock';
+    var cb = document.createElement('input');
+    cb.type = 'checkbox';
+    cb.addEventListener('change', function(){ state.stock = cb.checked; apply(); });
+    lab.appendChild(cb);
+    lab.appendChild(document.createTextNode('在庫ありのみ'));
+    row3.appendChild(lab);
+    box.appendChild(row3);
+    var note = document.createElement('p');
+    note.className = 'listFilter__note';
+    note.style.display = 'none';
+    box.appendChild(note);
+    list.parentNode.insertBefore(box, list);
+    new MutationObserver(apply).observe(list, { childList: true });
+    apply();
   })();
 
   /* --- category page: load more items via LoadItemsPage --- */
