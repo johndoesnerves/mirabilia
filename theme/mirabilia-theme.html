@@ -39,7 +39,7 @@ body{
 }
 img{max-width:100%;height:auto;display:block;}
 .siteHeader a,.siteFooter a,.typeTile a,.itemCard a,.childCats a,.breadcrumb a,.carousel__slide a,.moreBtn{color:inherit;text-decoration:none;}
-.siteHeader a:hover,.siteFooter a:hover,.itemCard a:hover,.childCats a:hover,.breadcrumb a:hover{opacity:.6;}
+.siteHeader a:hover,.siteFooter a:hover,.childCats a:hover,.breadcrumb a:hover{opacity:.6;}
 ul{list-style:none;margin:0;padding:0;}
 h1,h2,h3,p{margin:0;}
 .inner{max-width:var(--max);margin:0 auto;padding:0 var(--pad);}
@@ -93,6 +93,13 @@ h1,h2,h3,p{margin:0;}
 .concept{text-align:center;}
 .concept__lead{font-family:var(--f-ja);font-size:24px;font-weight:500;letter-spacing:.14em;line-height:1.6;}
 .concept__text{margin:22px auto 0;max-width:34em;font-size:14px;line-height:2;color:#333;}
+.nw{white-space:nowrap;}
+.gNav__drop--scroll{max-height:min(68vh,540px);overflow-y:auto;}
+.carousel--works .carousel__slide{flex-basis:64%;}
+.carousel--works .carousel__slide img{aspect-ratio:1/1;}
+.carousel--works .carousel__dots{display:none;}
+.workTile__name{display:block;padding:10px 6px;text-align:center;font-size:13px;letter-spacing:.08em;}
+@media (max-width:767px){.gNav{gap:13px;letter-spacing:.06em;}}
 
 /* ===== author carousel ===== */
 .carousel{position:relative;}
@@ -130,8 +137,9 @@ h1,h2,h3,p{margin:0;}
 /* ===== item grid ===== */
 .itemGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px 14px;}
 .itemCard a{display:block;}
-.itemCard__img{position:relative;aspect-ratio:1/1;overflow:hidden;background:#f5f5f5;}
-.itemCard__img img{width:100%;height:100%;object-fit:cover;}
+.itemCard__img{position:relative;aspect-ratio:1/1;overflow:hidden;background:#f5f5f5;border:1px solid var(--c-line-soft);}
+.itemCard__img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+.itemCard a:hover .itemCard__img img{transform:scale(1.04);}
 .itemCard__sold{
   position:absolute;left:0;bottom:0;background:var(--c-fg);color:var(--c-bg);
   font-family:var(--f-en);font-size:12px;letter-spacing:.16em;padding:2px 10px;
@@ -249,6 +257,7 @@ h1,h2,h3,p{margin:0;}
   .concept__lead{font-size:32px;}
   .hero img{height:62vh;}
   .carousel__slide{flex-basis:47.5%;}
+  .carousel--works .carousel__slide{flex-basis:31.5%;}
   .itemGrid{grid-template-columns:repeat(3,1fr);gap:48px 24px;}
   .typeTiles{grid-template-columns:repeat(4,1fr);}
   .typeTile a{min-height:190px;padding-bottom:24px;}
@@ -261,6 +270,7 @@ h1,h2,h3,p{margin:0;}
 }
 @media (min-width:1024px){
   .itemGrid{grid-template-columns:repeat(4,1fr);}
+  .carousel--works .carousel__slide{flex-basis:23.2%;}
 }
 
 /* ===== link reset（v3.2）=====
@@ -285,6 +295,9 @@ html#mrbHtml body#mrbBody :is(.breadcrumb,.fLegal,.category--medium) a:is(:link,
 /* 反転ボタン（.limited__btn）は従来配色のまま */
 html#mrbHtml body#mrbBody a.limited__btn,
 html#mrbHtml body#mrbBody a.limited__btn:visited{color:#fff !important;text-decoration:none !important;}
+/* 一覧カードは常時不透明（v3.3） */
+html#mrbHtml body#mrbBody .itemCard a,
+html#mrbHtml body#mrbBody .itemCard a:hover{opacity:1 !important;}
 </style>
 {GoogleAnalyticsTag}
 {FaviconTag}
@@ -298,24 +311,61 @@ html#mrbHtml body#mrbBody a.limited__btn:visited{color:#fff !important;text-deco
     <h1 class="siteHeader__logo"><a href="{IndexPageURL}">{LogoTag}</a></h1>
     <nav class="gNav" aria-label="グローバルナビゲーション">
       <div class="gNav__item">
-        {block:AppsItemCategory}
         <details class="gNav__cat">
-          <summary>CATEGORY</summary>
+          <summary>作者別</summary>
           <div class="gNav__drop">
-            <ul class="category">
-              {block:AppsItemCategoryCategories}
-              <li><a href="{AppsItemCategoryCategoryPageURL}">{AppsItemCategoryCategoryName}</a>
-                <ul class="category category--medium">
-                  {block:AppsItemCategoryMediumCategories}
-                  <li><a href="{AppsItemCategoryMediumCategoryPageURL}">{AppsItemCategoryMediumCategoryName}</a></li>
-                  {/block:AppsItemCategoryMediumCategories}
-                </ul>
-              </li>
-              {/block:AppsItemCategoryCategories}
+            <ul>
+              <li><a href="https://mirabilia.base.shop/categories/7824127">Gustave Doré</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7824128">Albrecht Dürer</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7824129">J.J. Grandville</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7824130">John Tenniel</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7824131">Harry Clarke</a></li>
             </ul>
           </div>
         </details>
-        {/block:AppsItemCategory}
+      </div>
+      <div class="gNav__item">
+        <details class="gNav__cat">
+          <summary>作品別</summary>
+          <div class="gNav__drop gNav__drop--scroll">
+            <ul>
+              <li><a href="https://mirabilia.base.shop/categories/7827913">リヴァイアサン</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7827914">ドン・キホーテ</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7827918">長靴をはいた猫</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7827920">バベルの塔</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7827921">自殺者の森</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7827924">大洪水</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7827926">猟犬</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7827928">光の創造</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7827929">ダニエル</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7827930">サムソン</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7827931">騎士と死と悪魔</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7827932">メランコリア I</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7827933">書斎の聖ヒエロニムス</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7827934">犀</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7827935">四騎士</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7827936">哲学者</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7827937">宮廷猫の挨拶</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7827938">講釈する貴婦人</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7827939">ジャバウォック</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7827940">赤死病の仮面</a></li>
+            </ul>
+          </div>
+        </details>
+      </div>
+      <div class="gNav__item">
+        <details class="gNav__cat">
+          <summary>商品別</summary>
+          <div class="gNav__drop">
+            <ul>
+              <li><a href="https://mirabilia.base.shop/categories/7826790">Tシャツ</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7826791">ロンT</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7826792">パーカー</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7826794">トート</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7826795">レッド</a></li>
+            </ul>
+          </div>
+        </details>
       </div>
       <a class="gNav__item" href="{AboutPageURL}">ABOUT</a>
       <div class="gNav__item gNav__cart">{BASEMenuTag}</div>
@@ -338,8 +388,7 @@ html#mrbHtml body#mrbBody a.limited__btn:visited{color:#fff !important;text-deco
   <!-- 1.5 CONCEPT -->
   <section class="sec concept">
     <div class="inner">
-      <p class="concept__lead">失われた記憶を身にまとう。</p>
-      <p class="concept__text">数百年前に刻まれた、銅版画と木版画。物語とともに忘れられていった図版たちを、高精度スキャンでよみがえらせ、身に着ける一着に仕立てました。紙の質感も、染みも、かすれも、時を経た証としてそのままに。</p>
+      <p class="concept__text">数百年前に刻まれた、銅版画と木版画。物語とともに忘れられていった図版たちを、高精度スキャンでよみがえらせ、身に着ける一着に仕立てました。紙の質感も、染みも、かすれも、時を経た証として<span class="nw">そのままに。</span></p>
     </div>
   </section>
 
@@ -364,26 +413,35 @@ html#mrbHtml body#mrbBody a.limited__btn:visited{color:#fff !important;text-deco
 
   <!-- 3. 作品から探す -->
   <section class="sec" id="works">
-    <div class="inner">
-      <h2 class="secHead"><span class="secHead__en">WORKS</span><span class="secHead__ja">作品から探す</span></h2>
-      {block:HasItems}
-      <ul class="itemGrid" data-item-list>
-        {block:Items}
-        <li class="itemCard">
-          <a href="{ItemPageURL}">
-            <div class="itemCard__img">
-              {block:ItemImage1}<img src="{ItemImage1URL-500}" alt="{ItemTitle}" loading="lazy">{/block:ItemImage1}
-              {block:NoItemImage1}<img src="{ItemNoImageURL}" alt="{ItemTitle}" loading="lazy">{/block:NoItemImage1}
-              {block:NoItemStock}<span class="itemCard__sold">SOLD OUT</span>{/block:NoItemStock}
-            </div>
-            <p class="itemCard__title">{ItemTitle}</p>
-            <p class="itemCard__price">{block:HasItemProperPrice}<s>{ItemProperPrice}</s>{/block:HasItemProperPrice}{ItemPrice}</p>
-          </a>
-        </li>
-        {/block:Items}
+    <h2 class="secHead"><span class="secHead__en">WORKS</span><span class="secHead__ja">作品から探す</span></h2>
+    <div class="carousel carousel--works" data-carousel>
+      <ul class="carousel__track" data-carousel-track>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7827913"><img src="__IMG_WORK_LEVIATHAN__" alt="リヴァイアサン" loading="lazy"><span class="workTile__name">リヴァイアサン</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7827914"><img src="__IMG_WORK_QUIXOTE__" alt="ドン・キホーテ" loading="lazy"><span class="workTile__name">ドン・キホーテ</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7827918"><img src="__IMG_WORK_PUSS__" alt="長靴をはいた猫" loading="lazy"><span class="workTile__name">長靴をはいた猫</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7827920"><img src="__IMG_WORK_BABEL__" alt="バベルの塔" loading="lazy"><span class="workTile__name">バベルの塔</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7827921"><img src="__IMG_WORK_SUICIDES__" alt="自殺者の森" loading="lazy"><span class="workTile__name">自殺者の森</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7827924"><img src="__IMG_WORK_DELUGE__" alt="大洪水" loading="lazy"><span class="workTile__name">大洪水</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7827926"><img src="__IMG_WORK_HOUNDS__" alt="猟犬" loading="lazy"><span class="workTile__name">猟犬</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7827928"><img src="__IMG_WORK_CREATION__" alt="光の創造" loading="lazy"><span class="workTile__name">光の創造</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7827929"><img src="__IMG_WORK_DANIEL__" alt="ダニエル" loading="lazy"><span class="workTile__name">ダニエル</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7827930"><img src="__IMG_WORK_SAMSON__" alt="サムソン" loading="lazy"><span class="workTile__name">サムソン</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7827931"><img src="__IMG_WORK_KNIGHT__" alt="騎士と死と悪魔" loading="lazy"><span class="workTile__name">騎士と死と悪魔</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7827932"><img src="__IMG_WORK_MELENCOLIA__" alt="メランコリア I" loading="lazy"><span class="workTile__name">メランコリア I</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7827933"><img src="__IMG_WORK_JEROME__" alt="書斎の聖ヒエロニムス" loading="lazy"><span class="workTile__name">書斎の聖ヒエロニムス</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7827934"><img src="__IMG_WORK_RHINO__" alt="犀" loading="lazy"><span class="workTile__name">犀</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7827935"><img src="__IMG_WORK_HORSEMEN__" alt="四騎士" loading="lazy"><span class="workTile__name">四騎士</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7827936"><img src="__IMG_WORK_TETSUGAKU__" alt="哲学者" loading="lazy"><span class="workTile__name">哲学者</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7827937"><img src="__IMG_WORK_NEKO__" alt="宮廷猫の挨拶" loading="lazy"><span class="workTile__name">宮廷猫の挨拶</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7827938"><img src="__IMG_WORK_KOUSHAKU__" alt="講釈する貴婦人" loading="lazy"><span class="workTile__name">講釈する貴婦人</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7827939"><img src="__IMG_WORK_JABBERWOCKY__" alt="ジャバウォック" loading="lazy"><span class="workTile__name">ジャバウォック</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7827940"><img src="__IMG_WORK_CLARKE__" alt="赤死病の仮面" loading="lazy"><span class="workTile__name">赤死病の仮面</span></a></li>
       </ul>
-      {/block:HasItems}
-      {block:NoItems}<p class="noItems">現在、商品はありません。</p>{/block:NoItems}
+      <div class="carousel__ui">
+        <button type="button" class="carousel__arrow" data-carousel-prev aria-label="前へ">&lsaquo;</button>
+        <div class="carousel__dots" data-carousel-dots></div>
+        <button type="button" class="carousel__arrow" data-carousel-next aria-label="次へ">&rsaquo;</button>
+      </div>
     </div>
   </section>
 
@@ -598,9 +656,8 @@ html#mrbHtml body#mrbBody a.limited__btn:visited{color:#fff !important;text-deco
 
 <script>
 (function(){
-  /* --- author carousel: infinite loop (cloned slides) + dots / arrows --- */
-  var root = document.querySelector('[data-carousel]');
-  if (root) {
+  /* --- carousels: infinite loop (cloned slides) + dots / arrows (v3.3: 複数対応) --- */
+  function initCarousel(root) {
     var track = root.querySelector('[data-carousel-track]');
     var originals = Array.prototype.slice.call(track.children);
     var N = originals.length;
@@ -657,11 +714,12 @@ html#mrbHtml body#mrbBody a.limited__btn:visited{color:#fff !important;text-deco
     track.scrollLeft = targetLeft(CL);
     settle();
   }
-
+  Array.prototype.forEach.call(document.querySelectorAll('[data-carousel]'), initCarousel);
   /* --- close category dropdown on outside click --- */
   document.addEventListener('click', function(e){
-    var d = document.querySelector('.gNav__cat');
-    if (d && d.open && !d.contains(e.target)) d.open = false;
+    Array.prototype.forEach.call(document.querySelectorAll('.gNav__cat'), function(d){
+      if (d.open && !d.contains(e.target)) d.open = false;
+    });
   });
 
   /* --- category page: load more items via LoadItemsPage --- */
