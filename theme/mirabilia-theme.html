@@ -198,6 +198,10 @@ h1,h2,h3,p{margin:0;}
 .catIntro__img--wide img{width:auto;max-width:none;margin-left:-6%;}
 .catIntro__text{flex:1;font-size:14px;line-height:1.95;color:var(--c-fg);}
 .catIntro__text p + p{margin-top:1em;}
+/* v3.6: 作者ページの作品カルーセル */
+.catWorks{margin:0 0 44px;}
+.catWorks__head{font-size:13px;letter-spacing:.14em;margin-bottom:14px;}
+.catWorks__head .en{font-family:var(--f-en);font-size:12px;letter-spacing:.22em;color:var(--c-sub);margin-right:12px;}
 @media (max-width:767px){
   .catIntro{flex-direction:column;gap:18px;}
   .catIntro__img{flex:none;width:100%;max-width:420px;}
@@ -511,6 +515,7 @@ html#mrbHtml body#mrbBody .itemCard a:hover{opacity:1 !important;}
       {block:BreadcrumbTag}<div class="breadcrumb">{BreadcrumbTag}</div>{/block:BreadcrumbTag}
       <h2 class="secHead"><span class="secHead__en">CATEGORY</span><span class="secHead__ja">{IndexPageCategory}</span></h2>
       <div class="catIntro" data-cat-intro hidden></div>
+      <div class="catWorks" data-cat-works hidden></div>
       {block:AppsItemCategory}
       {block:HasAppsItemCategoryChildCategories}
       <div class="childCats">
@@ -675,6 +680,7 @@ html#mrbHtml body#mrbBody .itemCard a:hover{opacity:1 !important;}
     var track = root.querySelector('[data-carousel-track]');
     var originals = Array.prototype.slice.call(track.children);
     var N = originals.length;
+    if (N < 3) return;
     var CL = 2; /* clones on each side */
     for (var i = N - CL; i < N; i++) {
       var cp = originals[i].cloneNode(true);
@@ -745,6 +751,58 @@ html#mrbHtml body#mrbBody .itemCard a:hover{opacity:1 !important;}
   "paras": [
    "光と闇が交錯する、壮大な幻想世界。19世紀フランスの画家ギュスターヴ・ドレは、『神曲』や『聖書』などの古典文学に、圧倒的な想像力で姿を与えました。緻密な線と劇的な明暗が生み出す情景は、見る者を現実の向こう側へと誘います。",
    "かつて人々が思い描いた、天国と地獄、神話と幻想の世界。ドレの作品には、目に見えないものに姿を与えようとした人間の想像力が息づいています。ミラビリアは、その壮大で奇妙な世界を、時を超えて現代の日常へと呼び起こします。"
+  ],
+  "works": [
+   {
+    "name": "リヴァイアサン",
+    "img": "__IMG_WORK_LEVIATHAN__",
+    "url": "https://mirabilia.base.shop/categories/7827913"
+   },
+   {
+    "name": "ドン・キホーテ",
+    "img": "__IMG_WORK_QUIXOTE__",
+    "url": "https://mirabilia.base.shop/categories/7827914"
+   },
+   {
+    "name": "長靴をはいた猫",
+    "img": "__IMG_WORK_PUSS__",
+    "url": "https://mirabilia.base.shop/categories/7827918"
+   },
+   {
+    "name": "バベルの塔",
+    "img": "__IMG_WORK_BABEL__",
+    "url": "https://mirabilia.base.shop/categories/7827920"
+   },
+   {
+    "name": "自殺者の森",
+    "img": "__IMG_WORK_SUICIDES__",
+    "url": "https://mirabilia.base.shop/categories/7827921"
+   },
+   {
+    "name": "大洪水",
+    "img": "__IMG_WORK_DELUGE__",
+    "url": "https://mirabilia.base.shop/categories/7827924"
+   },
+   {
+    "name": "猟犬",
+    "img": "__IMG_WORK_HOUNDS__",
+    "url": "https://mirabilia.base.shop/categories/7827926"
+   },
+   {
+    "name": "光の創造",
+    "img": "__IMG_WORK_CREATION__",
+    "url": "https://mirabilia.base.shop/categories/7827928"
+   },
+   {
+    "name": "ダニエル",
+    "img": "__IMG_WORK_DANIEL__",
+    "url": "https://mirabilia.base.shop/categories/7827929"
+   },
+   {
+    "name": "サムソン",
+    "img": "__IMG_WORK_SAMSON__",
+    "url": "https://mirabilia.base.shop/categories/7827930"
+   }
   ]
  },
  "7824128": {
@@ -754,6 +812,33 @@ html#mrbHtml body#mrbBody .itemCard a:hover{opacity:1 !important;}
   "paras": [
    "世界を観察し、まだ見ぬものまで描き出す。ルネサンス期ドイツの巨匠アルブレヒト・デューラーは、卓越した技術と知的好奇心によって版画芸術を大きく発展させました。謎めいた象徴に満ちた『メランコリア I』や、伝聞をもとに描かれた『犀』は、その代表作です。科学と芸術、事実と想像が交わる独特の世界は、500年を経た今も私たちを魅了します。",
    "世界のすべてが、まだ解き明かされていなかった時代。デューラーの版画には、未知のものを知ろうとする探究心と、想像によって世界を補おうとする人間の営みが刻まれています。ミラビリアは、その知と幻想が入り混じる図像を、現代の装いへと蘇らせます。"
+  ],
+  "works": [
+   {
+    "name": "騎士と死と悪魔",
+    "img": "__IMG_WORK_KNIGHT__",
+    "url": "https://mirabilia.base.shop/categories/7827931"
+   },
+   {
+    "name": "メランコリア I",
+    "img": "__IMG_WORK_MELENCOLIA__",
+    "url": "https://mirabilia.base.shop/categories/7827932"
+   },
+   {
+    "name": "書斎の聖ヒエロニムス",
+    "img": "__IMG_WORK_JEROME__",
+    "url": "https://mirabilia.base.shop/categories/7827933"
+   },
+   {
+    "name": "犀",
+    "img": "__IMG_WORK_RHINO__",
+    "url": "https://mirabilia.base.shop/categories/7827934"
+   },
+   {
+    "name": "四騎士",
+    "img": "__IMG_WORK_HORSEMEN__",
+    "url": "https://mirabilia.base.shop/categories/7827935"
+   }
   ]
  },
  "7824129": {
@@ -763,6 +848,23 @@ html#mrbHtml body#mrbBody .itemCard a:hover{opacity:1 !important;}
   "paras": [
    "もしも動物たちが、人間のように暮らしていたら。19世紀フランスの画家J.J.グランヴィルは、動物に服を着せ、表情を与え、奇妙で愉快な世界を描きました。愛らしくもどこか不気味な登場人物たちは、人間社会の滑稽さや矛盾を映し出しています。繊細な描写と奔放な発想が共存するその作品は、まるで不思議な博物図鑑の一頁のようです。",
    "かつての動物寓意譚が、動物の姿を借りて人間を語ったように、グランヴィルの作品もまた、現実と空想の境界を軽やかに飛び越えていきます。ミラビリアは、その奇妙でユーモラスな生き物たちを、現代の装いの中に迎え入れます。"
+  ],
+  "works": [
+   {
+    "name": "哲学者",
+    "img": "__IMG_WORK_TETSUGAKU__",
+    "url": "https://mirabilia.base.shop/categories/7827936"
+   },
+   {
+    "name": "宮廷猫の挨拶",
+    "img": "__IMG_WORK_NEKO__",
+    "url": "https://mirabilia.base.shop/categories/7827937"
+   },
+   {
+    "name": "講釈する貴婦人",
+    "img": "__IMG_WORK_KOUSHAKU__",
+    "url": "https://mirabilia.base.shop/categories/7827938"
+   }
   ]
  },
  "7824130": {
@@ -772,6 +874,13 @@ html#mrbHtml body#mrbBody .itemCard a:hover{opacity:1 !important;}
   "paras": [
    "鏡の向こうには、常識の通じない世界が広がっている。19世紀イギリスの画家ジョン・テニエルは、『不思議の国のアリス』や『鏡の国のアリス』の挿絵で知られています。精緻な線で描かれた奇妙な生き物や人物たちは、幻想的でありながら、どこか確かな存在感を放ちます。ユーモアと不条理が入り混じるその図像は、世代を超えて人々の想像力を刺激し続けています。",
    "ありえない生き物も、不思議な出来事も、かつての図鑑や物語の中では確かに存在していました。テニエルの描く世界は、そんな空想を信じる楽しさを思い出させてくれます。ミラビリアは、物語の頁に閉じ込められた奇妙な住人たちを、もう一度私たちの日常へと連れ出します。"
+  ],
+  "works": [
+   {
+    "name": "ジャバウォック",
+    "img": "__IMG_WORK_JABBERWOCKY__",
+    "url": "https://mirabilia.base.shop/categories/7827939"
+   }
   ]
  },
  "7824131": {
@@ -781,6 +890,13 @@ html#mrbHtml body#mrbBody .itemCard a:hover{opacity:1 !important;}
   "paras": [
    "美しさと恐ろしさは、ときに同じ姿をしている。20世紀初頭のアイルランドで活躍したハリー・クラークは、繊細で幻想的な挿絵とステンドグラスを手がけた芸術家です。エドガー・アラン・ポーの怪奇小説に添えた挿絵では、緻密な装飾と異形の人物たちによって、悪夢のような世界を描き出しました。妖しくも優美なその表現は、見る者の心に忘れがたい印象を残します。",
    "中世の写本に描かれた怪物や幻想の生き物たち。その奇妙な想像力は、時代を超え、クラークの描く美しくも不穏な世界にも通じています。ミラビリアは、恐ろしささえも美しさへと変えるその図像を、現代の装いに取り入れます。"
+  ],
+  "works": [
+   {
+    "name": "赤死病の仮面",
+    "img": "__IMG_WORK_CLARKE__",
+    "url": "https://mirabilia.base.shop/categories/7827940"
+   }
   ]
  },
  "7827913": {
@@ -965,6 +1081,43 @@ html#mrbHtml body#mrbBody .itemCard a:hover{opacity:1 !important;}
     box.appendChild(imgWrap);
     box.appendChild(tx);
     box.hidden = false;
+    if (d.works && d.works.length) {
+      var wbox = document.querySelector('[data-cat-works]');
+      if (wbox) {
+        var head = document.createElement('h3');
+        head.className = 'catWorks__head';
+        head.innerHTML = '<span class="en">WORKS</span>\u3053\u306e\u4f5c\u8005\u306e\u4f5c\u54c1';
+        wbox.appendChild(head);
+        var car = document.createElement('div');
+        car.className = 'carousel carousel--works';
+        var track = document.createElement('ul');
+        track.className = 'carousel__track';
+        track.setAttribute('data-carousel-track', '');
+        d.works.forEach(function(w){
+          var li = document.createElement('li');
+          li.className = 'carousel__slide';
+          var a = document.createElement('a');
+          a.href = w.url;
+          var im = document.createElement('img');
+          im.src = w.img; im.alt = w.name; im.loading = 'lazy';
+          var nm = document.createElement('span');
+          nm.className = 'workTile__name';
+          nm.textContent = w.name;
+          a.appendChild(im); a.appendChild(nm); li.appendChild(a); track.appendChild(li);
+        });
+        car.appendChild(track);
+        if (d.works.length >= 3) {
+          car.setAttribute('data-carousel', '');
+          var ui = document.createElement('div');
+          ui.className = 'carousel__ui';
+          ui.innerHTML = '<button type="button" class="carousel__arrow" data-carousel-prev aria-label="\u524d\u3078">&lsaquo;</button><div class="carousel__dots" data-carousel-dots></div><button type="button" class="carousel__arrow" data-carousel-next aria-label="\u6b21\u3078">&rsaquo;</button>';
+          car.appendChild(ui);
+        }
+        wbox.appendChild(car);
+        wbox.hidden = false;
+        if (d.works.length >= 3) initCarousel(car);
+      }
+    }
   })();
 
   /* --- category page: load more items via LoadItemsPage --- */
