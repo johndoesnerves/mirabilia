@@ -38,7 +38,6 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 img{max-width:100%;height:auto;display:block;}
-.siteHeader a,.siteFooter a,.typeTile a,.itemCard a,.childCats a,.breadcrumb a,.carousel__slide a,.moreBtn{color:inherit;text-decoration:none;}
 .siteHeader a:hover,.siteFooter a:hover,.childCats a:hover,.breadcrumb a:hover{opacity:.6;}
 ul{list-style:none;margin:0;padding:0;}
 h1,h2,h3,p{margin:0;}
@@ -298,6 +297,11 @@ html#mrbHtml body#mrbBody a.limited__btn:visited{color:#fff !important;text-deco
 /* 一覧カードは常時不透明（v3.3） */
 html#mrbHtml body#mrbBody .itemCard a,
 html#mrbHtml body#mrbBody .itemCard a:hover{opacity:1 !important;}
+/* v3.4: 基本リンクルール削除に伴う代替（.moreBtn の色）と体裁調整 */
+html#mrbHtml body#mrbBody .moreBtn{color:#000 !important;}
+html#mrbHtml body#mrbBody .moreBtn:hover{color:#fff !important;}
+html#mrbHtml body#mrbBody .gNav__cart img[src*="base.png"]{display:none !important;}
+html#mrbHtml body#mrbBody .gNav__cat summary{white-space:nowrap;}
 </style>
 {GoogleAnalyticsTag}
 {FaviconTag}
@@ -367,7 +371,6 @@ html#mrbHtml body#mrbBody .itemCard a:hover{opacity:1 !important;}
           </div>
         </details>
       </div>
-      <a class="gNav__item" href="{AboutPageURL}">ABOUT</a>
       <div class="gNav__item gNav__cart">{BASEMenuTag}</div>
     </nav>
   </div>
