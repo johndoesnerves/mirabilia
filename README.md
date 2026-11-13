@@ -12,3 +12,13 @@ Claude → スシ の受け渡し専用。mainとは履歴がつながってい�
 
 - ナレーション＋伴奏・効果音を足すと完成版の音声と一致（誤差は丸めの1段階のみ）。伴奏には「声に重なる間だけ下げる」音量調整が焼き込み済み。別の音源に付け替える場合は伴奏ファイルを使わず、ナレーション＋新しい音源で組む。
 - 音声2点はWAV（MP3は先頭に約0.03秒の無音が入り、映像とずれるため）。
+
+## rhinoceros/（犀・4点セット）※第5段落の字幕は暫定
+| ファイル | 中身 |
+|---|---|
+| `MIRABILIA_rhinoceros_reel.mp4` | 完成版（ミックス済み・58.6秒） |
+| `MIRABILIA_rhinoceros_reel_silent.mp4` | 本編動画・音声なし |
+| `MIRABILIA_rhinoceros_reel_narration.wav` | ナレーションのみ（同梱音声と同じ中身を0秒始まり・58.6秒にそろえたもの） |
+| `MIRABILIA_rhinoceros_reel_music-sfx.wav` | 伴奏＋効果音のみ |
+
+- 第5段落の文2（38.1–51.6秒）は音声確認待ち（`claude/rhinoceros-consult` の `video/consult-rhinoceros-claude.md`）。**ドライブ移動は確認後の確定版で**。
