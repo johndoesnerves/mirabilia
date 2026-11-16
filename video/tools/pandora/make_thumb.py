@@ -8,18 +8,17 @@ name = sys.argv[1]
 cfg = {
     'pandora': dict(script='/tmp/pan/render_pandora.py', t=0.0, cam=(1000, 1850, 1560),
                     lines=['この花園、', '災いが始まる', '直前！？'], accent=('災い', (0xE3, 0x4B, 0x3F)),
-                    sub='ルドン《パンドラ》', out='/tmp/posts/MIRABILIA_pandora_reel_v2_thumbnail.png'),
+                    sub='ルドン《パンドラ》', out='/tmp/posts/MIRABILIA_pandora_reel_v3_thumbnail.png'),
     'irises': dict(script='/tmp/iri/render_irises.py', t=0.0,
                    lines=['この青い花、', 'もとは紫', 'だった！？'], accent=('紫', (176, 132, 236)),
-                   sub='ゴッホ《アイリス》', out='/tmp/posts/MIRABILIA_irises_reel_v1_thumbnail.png'),
+                   sub='ゴッホ《アイリス》', out='/tmp/posts/MIRABILIA_irises_reel_v2_thumbnail.png'),
 }[name]
 spec = importlib.util.spec_from_file_location('R', cfg['script']); R = importlib.util.module_from_spec(spec)
 sys.argv = ['x', 'none']; spec.loader.exec_module(R)
 W, H = R.W, R.H
 
 fr = R.BG.copy(); fr.alpha_composite(R.view(R.SRC, cfg['cam']) if 'cam' in cfg else R.painting(cfg['t']))
-# darken evenly so the title reads on any painting
-shade = Image.new('RGBA', (W, H), (0, 0, 0, 105)); fr.alpha_composite(shade)
+# no overall darkening (owner: show the painting as it is); legibility comes from outline + shadow
 fr.alpha_composite(R.TOPG); R.logo(fr)
 
 f_big = R.F('NotoSansCJK-Black', 150); f_sub = R.F('NotoSansCJK-Bold', 52)
@@ -32,11 +31,11 @@ for i, l in enumerate(cfg['lines']):
     for k in range(len(l)):
         cols.append(col + (255,) if j >= 0 and j <= k < j + len(word) else (255, 255, 255, 255))
     w = R.jp_width(l, f_big, 4); assert w < 1000, (l, w)
-    R.draw_line(d, W / 2, top + i * lh, l, f_big, None, 4, 7, (0, 0, 0, 220), cols)
+    R.draw_line(d, W / 2, top + i * lh, l, f_big, None, 4, 10, (0, 0, 0, 235), cols)
 y_sub = top + lh * len(cfg['lines']) + 30
-d.line([(W / 2 - 120, y_sub), (W / 2 + 120, y_sub)], fill=(255, 255, 255, 230), width=3)
-R.draw_line(d, W / 2, y_sub + 30, cfg['sub'], f_sub, (255, 255, 255, 255), 4, 4, (0, 0, 0, 200))
-sh = Image.new('RGBA', (W, H), (0, 0, 0, 0)); sh.putalpha(lay.getchannel('A').point(lambda v: int(v * 0.6)))
+d.rectangle([W / 2 - 122, y_sub - 3, W / 2 + 122, y_sub + 4], fill=(0, 0, 0, 200)); d.line([(W / 2 - 120, y_sub), (W / 2 + 120, y_sub)], fill=(255, 255, 255, 240), width=3)
+R.draw_line(d, W / 2, y_sub + 30, cfg['sub'], f_sub, (255, 255, 255, 255), 4, 6, (0, 0, 0, 230))
+sh = Image.new('RGBA', (W, H), (0, 0, 0, 0)); sh.putalpha(lay.getchannel('A').point(lambda v: int(v * 0.75)))
 fr.alpha_composite(sh.filter(ImageFilter.GaussianBlur(10)), (0, 6)); fr.alpha_composite(lay)
 fr.convert('RGB').save(cfg['out'])
 # preview with the 3:4 grid crop marked
