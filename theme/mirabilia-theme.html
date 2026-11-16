@@ -93,6 +93,12 @@ h1,h2,h3,p{margin:0;}
 /* ===== hero ===== */
 .hero{border-bottom:1px solid var(--c-line);}
 .hero img{width:100%;height:54svh;object-fit:cover;object-position:center;}
+/* ===== fv (v4.0: 背景なし・ロゴ＋コピーのみ) ===== */
+.fv{border-bottom:1px solid var(--c-line);padding:76px 0 68px;text-align:center;}
+.fv__logo{width:min(440px,74vw);height:auto;margin:0 auto;}
+.fv__copy{margin-top:30px;font-size:17px;font-weight:500;letter-spacing:.12em;line-height:1.9;}
+@media (min-width:768px){.fv{padding:110px 0 92px;}.fv__copy{font-size:21px;}}
+@media (min-width:768px){#types .typeTiles{grid-template-columns:repeat(3,1fr);}}
 .concept{text-align:center;}
 .concept__lead{font-family:var(--f-ja);font-size:24px;font-weight:500;letter-spacing:.14em;line-height:1.6;}
 .concept__text{margin:22px auto 0;max-width:34em;font-size:14px;line-height:2;color:#333;}
@@ -338,14 +344,19 @@ html#mrbHtml body#mrbBody .itemCard a:hover{opacity:1 !important;}
     <nav class="gNav" aria-label="グローバルナビゲーション">
       <div class="gNav__item">
         <details class="gNav__cat">
-          <summary>作者別</summary>
+          <summary>画家別</summary>
           <div class="gNav__drop">
             <ul>
-              <li><a href="https://mirabilia.base.shop/categories/7824127">Gustave Doré</a></li>
-              <li><a href="https://mirabilia.base.shop/categories/7824128">Albrecht Dürer</a></li>
-              <li><a href="https://mirabilia.base.shop/categories/7824129">J.J. Grandville</a></li>
-              <li><a href="https://mirabilia.base.shop/categories/7824130">John Tenniel</a></li>
-              <li><a href="https://mirabilia.base.shop/categories/7824131">Harry Clarke</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833517">Vincent van Gogh</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833521">Claude Monet</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833524">Johannes Vermeer</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833528">Katsushika Hokusai</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833531">Pierre-Auguste Renoir</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833534">Georges Seurat</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833537">Henri Rousseau</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833540">Francisco Goya</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833542">Odilon Redon</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833545">Mary Cassatt</a></li>
             </ul>
           </div>
         </details>
@@ -355,26 +366,56 @@ html#mrbHtml body#mrbBody .itemCard a:hover{opacity:1 !important;}
           <summary>作品別</summary>
           <div class="gNav__drop gNav__drop--scroll">
             <ul>
-              <li><a href="https://mirabilia.base.shop/categories/7827913">リヴァイアサン</a></li>
-              <li><a href="https://mirabilia.base.shop/categories/7827914">ドン・キホーテ</a></li>
-              <li><a href="https://mirabilia.base.shop/categories/7827918">長靴をはいた猫</a></li>
-              <li><a href="https://mirabilia.base.shop/categories/7827920">バベルの塔</a></li>
-              <li><a href="https://mirabilia.base.shop/categories/7827921">自殺者の森</a></li>
-              <li><a href="https://mirabilia.base.shop/categories/7827924">大洪水</a></li>
-              <li><a href="https://mirabilia.base.shop/categories/7827926">猟犬</a></li>
-              <li><a href="https://mirabilia.base.shop/categories/7827928">光の創造</a></li>
-              <li><a href="https://mirabilia.base.shop/categories/7827929">ダニエル</a></li>
-              <li><a href="https://mirabilia.base.shop/categories/7827930">サムソン</a></li>
-              <li><a href="https://mirabilia.base.shop/categories/7827931">騎士と死と悪魔</a></li>
-              <li><a href="https://mirabilia.base.shop/categories/7827932">メランコリア I</a></li>
-              <li><a href="https://mirabilia.base.shop/categories/7827933">書斎の聖ヒエロニムス</a></li>
-              <li><a href="https://mirabilia.base.shop/categories/7827934">犀</a></li>
-              <li><a href="https://mirabilia.base.shop/categories/7827935">四騎士</a></li>
-              <li><a href="https://mirabilia.base.shop/categories/7827936">哲学者</a></li>
-              <li><a href="https://mirabilia.base.shop/categories/7827937">宮廷猫の挨拶</a></li>
-              <li><a href="https://mirabilia.base.shop/categories/7827938">講釈する貴婦人</a></li>
-              <li><a href="https://mirabilia.base.shop/categories/7827939">ジャバウォック</a></li>
-              <li><a href="https://mirabilia.base.shop/categories/7827940">赤死病の仮面</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833547">アイリス</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833549">夜のカフェ</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833551">糸杉のある麦畑</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833553">薔薇</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833556">麦わら帽子をかぶった自画像</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833558">日本の太鼓橋</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833561">睡蓮</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833565">積みわら（夏の終わり）</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833567">プールヴィルの断崖の散歩</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833571">日傘をさす女―モネ夫人と息子</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833575">天秤を持つ女</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833576">青衣の女、手紙を読む</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833578">牛乳を注ぐ女</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833579">水差しを持つ女</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833581">眠る女</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833583">神奈川沖浪裏</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833585">凱風快晴</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833586">山下白雨</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833587">甲州石班沢</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833590">木曽路ノ奥阿弥陀ヶ瀧</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833593">フェルナンド・サーカスの曲芸師たち</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833596">二人の姉妹（テラスにて）</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833600">海辺にて</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833606">菊の花束</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833609">フルネーズのレストランでの昼食</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833615">グランド・ジャット島の日曜日の午後</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833618">サーカスの客寄せ</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833621">オンフルールの灯台</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833624">曇天、グランド・ジャット島</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833627">グランド・ジャット島の日曜日の午後の習作</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833629">猿のいる熱帯林</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833631">ライオンの食事</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833633">赤道のジャングル</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833634">岩の上の少年</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833635">森での逢い引き</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833637">理性の眠りは怪物を生む</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833639">マヌエル・オソリオ・マンリーケ・デ・スニガ</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833642">座る巨人</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833644">祖父の代まで</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833645">アルタミラ伯爵夫人と娘マリア・アグスティナ</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833646">パンドラ</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833648">アポロンの馬車</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833649">花束（パステル）</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833651">眼は奇妙な気球のように無限に向かう</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833652">聖セバスティアヌス</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833653">青い肘掛け椅子の少女</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833655">舟遊び</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833656">子どもの入浴</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833657">手紙</a></li>
+              <li><a href="https://mirabilia.base.shop/categories/7833658">お茶</a></li>
             </ul>
           </div>
         </details>
@@ -386,9 +427,7 @@ html#mrbHtml body#mrbBody .itemCard a:hover{opacity:1 !important;}
             <ul>
               <li><a href="https://mirabilia.base.shop/categories/7826790">Tシャツ</a></li>
               <li><a href="https://mirabilia.base.shop/categories/7826791">ロンT</a></li>
-              <li><a href="https://mirabilia.base.shop/categories/7826792">パーカー</a></li>
               <li><a href="https://mirabilia.base.shop/categories/7826794">トート</a></li>
-              <li><a href="https://mirabilia.base.shop/categories/7826795">レッド</a></li>
             </ul>
           </div>
         </details>
@@ -405,28 +444,36 @@ html#mrbHtml body#mrbBody .itemCard a:hover{opacity:1 !important;}
   {block:NoIndexPageCategory}{block:NoIndexPageSearch}
   <!-- ================= TOP PAGE ================= -->
 
-  <!-- 1. HERO -->
-  <section class="hero">
-    <img src="__IMG_EYECATCH__" alt="MIRABILIA ミラビリア — 失われた記憶を身にまとう。" width="1920" height="1080">
+  <!-- 1. FV (v4.0: 背景なし・ロゴ＋コピーのみ) -->
+  <section class="fv">
+    <div class="inner">
+      <img class="fv__logo" src="__IMG_LOGO__" alt="MIRABILIA ミラビリア" width="1600" height="533">
+      <p class="fv__copy">名画を着る、知ればもっと着たくなる。</p>
+    </div>
   </section>
 
   <!-- 1.5 CONCEPT -->
   <section class="sec concept">
     <div class="inner">
-      <p class="concept__text">数百年前に刻まれた、銅版画と木版画。物語とともに忘れられていった図版たちを、高精度スキャンでよみがえらせ、身に着ける一着に仕立てました。紙の質感も、染みも、かすれも、時を経た証として<span class="nw">そのままに。</span></p>
+      <p class="concept__text">見慣れた名画にも、まだ知らない一枚にも、近づいて見たくなる理由があります。MIRABILIAは、名画の細部や背景にある物語を紹介し、その一枚をTシャツ、ロンT、トートバッグに届けるブランドです。好きになった名画を、日常へ。</p>
     </div>
   </section>
 
-  <!-- 2. 作者から探す -->
-  <section class="sec" id="authors">
-    <h2 class="secHead"><span class="secHead__en">AUTHORS</span><span class="secHead__ja">作者から探す</span></h2>
-    <div class="carousel" data-carousel>
+  <!-- 2. 画家から探す -->
+  <section class="sec" id="painters">
+    <h2 class="secHead"><span class="secHead__en">PAINTERS</span><span class="secHead__ja">画家から探す</span></h2>
+    <div class="carousel carousel--works" data-carousel>
       <ul class="carousel__track" data-carousel-track>
-        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7824127"><img src="__IMG_AUTHOR_DORE__" alt="ギュスターヴ・ドレ" loading="lazy"></a></li>
-        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7824128"><img src="__IMG_AUTHOR_DURER__" alt="アルブレヒト・デューラー" loading="lazy"></a></li>
-        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7824129"><img src="__IMG_AUTHOR_GRANDVILLE__" alt="グランヴィル" loading="lazy"></a></li>
-        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7824130"><img src="__IMG_AUTHOR_TENNIEL__" alt="ジョン・テニエル" loading="lazy"></a></li>
-        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7824131"><img src="__IMG_AUTHOR_CLARKE__" alt="ハリー・クラーク" loading="lazy"></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833517"><img src="__IMG_PAINTER_VANGOGH__" alt="フィンセント・ファン・ゴッホ" loading="lazy"><span class="workTile__name">フィンセント・ファン・ゴッホ</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833521"><img src="__IMG_PAINTER_MONET__" alt="クロード・モネ" loading="lazy"><span class="workTile__name">クロード・モネ</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833524"><img src="__IMG_PAINTER_VERMEER__" alt="ヨハネス・フェルメール" loading="lazy"><span class="workTile__name">ヨハネス・フェルメール</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833528"><img src="__IMG_PAINTER_HOKUSAI__" alt="葛飾北斎" loading="lazy"><span class="workTile__name">葛飾北斎</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833531"><img src="__IMG_PAINTER_RENOIR__" alt="ピエール＝オーギュスト・ルノワール" loading="lazy"><span class="workTile__name">ピエール＝オーギュスト・ルノワール</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833534"><img src="__IMG_PAINTER_SEURAT__" alt="ジョルジュ・スーラ" loading="lazy"><span class="workTile__name">ジョルジュ・スーラ</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833537"><img src="__IMG_PAINTER_ROUSSEAU__" alt="アンリ・ルソー" loading="lazy"><span class="workTile__name">アンリ・ルソー</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833540"><img src="__IMG_PAINTER_GOYA__" alt="フランシスコ・ゴヤ" loading="lazy"><span class="workTile__name">フランシスコ・ゴヤ</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833542"><img src="__IMG_PAINTER_REDON__" alt="オディロン・ルドン" loading="lazy"><span class="workTile__name">オディロン・ルドン</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833545"><img src="__IMG_PAINTER_CASSATT__" alt="メアリー・カサット" loading="lazy"><span class="workTile__name">メアリー・カサット</span></a></li>
       </ul>
       <div class="carousel__ui">
         <button type="button" class="carousel__arrow" data-carousel-prev aria-label="前へ">&lsaquo;</button>
@@ -441,26 +488,56 @@ html#mrbHtml body#mrbBody .itemCard a:hover{opacity:1 !important;}
     <h2 class="secHead"><span class="secHead__en">WORKS</span><span class="secHead__ja">作品から探す</span></h2>
     <div class="carousel carousel--works" data-carousel>
       <ul class="carousel__track" data-carousel-track>
-        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7827913"><img src="__IMG_WORK_LEVIATHAN__" alt="リヴァイアサン" loading="lazy"><span class="workTile__name">リヴァイアサン</span></a></li>
-        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7827914"><img src="__IMG_WORK_QUIXOTE__" alt="ドン・キホーテ" loading="lazy"><span class="workTile__name">ドン・キホーテ</span></a></li>
-        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7827918"><img src="__IMG_WORK_PUSS__" alt="長靴をはいた猫" loading="lazy"><span class="workTile__name">長靴をはいた猫</span></a></li>
-        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7827920"><img src="__IMG_WORK_BABEL__" alt="バベルの塔" loading="lazy"><span class="workTile__name">バベルの塔</span></a></li>
-        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7827921"><img src="__IMG_WORK_SUICIDES__" alt="自殺者の森" loading="lazy"><span class="workTile__name">自殺者の森</span></a></li>
-        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7827924"><img src="__IMG_WORK_DELUGE__" alt="大洪水" loading="lazy"><span class="workTile__name">大洪水</span></a></li>
-        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7827926"><img src="__IMG_WORK_HOUNDS__" alt="猟犬" loading="lazy"><span class="workTile__name">猟犬</span></a></li>
-        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7827928"><img src="__IMG_WORK_CREATION__" alt="光の創造" loading="lazy"><span class="workTile__name">光の創造</span></a></li>
-        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7827929"><img src="__IMG_WORK_DANIEL__" alt="ダニエル" loading="lazy"><span class="workTile__name">ダニエル</span></a></li>
-        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7827930"><img src="__IMG_WORK_SAMSON__" alt="サムソン" loading="lazy"><span class="workTile__name">サムソン</span></a></li>
-        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7827931"><img src="__IMG_WORK_KNIGHT__" alt="騎士と死と悪魔" loading="lazy"><span class="workTile__name">騎士と死と悪魔</span></a></li>
-        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7827932"><img src="__IMG_WORK_MELENCOLIA__" alt="メランコリア I" loading="lazy"><span class="workTile__name">メランコリア I</span></a></li>
-        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7827933"><img src="__IMG_WORK_JEROME__" alt="書斎の聖ヒエロニムス" loading="lazy"><span class="workTile__name">書斎の聖ヒエロニムス</span></a></li>
-        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7827934"><img src="__IMG_WORK_RHINO__" alt="犀" loading="lazy"><span class="workTile__name">犀</span></a></li>
-        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7827935"><img src="__IMG_WORK_HORSEMEN__" alt="四騎士" loading="lazy"><span class="workTile__name">四騎士</span></a></li>
-        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7827936"><img src="__IMG_WORK_TETSUGAKU__" alt="哲学者" loading="lazy"><span class="workTile__name">哲学者</span></a></li>
-        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7827937"><img src="__IMG_WORK_NEKO__" alt="宮廷猫の挨拶" loading="lazy"><span class="workTile__name">宮廷猫の挨拶</span></a></li>
-        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7827938"><img src="__IMG_WORK_KOUSHAKU__" alt="講釈する貴婦人" loading="lazy"><span class="workTile__name">講釈する貴婦人</span></a></li>
-        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7827939"><img src="__IMG_WORK_JABBERWOCKY__" alt="ジャバウォック" loading="lazy"><span class="workTile__name">ジャバウォック</span></a></li>
-        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7827940"><img src="__IMG_WORK_CLARKE__" alt="赤死病の仮面" loading="lazy"><span class="workTile__name">赤死病の仮面</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833547"><img src="__IMG_WORK_01__" alt="アイリス" loading="lazy"><span class="workTile__name">アイリス</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833549"><img src="__IMG_WORK_02__" alt="夜のカフェ" loading="lazy"><span class="workTile__name">夜のカフェ</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833551"><img src="__IMG_WORK_03__" alt="糸杉のある麦畑" loading="lazy"><span class="workTile__name">糸杉のある麦畑</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833553"><img src="__IMG_WORK_04__" alt="薔薇" loading="lazy"><span class="workTile__name">薔薇</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833556"><img src="__IMG_WORK_05__" alt="麦わら帽子をかぶった自画像" loading="lazy"><span class="workTile__name">麦わら帽子をかぶった自画像</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833558"><img src="__IMG_WORK_06__" alt="日本の太鼓橋" loading="lazy"><span class="workTile__name">日本の太鼓橋</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833561"><img src="__IMG_WORK_07__" alt="睡蓮" loading="lazy"><span class="workTile__name">睡蓮</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833565"><img src="__IMG_WORK_08__" alt="積みわら（夏の終わり）" loading="lazy"><span class="workTile__name">積みわら（夏の終わり）</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833567"><img src="__IMG_WORK_09__" alt="プールヴィルの断崖の散歩" loading="lazy"><span class="workTile__name">プールヴィルの断崖の散歩</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833571"><img src="__IMG_WORK_10__" alt="日傘をさす女―モネ夫人と息子" loading="lazy"><span class="workTile__name">日傘をさす女―モネ夫人と息子</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833575"><img src="__IMG_WORK_11__" alt="天秤を持つ女" loading="lazy"><span class="workTile__name">天秤を持つ女</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833576"><img src="__IMG_WORK_12__" alt="青衣の女、手紙を読む" loading="lazy"><span class="workTile__name">青衣の女、手紙を読む</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833578"><img src="__IMG_WORK_13__" alt="牛乳を注ぐ女" loading="lazy"><span class="workTile__name">牛乳を注ぐ女</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833579"><img src="__IMG_WORK_14__" alt="水差しを持つ女" loading="lazy"><span class="workTile__name">水差しを持つ女</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833581"><img src="__IMG_WORK_15__" alt="眠る女" loading="lazy"><span class="workTile__name">眠る女</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833583"><img src="__IMG_WORK_16__" alt="神奈川沖浪裏" loading="lazy"><span class="workTile__name">神奈川沖浪裏</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833585"><img src="__IMG_WORK_17__" alt="凱風快晴" loading="lazy"><span class="workTile__name">凱風快晴</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833586"><img src="__IMG_WORK_18__" alt="山下白雨" loading="lazy"><span class="workTile__name">山下白雨</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833587"><img src="__IMG_WORK_19__" alt="甲州石班沢" loading="lazy"><span class="workTile__name">甲州石班沢</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833590"><img src="__IMG_WORK_20__" alt="木曽路ノ奥阿弥陀ヶ瀧" loading="lazy"><span class="workTile__name">木曽路ノ奥阿弥陀ヶ瀧</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833593"><img src="__IMG_WORK_21__" alt="フェルナンド・サーカスの曲芸師たち" loading="lazy"><span class="workTile__name">フェルナンド・サーカスの曲芸師たち</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833596"><img src="__IMG_WORK_22__" alt="二人の姉妹（テラスにて）" loading="lazy"><span class="workTile__name">二人の姉妹（テラスにて）</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833600"><img src="__IMG_WORK_23__" alt="海辺にて" loading="lazy"><span class="workTile__name">海辺にて</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833606"><img src="__IMG_WORK_24__" alt="菊の花束" loading="lazy"><span class="workTile__name">菊の花束</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833609"><img src="__IMG_WORK_25__" alt="フルネーズのレストランでの昼食" loading="lazy"><span class="workTile__name">フルネーズのレストランでの昼食</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833615"><img src="__IMG_WORK_26__" alt="グランド・ジャット島の日曜日の午後" loading="lazy"><span class="workTile__name">グランド・ジャット島の日曜日の午後</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833618"><img src="__IMG_WORK_27__" alt="サーカスの客寄せ" loading="lazy"><span class="workTile__name">サーカスの客寄せ</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833621"><img src="__IMG_WORK_28__" alt="オンフルールの灯台" loading="lazy"><span class="workTile__name">オンフルールの灯台</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833624"><img src="__IMG_WORK_29__" alt="曇天、グランド・ジャット島" loading="lazy"><span class="workTile__name">曇天、グランド・ジャット島</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833627"><img src="__IMG_WORK_30__" alt="グランド・ジャット島の日曜日の午後の習作" loading="lazy"><span class="workTile__name">グランド・ジャット島の日曜日の午後の習作</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833629"><img src="__IMG_WORK_31__" alt="猿のいる熱帯林" loading="lazy"><span class="workTile__name">猿のいる熱帯林</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833631"><img src="__IMG_WORK_32__" alt="ライオンの食事" loading="lazy"><span class="workTile__name">ライオンの食事</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833633"><img src="__IMG_WORK_33__" alt="赤道のジャングル" loading="lazy"><span class="workTile__name">赤道のジャングル</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833634"><img src="__IMG_WORK_34__" alt="岩の上の少年" loading="lazy"><span class="workTile__name">岩の上の少年</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833635"><img src="__IMG_WORK_35__" alt="森での逢い引き" loading="lazy"><span class="workTile__name">森での逢い引き</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833637"><img src="__IMG_WORK_36__" alt="理性の眠りは怪物を生む" loading="lazy"><span class="workTile__name">理性の眠りは怪物を生む</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833639"><img src="__IMG_WORK_37__" alt="マヌエル・オソリオ・マンリーケ・デ・スニガ" loading="lazy"><span class="workTile__name">マヌエル・オソリオ・マンリーケ・デ・スニガ</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833642"><img src="__IMG_WORK_38__" alt="座る巨人" loading="lazy"><span class="workTile__name">座る巨人</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833644"><img src="__IMG_WORK_39__" alt="祖父の代まで" loading="lazy"><span class="workTile__name">祖父の代まで</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833645"><img src="__IMG_WORK_40__" alt="アルタミラ伯爵夫人と娘マリア・アグスティナ" loading="lazy"><span class="workTile__name">アルタミラ伯爵夫人と娘マリア・アグスティナ</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833646"><img src="__IMG_WORK_41__" alt="パンドラ" loading="lazy"><span class="workTile__name">パンドラ</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833648"><img src="__IMG_WORK_42__" alt="アポロンの馬車" loading="lazy"><span class="workTile__name">アポロンの馬車</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833649"><img src="__IMG_WORK_43__" alt="花束（パステル）" loading="lazy"><span class="workTile__name">花束（パステル）</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833651"><img src="__IMG_WORK_44__" alt="眼は奇妙な気球のように無限に向かう" loading="lazy"><span class="workTile__name">眼は奇妙な気球のように無限に向かう</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833652"><img src="__IMG_WORK_45__" alt="聖セバスティアヌス" loading="lazy"><span class="workTile__name">聖セバスティアヌス</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833653"><img src="__IMG_WORK_46__" alt="青い肘掛け椅子の少女" loading="lazy"><span class="workTile__name">青い肘掛け椅子の少女</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833655"><img src="__IMG_WORK_47__" alt="舟遊び" loading="lazy"><span class="workTile__name">舟遊び</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833656"><img src="__IMG_WORK_48__" alt="子どもの入浴" loading="lazy"><span class="workTile__name">子どもの入浴</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833657"><img src="__IMG_WORK_49__" alt="手紙" loading="lazy"><span class="workTile__name">手紙</span></a></li>
+        <li class="carousel__slide"><a href="https://mirabilia.base.shop/categories/7833658"><img src="__IMG_WORK_50__" alt="お茶" loading="lazy"><span class="workTile__name">お茶</span></a></li>
       </ul>
       <div class="carousel__ui">
         <button type="button" class="carousel__arrow" data-carousel-prev aria-label="前へ">&lsaquo;</button>
@@ -475,10 +552,9 @@ html#mrbHtml body#mrbBody .itemCard a:hover{opacity:1 !important;}
     <div class="inner">
       <h2 class="secHead"><span class="secHead__en">ITEMS</span><span class="secHead__ja">商品種類から探す</span></h2>
       <ul class="typeTiles">
-        <li class="typeTile"><a href="https://mirabilia.base.shop/categories/7826790"><span class="typeTile__img"><img src="https://baseec-img-mng.akamaized.net/images/item/origin/9f3cdbdf91d7b8cc58cecd4ca38e13da.png?imformat=generic&q=90&im=Resize,width=800,type=normal" alt="Tシャツ（ホワイト）リヴァイアサン" loading="lazy"></span><span class="typeTile__en">T-SHIRT</span><span class="typeTile__name">Tシャツ</span><span class="typeTile__price">¥9,980</span></a></li>
-        <li class="typeTile"><a href="https://mirabilia.base.shop/categories/7826791"><span class="typeTile__img"><img src="https://baseec-img-mng.akamaized.net/images/item/origin/df322f9db0644280999081b7a2f38674.png?imformat=generic&q=90&im=Resize,width=800,type=normal" alt="ロンT（ホワイト）リヴァイアサン" loading="lazy"></span><span class="typeTile__en">LONG SLEEVE</span><span class="typeTile__name">ロンT</span><span class="typeTile__price">¥11,980</span></a></li>
-        <li class="typeTile"><a href="https://mirabilia.base.shop/categories/7826792"><span class="typeTile__img"><img src="https://baseec-img-mng.akamaized.net/images/item/origin/09e7ab190df542a0f3335fe64838e3e8.png?imformat=generic&q=90&im=Resize,width=800,type=normal" alt="パーカー（ホワイト）リヴァイアサン" loading="lazy"></span><span class="typeTile__en">HOODIE</span><span class="typeTile__name">パーカー</span><span class="typeTile__price">¥14,980</span></a></li>
-        <li class="typeTile"><a href="https://mirabilia.base.shop/categories/7826794"><span class="typeTile__img"><img src="https://baseec-img-mng.akamaized.net/images/item/origin/3e7e5553fed97d0afc69eb226384074b.png?imformat=generic&q=90&im=Resize,width=800,type=normal" alt="トート リヴァイアサン" loading="lazy"></span><span class="typeTile__en">TOTE BAG</span><span class="typeTile__name">トート</span><span class="typeTile__price">¥5,980</span></a></li>
+        <li class="typeTile"><a href="https://mirabilia.base.shop/categories/7826790"><span class="typeTile__en">T-SHIRT</span><span class="typeTile__name">Tシャツ</span><span class="typeTile__price">¥9,980</span></a></li>
+        <li class="typeTile"><a href="https://mirabilia.base.shop/categories/7826791"><span class="typeTile__en">LONG SLEEVE</span><span class="typeTile__name">ロンT</span><span class="typeTile__price">¥11,980</span></a></li>
+        <li class="typeTile"><a href="https://mirabilia.base.shop/categories/7826794"><span class="typeTile__en">TOTE BAG</span><span class="typeTile__name">トート</span><span class="typeTile__price">¥5,980</span></a></li>
       </ul>
     </div>
   </section>
@@ -488,31 +564,14 @@ html#mrbHtml body#mrbBody .itemCard a:hover{opacity:1 !important;}
     <div class="inner">
       <h2 class="secHead"><span class="secHead__en">QUALITY</span><span class="secHead__ja">品質へのこだわり</span></h2>
       <div class="quality__body">
-        <figure class="quality__fig">
-          <img src="__IMG_SCAN__" alt="古典資料を高精度スキャンする様子" loading="lazy">
-          <figcaption class="credit">"Book scanner digitization lab university of Liège" by Sam.Donvil, CC BY-SA 4.0, via Wikimedia Commons</figcaption>
-        </figure>
         <div class="quality__text">
-          <p>図版はすべて、古典資料を<strong>高精度スキャン</strong>したデータから起こしています。線の細部だけでなく、紙の質感や経年による染み・かすれといった表情まで含めて再現しました。</p>
+          <p>図案はすべて、世界の美術館が公開する<strong>パブリックドメイン</strong>の高解像度画像から起こしています。筆づかいや色の重なりといった名画の表情を、カラーインクジェットプリントで再現しました。</p>
           <p>ボディには <strong>United Athle</strong> のヘビーウェイト生地を採用。しっかりとした厚みで、長く着るほど身体に馴染みます。</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 6. LIMITED EDITION -->
-  <section class="sec limited" id="limited">
-    <div class="inner">
-      <span class="limited__label">LIMITED EDITION</span>
-      <h2 class="limited__title">THE <span>RED</span> LINE</h2>
-      <div class="limited__items">
-        <img src="https://basefile.akamaized.net/mirabilia-base-shop/6af5939a0ee93/red-t-cut-s.png" alt="Tシャツ（レッド）リヴァイアサン" loading="lazy">
-        <img src="https://basefile.akamaized.net/mirabilia-base-shop/6af5936fa8853/red-longt-cut.png" alt="ロンT（レッド）リヴァイアサン" loading="lazy">
-      </div>
-      <p class="limited__text">赤いTシャツとロンTは、<em>各サイズ3着限り</em>の限定モデルです。なくなり次第、販売終了となります。</p>
-      <a class="limited__btn" href="https://mirabilia.base.shop/categories/7826795">VIEW LIMITED</a>
-    </div>
-  </section>
 
   {/block:NoIndexPageSearch}{/block:NoIndexPageCategory}
 
@@ -676,7 +735,6 @@ html#mrbHtml body#mrbBody .itemCard a:hover{opacity:1 !important;}
       <a href="{PrivacyPageURL}">{lang:Privacy}</a>
       <a href="{LawPageURL}">{lang:Law}</a>
     </div>
-    <p class="credit fCredit">"Book scanner digitization lab university of Liège" by Sam.Donvil, CC BY-SA 4.0, via Wikimedia Commons</p>
     <p class="fCopy">&copy; {ShopName}</p>
   </div>
 </footer>
@@ -750,321 +808,766 @@ html#mrbHtml body#mrbBody .itemCard a:hover{opacity:1 !important;}
     });
   });
 
-  /* --- category intro (v3.5): 作者・作品カテゴリだけ、肖像/版画＋説明文を差し込む --- */
+  /* --- category intro (v3.5): 画家・作品カテゴリだけ、画像＋説明文を差し込む --- */
   var CAT_INTROS = {
- "7824127": {
-  "img": "__IMG_AUTHOR_SQ_DORE__",
-  "alt": "ギュスターヴ・ドレ",
+ "7833517": {
+  "img": "__IMG_PAINTER_VANGOGH__",
+  "alt": "フィンセント・ファン・ゴッホ",
   "wide": false,
   "paras": [
-   "光と闇が交錯する、壮大な幻想世界。19世紀フランスの画家ギュスターヴ・ドレは、『神曲』や『聖書』などの古典文学に、圧倒的な想像力で姿を与えました。緻密な線と劇的な明暗が生み出す情景は、見る者を現実の向こう側へと誘います。",
-   "かつて人々が思い描いた、天国と地獄、神話と幻想の世界。ドレの作品には、目に見えないものに姿を与えようとした人間の想像力が息づいています。ミラビリアは、その壮大で奇妙な世界を、時を超えて現代の日常へと呼び起こします。"
+   "フィンセント・ファン・ゴッホ（1853–1890）は、オランダ出身の画家。鮮やかな色彩と渦を巻くような筆の動きで、ポスト印象派を代表する存在です。画家として活動したのは亡くなるまでの約10年間。その短い期間に、強烈な個性を持つ作品を次々と生み出しました。",
+   "ゴッホの画家としての活動期間は、亡くなるまでの約10年間でした。ゴッホは弟テオへの手紙を多く残しており、作品の意図を知る手がかりになっています。ゴッホの評価が大きく高まったのは、亡くなった後のことです。"
   ],
   "works": [
    {
-    "name": "リヴァイアサン",
-    "img": "__IMG_WORK_LEVIATHAN__",
-    "url": "https://mirabilia.base.shop/categories/7827913"
+    "name": "アイリス",
+    "img": "__IMG_WORK_01__",
+    "url": "https://mirabilia.base.shop/categories/7833547"
    },
    {
-    "name": "ドン・キホーテ",
-    "img": "__IMG_WORK_QUIXOTE__",
-    "url": "https://mirabilia.base.shop/categories/7827914"
+    "name": "夜のカフェ",
+    "img": "__IMG_WORK_02__",
+    "url": "https://mirabilia.base.shop/categories/7833549"
    },
    {
-    "name": "長靴をはいた猫",
-    "img": "__IMG_WORK_PUSS__",
-    "url": "https://mirabilia.base.shop/categories/7827918"
+    "name": "糸杉のある麦畑",
+    "img": "__IMG_WORK_03__",
+    "url": "https://mirabilia.base.shop/categories/7833551"
    },
    {
-    "name": "バベルの塔",
-    "img": "__IMG_WORK_BABEL__",
-    "url": "https://mirabilia.base.shop/categories/7827920"
+    "name": "薔薇",
+    "img": "__IMG_WORK_04__",
+    "url": "https://mirabilia.base.shop/categories/7833553"
    },
    {
-    "name": "自殺者の森",
-    "img": "__IMG_WORK_SUICIDES__",
-    "url": "https://mirabilia.base.shop/categories/7827921"
-   },
-   {
-    "name": "大洪水",
-    "img": "__IMG_WORK_DELUGE__",
-    "url": "https://mirabilia.base.shop/categories/7827924"
-   },
-   {
-    "name": "猟犬",
-    "img": "__IMG_WORK_HOUNDS__",
-    "url": "https://mirabilia.base.shop/categories/7827926"
-   },
-   {
-    "name": "光の創造",
-    "img": "__IMG_WORK_CREATION__",
-    "url": "https://mirabilia.base.shop/categories/7827928"
-   },
-   {
-    "name": "ダニエル",
-    "img": "__IMG_WORK_DANIEL__",
-    "url": "https://mirabilia.base.shop/categories/7827929"
-   },
-   {
-    "name": "サムソン",
-    "img": "__IMG_WORK_SAMSON__",
-    "url": "https://mirabilia.base.shop/categories/7827930"
+    "name": "麦わら帽子をかぶった自画像",
+    "img": "__IMG_WORK_05__",
+    "url": "https://mirabilia.base.shop/categories/7833556"
    }
   ]
  },
- "7824128": {
-  "img": "__IMG_AUTHOR_SQ_DURER__",
-  "alt": "アルブレヒト・デューラー",
+ "7833521": {
+  "img": "__IMG_PAINTER_MONET__",
+  "alt": "クロード・モネ",
   "wide": false,
   "paras": [
-   "世界を観察し、まだ見ぬものまで描き出す。ルネサンス期ドイツの巨匠アルブレヒト・デューラーは、卓越した技術と知的好奇心によって版画芸術を大きく発展させました。謎めいた象徴に満ちた『メランコリア I』や、伝聞をもとに描かれた『犀』は、その代表作です。科学と芸術、事実と想像が交わる独特の世界は、500年を経た今も私たちを魅了します。",
-   "世界のすべてが、まだ解き明かされていなかった時代。デューラーの版画には、未知のものを知ろうとする探究心と、想像によって世界を補おうとする人間の営みが刻まれています。ミラビリアは、その知と幻想が入り混じる図像を、現代の装いへと蘇らせます。"
+   "クロード・モネ（1840–1926）は、フランスの画家で印象派の中心人物。移ろう光と大気の変化を捉えるため、同じモチーフを時間や季節を変えて繰り返し描きました。晩年の《睡蓮》の連作は、その探求の到達点です。",
+   "モネはジヴェルニーの自宅に、睡蓮の池や太鼓橋のある庭を自ら造りました。「印象派」という名前は、モネの《印象、日の出》への批評がきっかけで生まれました。モネは同じモチーフを光の変化で描き分ける「連作」を多く残しました。"
   ],
   "works": [
    {
-    "name": "騎士と死と悪魔",
-    "img": "__IMG_WORK_KNIGHT__",
-    "url": "https://mirabilia.base.shop/categories/7827931"
+    "name": "日本の太鼓橋",
+    "img": "__IMG_WORK_06__",
+    "url": "https://mirabilia.base.shop/categories/7833558"
    },
    {
-    "name": "メランコリア I",
-    "img": "__IMG_WORK_MELENCOLIA__",
-    "url": "https://mirabilia.base.shop/categories/7827932"
+    "name": "睡蓮",
+    "img": "__IMG_WORK_07__",
+    "url": "https://mirabilia.base.shop/categories/7833561"
    },
    {
-    "name": "書斎の聖ヒエロニムス",
-    "img": "__IMG_WORK_JEROME__",
-    "url": "https://mirabilia.base.shop/categories/7827933"
+    "name": "積みわら（夏の終わり）",
+    "img": "__IMG_WORK_08__",
+    "url": "https://mirabilia.base.shop/categories/7833565"
    },
    {
-    "name": "犀",
-    "img": "__IMG_WORK_RHINO__",
-    "url": "https://mirabilia.base.shop/categories/7827934"
+    "name": "プールヴィルの断崖の散歩",
+    "img": "__IMG_WORK_09__",
+    "url": "https://mirabilia.base.shop/categories/7833567"
    },
    {
-    "name": "四騎士",
-    "img": "__IMG_WORK_HORSEMEN__",
-    "url": "https://mirabilia.base.shop/categories/7827935"
+    "name": "日傘をさす女―モネ夫人と息子",
+    "img": "__IMG_WORK_10__",
+    "url": "https://mirabilia.base.shop/categories/7833571"
    }
   ]
  },
- "7824129": {
-  "img": "__IMG_AUTHOR_GRANDVILLE__",
-  "alt": "J.J.グランヴィル",
-  "wide": true,
+ "7833524": {
+  "img": "__IMG_PAINTER_VERMEER__",
+  "alt": "ヨハネス・フェルメール",
+  "wide": false,
   "paras": [
-   "もしも動物たちが、人間のように暮らしていたら。19世紀フランスの画家J.J.グランヴィルは、動物に服を着せ、表情を与え、奇妙で愉快な世界を描きました。愛らしくもどこか不気味な登場人物たちは、人間社会の滑稽さや矛盾を映し出しています。繊細な描写と奔放な発想が共存するその作品は、まるで不思議な博物図鑑の一頁のようです。",
-   "かつての動物寓意譚が、動物の姿を借りて人間を語ったように、グランヴィルの作品もまた、現実と空想の境界を軽やかに飛び越えていきます。ミラビリアは、その奇妙でユーモラスな生き物たちを、現代の装いの中に迎え入れます。"
+   "ヨハネス・フェルメール（1632–1675）は、オランダ・デルフトの画家。窓から差す静かな光と、日常の一瞬を切り取った室内画で知られます。現存する作品は30数点と少なく、その希少さも魅力のひとつです。",
+   "フェルメールの作品と確認されている絵は、30数点しか残っていません。フェルメールは生涯のほとんどを故郷デルフトで過ごしました。フェルメールの青には、高価な顔料ウルトラマリンが惜しみなく使われています。"
   ],
   "works": [
    {
-    "name": "哲学者",
-    "img": "__IMG_WORK_TETSUGAKU__",
-    "url": "https://mirabilia.base.shop/categories/7827936"
+    "name": "天秤を持つ女",
+    "img": "__IMG_WORK_11__",
+    "url": "https://mirabilia.base.shop/categories/7833575"
    },
    {
-    "name": "宮廷猫の挨拶",
-    "img": "__IMG_WORK_NEKO__",
-    "url": "https://mirabilia.base.shop/categories/7827937"
+    "name": "青衣の女、手紙を読む",
+    "img": "__IMG_WORK_12__",
+    "url": "https://mirabilia.base.shop/categories/7833576"
    },
    {
-    "name": "講釈する貴婦人",
-    "img": "__IMG_WORK_KOUSHAKU__",
-    "url": "https://mirabilia.base.shop/categories/7827938"
+    "name": "牛乳を注ぐ女",
+    "img": "__IMG_WORK_13__",
+    "url": "https://mirabilia.base.shop/categories/7833578"
+   },
+   {
+    "name": "水差しを持つ女",
+    "img": "__IMG_WORK_14__",
+    "url": "https://mirabilia.base.shop/categories/7833579"
+   },
+   {
+    "name": "眠る女",
+    "img": "__IMG_WORK_15__",
+    "url": "https://mirabilia.base.shop/categories/7833581"
    }
   ]
  },
- "7824130": {
-  "img": "__IMG_AUTHOR_SQ_TENNIEL__",
-  "alt": "ジョン・テニエル",
+ "7833528": {
+  "img": "__IMG_PAINTER_HOKUSAI__",
+  "alt": "葛飾北斎",
   "wide": false,
   "paras": [
-   "鏡の向こうには、常識の通じない世界が広がっている。19世紀イギリスの画家ジョン・テニエルは、『不思議の国のアリス』や『鏡の国のアリス』の挿絵で知られています。精緻な線で描かれた奇妙な生き物や人物たちは、幻想的でありながら、どこか確かな存在感を放ちます。ユーモアと不条理が入り混じるその図像は、世代を超えて人々の想像力を刺激し続けています。",
-   "ありえない生き物も、不思議な出来事も、かつての図鑑や物語の中では確かに存在していました。テニエルの描く世界は、そんな空想を信じる楽しさを思い出させてくれます。ミラビリアは、物語の頁に閉じ込められた奇妙な住人たちを、もう一度私たちの日常へと連れ出します。"
+   "葛飾北斎（1760–1849）は、江戸時代の浮世絵師。《富嶽三十六景》の《神奈川沖浪裏》は、世界で最も知られる日本の絵のひとつです。生涯にわたって画号や作風を変え続け、膨大な数の作品を残しました。",
+   "北斎は生涯で90回以上も引っ越しをしたといわれています。北斎は70歳を過ぎてから「富嶽三十六景」を描き始めました。北斎の作品は、印象派の画家たちにも大きな影響を与えました。"
   ],
   "works": [
    {
-    "name": "ジャバウォック",
-    "img": "__IMG_WORK_JABBERWOCKY__",
-    "url": "https://mirabilia.base.shop/categories/7827939"
+    "name": "神奈川沖浪裏",
+    "img": "__IMG_WORK_16__",
+    "url": "https://mirabilia.base.shop/categories/7833583"
+   },
+   {
+    "name": "凱風快晴",
+    "img": "__IMG_WORK_17__",
+    "url": "https://mirabilia.base.shop/categories/7833585"
+   },
+   {
+    "name": "山下白雨",
+    "img": "__IMG_WORK_18__",
+    "url": "https://mirabilia.base.shop/categories/7833586"
+   },
+   {
+    "name": "甲州石班沢",
+    "img": "__IMG_WORK_19__",
+    "url": "https://mirabilia.base.shop/categories/7833587"
+   },
+   {
+    "name": "木曽路ノ奥阿弥陀ヶ瀧",
+    "img": "__IMG_WORK_20__",
+    "url": "https://mirabilia.base.shop/categories/7833590"
    }
   ]
  },
- "7824131": {
-  "img": "__IMG_AUTHOR_SQ_CLARKE__",
-  "alt": "ハリー・クラーク",
+ "7833531": {
+  "img": "__IMG_PAINTER_RENOIR__",
+  "alt": "ピエール＝オーギュスト・ルノワール",
   "wide": false,
   "paras": [
-   "美しさと恐ろしさは、ときに同じ姿をしている。20世紀初頭のアイルランドで活躍したハリー・クラークは、繊細で幻想的な挿絵とステンドグラスを手がけた芸術家です。エドガー・アラン・ポーの怪奇小説に添えた挿絵では、緻密な装飾と異形の人物たちによって、悪夢のような世界を描き出しました。妖しくも優美なその表現は、見る者の心に忘れがたい印象を残します。",
-   "中世の写本に描かれた怪物や幻想の生き物たち。その奇妙な想像力は、時代を超え、クラークの描く美しくも不穏な世界にも通じています。ミラビリアは、恐ろしささえも美しさへと変えるその図像を、現代の装いに取り入れます。"
+   "ピエール＝オーギュスト・ルノワール（1841–1919）は、フランスの印象派の画家。明るい色彩とやわらかな光で、人々の楽しげなひとときや女性の姿を描きました。幸福感のある画面が、時代を超えて愛されています。",
+   "ルノワールは若い頃、陶磁器の絵付け職人として働いていました。ルノワールは晩年、手の関節の痛みと闘いながらも描き続けました。ルノワールはモネと親しく、印象派の中心的な画家の一人です。"
   ],
   "works": [
    {
-    "name": "赤死病の仮面",
-    "img": "__IMG_WORK_CLARKE__",
-    "url": "https://mirabilia.base.shop/categories/7827940"
+    "name": "フェルナンド・サーカスの曲芸師たち",
+    "img": "__IMG_WORK_21__",
+    "url": "https://mirabilia.base.shop/categories/7833593"
+   },
+   {
+    "name": "二人の姉妹（テラスにて）",
+    "img": "__IMG_WORK_22__",
+    "url": "https://mirabilia.base.shop/categories/7833596"
+   },
+   {
+    "name": "海辺にて",
+    "img": "__IMG_WORK_23__",
+    "url": "https://mirabilia.base.shop/categories/7833600"
+   },
+   {
+    "name": "菊の花束",
+    "img": "__IMG_WORK_24__",
+    "url": "https://mirabilia.base.shop/categories/7833606"
+   },
+   {
+    "name": "フルネーズのレストランでの昼食",
+    "img": "__IMG_WORK_25__",
+    "url": "https://mirabilia.base.shop/categories/7833609"
    }
   ]
  },
- "7827913": {
-  "img": "__IMG_WORK_LEVIATHAN__",
-  "alt": "リヴァイアサン",
+ "7833534": {
+  "img": "__IMG_PAINTER_SEURAT__",
+  "alt": "ジョルジュ・スーラ",
   "wide": false,
   "paras": [
-   "海が、静かに息をひそめている。旧約聖書『ヨブ記』に登場する海の怪物リヴァイアサンが、荒れ狂う海の中で滅ぼされる場面だ。巨大な身体と激しくうねる波が交錯する画面には、神話的な壮大さと、暗い海の底を思わせる不気味な空気が漂う。人間の力が及ばない存在の恐ろしさが、静かに、しかし強く伝わってくる。"
+   "ジョルジュ・スーラ（1859–1891）は、フランスの画家で新印象派の創始者。小さな色の点を並べて画面を構成する「点描」の技法を確立しました。代表作《グランド・ジャット島の日曜日の午後》は、その集大成です。",
+   "スーラは小さな色の点で画面を作る「点描」で、新印象派を切り開きました。スーラは31歳で亡くなり、画家としての期間は約10年でした。スーラは色彩の理論を学び、色の置き方を科学的に考えた画家です。"
+  ],
+  "works": [
+   {
+    "name": "グランド・ジャット島の日曜日の午後",
+    "img": "__IMG_WORK_26__",
+    "url": "https://mirabilia.base.shop/categories/7833615"
+   },
+   {
+    "name": "サーカスの客寄せ",
+    "img": "__IMG_WORK_27__",
+    "url": "https://mirabilia.base.shop/categories/7833618"
+   },
+   {
+    "name": "オンフルールの灯台",
+    "img": "__IMG_WORK_28__",
+    "url": "https://mirabilia.base.shop/categories/7833621"
+   },
+   {
+    "name": "曇天、グランド・ジャット島",
+    "img": "__IMG_WORK_29__",
+    "url": "https://mirabilia.base.shop/categories/7833624"
+   },
+   {
+    "name": "グランド・ジャット島の日曜日の午後の習作",
+    "img": "__IMG_WORK_30__",
+    "url": "https://mirabilia.base.shop/categories/7833627"
+   }
   ]
  },
- "7827914": {
-  "img": "__IMG_WORK_QUIXOTE__",
-  "alt": "ドン・キホーテ",
+ "7833537": {
+  "img": "__IMG_PAINTER_ROUSSEAU__",
+  "alt": "アンリ・ルソー",
   "wide": false,
   "paras": [
-   "書斎に座る男の周りで、現実と空想の境界が溶けていく。騎士道物語に夢中になるあまり、自らを遍歴の騎士と思い込むドン・キホーテ。読書から生まれた騎士や怪物、幻想的な情景が部屋にひしめき合い、ひとりの男の想像力がどこまでも膨らんでいく様子を映し出している。夢見ることの、どこか切なく、どこか眩しい魅力を感じさせる一枚。"
+   "アンリ・ルソー（1844–1910）は、フランスの画家。税関の職員として働きながら独学で絵を描き、「素朴派」と呼ばれる独自の様式を築きました。実際には訪れたことのないジャングルを想像で描いた幻想的な作品が有名です。",
+   "ルソーは税関の職員として働きながら絵を描いた「日曜画家」でした。ルソーは熱帯の土地へ行ったことがなく、ジャングルはパリの植物園や動物園をもとに想像で描きました。ルソーの絵は、ピカソをはじめ前衛の芸術家たちに高く評価されました。"
+  ],
+  "works": [
+   {
+    "name": "猿のいる熱帯林",
+    "img": "__IMG_WORK_31__",
+    "url": "https://mirabilia.base.shop/categories/7833629"
+   },
+   {
+    "name": "ライオンの食事",
+    "img": "__IMG_WORK_32__",
+    "url": "https://mirabilia.base.shop/categories/7833631"
+   },
+   {
+    "name": "赤道のジャングル",
+    "img": "__IMG_WORK_33__",
+    "url": "https://mirabilia.base.shop/categories/7833633"
+   },
+   {
+    "name": "岩の上の少年",
+    "img": "__IMG_WORK_34__",
+    "url": "https://mirabilia.base.shop/categories/7833634"
+   },
+   {
+    "name": "森での逢い引き",
+    "img": "__IMG_WORK_35__",
+    "url": "https://mirabilia.base.shop/categories/7833635"
+   }
   ]
  },
- "7827918": {
-  "img": "__IMG_WORK_PUSS__",
-  "alt": "長靴をはいた猫",
+ "7833540": {
+  "img": "__IMG_PAINTER_GOYA__",
+  "alt": "フランシスコ・ゴヤ",
   "wide": false,
   "paras": [
-   "後ろ足で堂々と立ち、長靴を履いた猫が、こちらをまっすぐに見つめている。ペロー童話『長靴をはいた猫』に登場する、知恵と機転で主人を幸運へと導く一匹の猫。まるで人間の紳士のような佇まいでありながら、猫らしい愛嬌も残している。動物と人間の境界を軽やかに越える、童話ならではの奇妙さが魅力だ。"
+   "フランシスコ・ゴヤ（1746–1828）は、スペインの画家。宮廷画家として栄達する一方、戦争や社会の闇を見つめた版画集《ロス・カプリーチョス》や、晩年の《黒い絵》など、人間の暗部に迫る作品も残しました。",
+   "ゴヤはスペインの宮廷画家を務める一方、社会を風刺する版画集《ロス・カプリチョス》を刊行しました。ゴヤは40代で聴力を失ったといわれています。ゴヤの晩年の住居の壁には、後に「黒い絵」と呼ばれる一連の絵が描かれていました。"
+  ],
+  "works": [
+   {
+    "name": "理性の眠りは怪物を生む",
+    "img": "__IMG_WORK_36__",
+    "url": "https://mirabilia.base.shop/categories/7833637"
+   },
+   {
+    "name": "マヌエル・オソリオ・マンリーケ・デ・スニガ",
+    "img": "__IMG_WORK_37__",
+    "url": "https://mirabilia.base.shop/categories/7833639"
+   },
+   {
+    "name": "座る巨人",
+    "img": "__IMG_WORK_38__",
+    "url": "https://mirabilia.base.shop/categories/7833642"
+   },
+   {
+    "name": "祖父の代まで",
+    "img": "__IMG_WORK_39__",
+    "url": "https://mirabilia.base.shop/categories/7833644"
+   },
+   {
+    "name": "アルタミラ伯爵夫人と娘マリア・アグスティナ",
+    "img": "__IMG_WORK_40__",
+    "url": "https://mirabilia.base.shop/categories/7833645"
+   }
   ]
  },
- "7827920": {
-  "img": "__IMG_WORK_BABEL__",
-  "alt": "バベルの塔",
+ "7833542": {
+  "img": "__IMG_PAINTER_REDON__",
+  "alt": "オディロン・ルドン",
   "wide": false,
   "paras": [
-   "天に届くほど高い塔を築こうとした人々が、言葉を通じ合えなくなり、世界各地へ散っていく。旧約聖書に語られるバベルの塔の物語。空へ向かって幾重にも積み重なる巨大な塔は、人間の野心をそのまま建築物にしたかのような姿を見せる。細部まで描き込まれた構造と果てしなく続くような高さが、壮麗さと不穏さを同時に感じさせる。"
+   "オディロン・ルドン（1840–1916）は、フランスの画家。初期は木炭や石版による「黒」の世界で夢や幻を描き、後年はパステルや油彩の豊かな色彩へと移りました。象徴主義を代表する、静かで神秘的な作風です。",
+   "ルドンは、印象派が活躍した時代に、あえて「目に見えないもの」を描こうとした画家です。ルドンは、文学や音楽にも造詣が深く、多くの作家や音楽家と交流がありました。ルドンの作品は日本でも人気が高く、多くの展覧会で紹介されています。"
+  ],
+  "works": [
+   {
+    "name": "パンドラ",
+    "img": "__IMG_WORK_41__",
+    "url": "https://mirabilia.base.shop/categories/7833646"
+   },
+   {
+    "name": "アポロンの馬車",
+    "img": "__IMG_WORK_42__",
+    "url": "https://mirabilia.base.shop/categories/7833648"
+   },
+   {
+    "name": "花束（パステル）",
+    "img": "__IMG_WORK_43__",
+    "url": "https://mirabilia.base.shop/categories/7833649"
+   },
+   {
+    "name": "眼は奇妙な気球のように無限に向かう",
+    "img": "__IMG_WORK_44__",
+    "url": "https://mirabilia.base.shop/categories/7833651"
+   },
+   {
+    "name": "聖セバスティアヌス",
+    "img": "__IMG_WORK_45__",
+    "url": "https://mirabilia.base.shop/categories/7833652"
+   }
   ]
  },
- "7827921": {
-  "img": "__IMG_WORK_SUICIDES__",
-  "alt": "自殺者の森",
+ "7833545": {
+  "img": "__IMG_PAINTER_CASSATT__",
+  "alt": "メアリー・カサット",
   "wide": false,
   "paras": [
-   "静かな森の中に、声が閉じ込められている。ダンテ『神曲』地獄編に描かれる、自ら命を絶った者たちが樹木へと姿を変えられた森。ダンテが一本の枝を折ると、傷口から血が流れ、木は苦痛の声を上げる。木々の複雑な輪郭と暗い陰影が、生と死の境界を曖昧にしていく。目を凝らすほどに、森の奥から何かが語りかけてくるような一枚。"
+   "メアリー・カサット（1844–1926）は、アメリカ出身でパリを拠点に活動した印象派の画家。女性や子どもの日常を、飾らない視線で描きました。母親と子どもの何気ないひとときを捉えた作品で知られます。",
+   "カサットはアメリカ出身で、パリを拠点に活動した画家です。カサットは印象派展に参加した、数少ない女性画家の一人です。カサットはドガと交流が深く、銅版画などの版画にも優れた作品を残しました。"
+  ],
+  "works": [
+   {
+    "name": "青い肘掛け椅子の少女",
+    "img": "__IMG_WORK_46__",
+    "url": "https://mirabilia.base.shop/categories/7833653"
+   },
+   {
+    "name": "舟遊び",
+    "img": "__IMG_WORK_47__",
+    "url": "https://mirabilia.base.shop/categories/7833655"
+   },
+   {
+    "name": "子どもの入浴",
+    "img": "__IMG_WORK_48__",
+    "url": "https://mirabilia.base.shop/categories/7833656"
+   },
+   {
+    "name": "手紙",
+    "img": "__IMG_WORK_49__",
+    "url": "https://mirabilia.base.shop/categories/7833657"
+   },
+   {
+    "name": "お茶",
+    "img": "__IMG_WORK_50__",
+    "url": "https://mirabilia.base.shop/categories/7833658"
+   }
   ]
  },
- "7827924": {
-  "img": "__IMG_WORK_DELUGE__",
-  "alt": "大洪水",
+ "7833547": {
+  "img": "__IMG_WORK_01__",
+  "alt": "アイリス",
   "wide": false,
   "paras": [
-   "世界が水に覆われていく中、人々はわずかに残された岩場へと身を寄せる。旧約聖書『創世記』に語られる、ノアの大洪水。押し寄せる波から逃れようとする人間の小さな身体と、圧倒的な自然の力が対比され、極限の緊張が画面全体を包み込む。絶望的な光景でありながら、その劇的な構図には静かな荘厳さも宿っている。"
+   "ゴッホがサン＝レミの療養院で描いた、花瓶のアイリスです。もとの花は紫で、背景はピンク。使われた赤い色素が退色したことで、今の青い花と淡い背景になりました。療養中のゴッホにとって、庭の花々は希望の象徴でもありました。現在の美しさに、画家が見ていた色を重ねてみてください。"
   ]
  },
- "7827926": {
-  "img": "__IMG_WORK_HOUNDS__",
-  "alt": "猟犬",
+ "7833549": {
+  "img": "__IMG_WORK_02__",
+  "alt": "夜のカフェ",
   "wide": false,
   "paras": [
-   "黒い猟犬の群れが、地獄の森を駆け抜ける。ダンテ『神曲』地獄編に描かれる、財産を浪費した亡者たちが獰猛な犬に追われ、逃げ惑う場面。木々の間を突き抜ける犬の身体と、必死に走る亡者たちの姿が交錯し、画面の隅々まで激しい動きが満ちている。追う者と追われる者の容赦ない関係が、地獄という異界の恐ろしさを鮮烈に伝える。"
+   "アルルにあった夜のカフェの室内です。ガス灯の黄色、天井の緑、壁の赤。強くぶつかり合う色で、ゴッホは弟への手紙に、夜のざわめきと落ち着かなさを描こうとしたと残しています。人工の灯りに照らされた、眠らない場所の一枚です。"
   ]
  },
- "7827928": {
-  "img": "__IMG_WORK_CREATION__",
-  "alt": "光の創造",
+ "7833551": {
+  "img": "__IMG_WORK_03__",
+  "alt": "糸杉のある麦畑",
   "wide": false,
   "paras": [
-   "闇の中に、ひと筋の光が生まれた。旧約聖書『創世記』の冒頭、神が「光あれ」と告げ、世界に初めて光が生まれる場面。深い闇の中へ光が広がり、混沌としていた空間に明暗が生まれていく。人物や建築物に頼らず、光そのものを主役とした構図は、抽象的でありながら壮大な広がりを感じさせる。白と黒の鮮烈な対比が、世界の始まりという瞬間を印象深く描き出している。"
+   "サン＝レミで描かれた、風の強い日の風景です。炎のようにうねる糸杉、金色の麦畑、渦巻く空。ゴッホ自身がこの構図を気に入り、複数のバージョンを描きました。"
   ]
  },
- "7827929": {
-  "img": "__IMG_WORK_DANIEL__",
-  "alt": "ダニエル",
+ "7833553": {
+  "img": "__IMG_WORK_04__",
+  "alt": "薔薇",
   "wide": false,
   "paras": [
-   "暗い穴の中に、静かな光が差し込んでいる。旧約聖書『ダニエル書』に登場する、獅子の穴へ投げ込まれた預言者ダニエル。猛獣たちに囲まれながらも、神の加護によって傷つくことなく夜を過ごす。静かに佇むダニエルと力強い獅子たちの姿が鮮やかな対照をなし、獰猛さと静寂が同居する不思議な緊張感を生み出している。"
+   "療養院の庭に咲いた薔薇の花束です。《アイリス》と同時期に描かれた静物で、淡い緑の背景に白い薔薇が静かに浮かびます。退所を前に描かれた、花へのまなざしの一枚です。"
   ]
  },
- "7827930": {
-  "img": "__IMG_WORK_SAMSON__",
-  "alt": "サムソン",
+ "7833556": {
+  "img": "__IMG_WORK_05__",
+  "alt": "麦わら帽子をかぶった自画像",
   "wide": false,
   "paras": [
-   "人間と獅子が、激しく組み合う。旧約聖書『士師記』に登場する、並外れた怪力を持つ英雄サムソン。旅の途中で襲いかかってきた獅子を、素手で引き裂くという物語の一場面。互いの筋肉の動きや力のぶつかり合いが細部まで刻まれ、神から授かった怪力が躍動感あふれる構図で表現されている。全身からほとばしるような生命力を感じさせる一枚。"
+   "パリ時代の自画像です。モデルを雇う余裕がなく、自分の顔を練習台にした自画像の一枚で、明るい色の短い筆触に、パリで学んだ新しい描き方が見えます。なお、この絵の裏面には別の人物画が描かれています。"
   ]
  },
- "7827931": {
-  "img": "__IMG_WORK_KNIGHT__",
-  "alt": "騎士と死と悪魔",
+ "7833558": {
+  "img": "__IMG_WORK_06__",
+  "alt": "日本の太鼓橋",
   "wide": false,
   "paras": [
-   "死と悪魔に付きまとわれながら、騎士は黙々と進み続ける。馬にまたがる騎士の傍らには砂時計を掲げる「死」が現れ、背後からは異形の「悪魔」が忍び寄るが、騎士は彼らに目を向けることなく前進を続ける。緻密な甲冑や馬の筋肉、奇怪な悪魔の姿が細部まで刻まれ、画面には重厚な緊張が漂う。死や誘惑に囲まれながらも歩みを止めない、人間の意志を感じさせる作品。"
+   "ジヴェルニーの自宅の庭にある、睡蓮の池と太鼓橋です。この庭は、モネが日本美術への関心を形にして自ら造ったもの。つまりこの「風景」は、モネが先に作り、それから描いた景色なのです。緑と橋の曲線が画面いっぱいに広がります。"
   ]
  },
- "7827932": {
-  "img": "__IMG_WORK_MELENCOLIA__",
-  "alt": "メランコリア I",
+ "7833561": {
+  "img": "__IMG_WORK_07__",
+  "alt": "睡蓮",
   "wide": false,
   "paras": [
-   "翼を持つ人物が頬杖をつき、物思いに沈んでいる。周囲には多面体や砂時計、天秤、工具などが置かれ、それぞれが数学や時間、知識を象徴するものとして読み解かれてきた。緻密に描かれた数々の道具とは対照的に、人物は何かを始めることなく静かに座り続けている。知性と創造、そして人間の限界をめぐる問いが、一枚の画面に凝縮されている。"
+   "ジヴェルニーの池の睡蓮です。空も岸も描かず、水面とその反射、水に浮かぶ花だけで世界を作る。モネが晩年まで向き合い続けた連作の一枚です。"
   ]
  },
- "7827933": {
-  "img": "__IMG_WORK_JEROME__",
-  "alt": "書斎の聖ヒエロニムス",
+ "7833565": {
+  "img": "__IMG_WORK_08__",
+  "alt": "積みわら（夏の終わり）",
   "wide": false,
   "paras": [
-   "静かな書斎で、聖ヒエロニムスが机に向かい、書物に取り組んでいる。足元には穏やかに眠る獅子が横たわり、窓から差し込む柔らかな光が室内を照らしている。家具や書物、壁に掛けられた品々まで丹念に描かれ、整然とした空間には落ち着いた時間が流れる。知識と思索に満ちた、ひっそりとした日常の美しさを感じさせる作品。"
+   "畑に残された積みわらを描いた連作の一枚です。モネは同じモチーフを季節や時刻ごとに描き分け、形ではなく光と色の変化そのものを追いました。単純な形だからこそ、色の違いが際立ちます。"
   ]
  },
- "7827934": {
-  "img": "__IMG_WORK_RHINO__",
-  "alt": "犀",
+ "7833567": {
+  "img": "__IMG_WORK_09__",
+  "alt": "プールヴィルの断崖の散歩",
   "wide": false,
   "paras": [
-   "まるで鎧をまとったような皮膚と、力強い角を持つ一頭の犀。実物を見ることなく、伝え聞いた情報や図像をもとに描かれたため、その身体には現実の動物とは異なる装甲のような構造が与えられている。幾何学的に区切られた皮膚や細かな模様が、空想上の生き物のような存在感を生み出す。観察と想像が入り混じった、博物図鑑の歴史を感じさせる一枚。"
+   "ノルマンディーの海に面した断崖の散歩道です。風に揺れる草とドレス、海へ向かって下る斜面。人物の視線の先を追うと、画面の外の海まで景色が続いていきます。"
   ]
  },
- "7827935": {
-  "img": "__IMG_WORK_HORSEMEN__",
-  "alt": "四騎士",
+ "7833571": {
+  "img": "__IMG_WORK_10__",
+  "alt": "日傘をさす女―モネ夫人と息子",
   "wide": false,
   "paras": [
-   "世界の終末を告げる四人の騎士が、馬を駆って地上へ押し寄せる。新約聖書『ヨハネの黙示録』に登場する、弓、剣、天秤を持つ騎士たちと、死を象徴する騎士。重なり合う馬の身体や翻る衣、足元で倒れる人々が、息つく間もないほどの激しい動きを生み出している。終末という壮大な物語を、圧倒的な密度と迫力で描いた一枚。"
+   "妻カミーユと息子ジャンの散歩を、下から見上げる視点で描いた一枚です。強い風とまぶしい光の中で、ドレスと草が同じリズムで揺れています。家族の何気ない一瞬が、そのまま夏の記録になりました。"
   ]
  },
- "7827936": {
-  "img": "__IMG_WORK_TETSUGAKU__",
-  "alt": "哲学者",
+ "7833575": {
+  "img": "__IMG_WORK_11__",
+  "alt": "天秤を持つ女",
   "wide": false,
   "paras": [
-   "動物の姿をした哲学者が、人間さながらに思索にふけっている。知性や威厳を感じさせる佇まいと、動物本来の姿との隔たりが、静かなユーモアを生み出している。人間だけのものと思われがちな哲学や理性も、動物の姿に置き換えることで、どこか滑稽に見えてくる。真面目さと風刺が入り混じる、不思議な魅力を持つ図案。"
+   "静かな室内で、天秤を手に立つ女性です。よく見ると、天秤の皿はどちらも空っぽ。背後の壁には「最後の審判」の絵が掛かっています。何も量っていない天秤と審判の絵が呼応し合う、フェルメールらしい静かな問いの一枚です。"
   ]
  },
- "7827937": {
-  "img": "__IMG_WORK_NEKO__",
-  "alt": "宮廷猫の挨拶",
+ "7833576": {
+  "img": "__IMG_WORK_12__",
+  "alt": "青衣の女、手紙を読む",
   "wide": false,
   "paras": [
-   "華やかな宮廷で、人間のような衣装をまとった猫たちが挨拶を交わす。礼儀正しく振る舞う姿は気品に満ちている一方、猫特有の顔つきや仕草が、どこかおかしみを感じさせる。格式ばった宮廷の作法を動物たちが演じることで、人間社会の礼節や見栄がユーモラスに映し出される。端正な装いと奇妙な光景の取り合わせが楽しい一枚。"
+   "窓辺で手紙を読む、青い衣の女性です。フェルメールの代名詞ともいえる青と黄、そして左から差す静かな光。手紙の送り主は描かれていませんが、読む仕草だけで物語が立ち上がります。"
   ]
  },
- "7827938": {
-  "img": "__IMG_WORK_KOUSHAKU__",
-  "alt": "講釈する貴婦人",
+ "7833578": {
+  "img": "__IMG_WORK_13__",
+  "alt": "牛乳を注ぐ女",
   "wide": false,
   "paras": [
-   "人間の衣装をまとった動物の貴婦人が、身振りを交えながら堂々と講釈する。洗練された装いと人間さながらの振る舞いに、動物ならではの顔つきや表情が重なり、どこか滑稽な印象を生み出している。動物たちに人間社会の習慣を演じさせることで、礼儀や虚栄、社交の不思議さが浮かび上がる。優雅さと風刺が同居する、奇妙な社交界の一幕。"
+   "台所で黙々と牛乳を注ぐ女性です。静止した室内の中で、細く注がれる牛乳だけが動いている。パンと陶器の質感、黄と青の対比が、ありふれた労働を静かな名場面に変えています。"
   ]
  },
- "7827939": {
-  "img": "__IMG_WORK_JABBERWOCKY__",
-  "alt": "ジャバウォック",
+ "7833579": {
+  "img": "__IMG_WORK_14__",
+  "alt": "水差しを持つ女",
   "wide": false,
   "paras": [
-   "長い首と鋭い爪、大きな翼を持つ怪物ジャバウォックが、剣を構えた少年と対峙する。『鏡の国のアリス』に登場する詩「ジャバウォックの詩」の一場面だ。爬虫類や鳥、空想上の生き物が入り混じったような怪物の姿は、恐ろしさと奇妙な愛嬌を併せ持つ。現実には存在しない生き物を、細密な線によって生々しく描き出した、幻想文学を象徴する一枚。"
+   "窓辺で水差しとボウルを持つ若い女性です。窓を開ける手と、朝の身支度。劇的な出来事は何もないのに、光と配置の正確さで、朝の一場面が凪のように静かに収まっています。"
   ]
  },
- "7827940": {
-  "img": "__IMG_WORK_CLARKE__",
-  "alt": "赤死病の仮面",
+ "7833581": {
+  "img": "__IMG_WORK_15__",
+  "alt": "眠る女",
   "wide": false,
   "paras": [
-   "華やかな宴の最中に、死の気配が忍び込む。エドガー・アラン・ポーの短編『赤死病の仮面』に描かれる、疫病から逃れるため城に閉じこもった貴族たちの仮面舞踏会。赤死病を思わせる不気味な仮装の人物が現れ、閉ざされた空間に死の影が広がっていく。装飾的な衣装や異様な人物の姿が、優美さと恐怖をひとつの画面に共存させている。幻想的な美しさの奥に、人間が逃れることのできない運命を感じさせる作品。"
+   "テーブルのワイングラスのそばで、もたれて眠る女中です。後のX線調査で、背景の戸口にはもともと男性の姿が描かれ、塗りつぶされたことが分かっています。描かれなかった人物が、この眠りの意味をそっと変えています。"
+  ]
+ },
+ "7833583": {
+  "img": "__IMG_WORK_16__",
+  "alt": "神奈川沖浪裏",
+  "wide": false,
+  "paras": [
+   "大きな波と富士山の対比が印象的な作品です。迫力のある波のうねりと、その奥に静かに佇む富士山。小さな舟に乗る人々の姿も描かれており、自然の力強さと人の営みが共存する世界が広がっています。よく知る名画にも、見直すたびに気がつくものがあります。"
+  ]
+ },
+ "7833585": {
+  "img": "__IMG_WORK_17__",
+  "alt": "凱風快晴",
+  "wide": false,
+  "paras": [
+   "通称「赤富士」。夏の朝の光を浴びて赤く染まる富士山と、抜けるような青空です。色の面は少ないのに、山の存在感は絶大。南風が雲を流す、快晴の名場面です。"
+  ]
+ },
+ "7833586": {
+  "img": "__IMG_WORK_18__",
+  "alt": "山下白雨",
+  "wide": false,
+  "paras": [
+   "「白雨」は夕立のこと。山頂の上は晴れているのに、山麓では稲妻と雷雨。一枚の画面の上下で、天気が真っ二つに分かれています。静かな稜線と荒れる麓の対比が、この絵の仕掛けです。"
+  ]
+ },
+ "7833587": {
+  "img": "__IMG_WORK_19__",
+  "alt": "甲州石班沢",
+  "wide": false,
+  "paras": [
+   "甲斐国の石班沢で、岩の上から糸を垂れる漁師です。漁師と糸と岩が作る三角形の先に、小さく富士山。斜めの線の緊張感が、静かな釣りの場面を一枚の造形に変えています。"
+  ]
+ },
+ "7833590": {
+  "img": "__IMG_WORK_20__",
+  "alt": "木曽路ノ奥阿弥陀ヶ瀧",
+  "wide": false,
+  "paras": [
+   "名瀑を巡るシリーズ《諸国瀧廻り》の一枚です。円を描く水源から、まっすぐに落ちる阿弥陀ヶ滝。滝壺のそばでは人々が見物しています。水の形そのものをデザインにしたような、北斎の造形感覚が光ります。"
+  ]
+ },
+ "7833593": {
+  "img": "__IMG_WORK_21__",
+  "alt": "フェルナンド・サーカスの曲芸師たち",
+  "wide": false,
+  "paras": [
+   "パリのフェルナンド・サーカスで芸を終えた、ワルテンベルク姉妹です。姉の抱えるオレンジは、実は曲芸の道具ではありません。制作から59年後、モデル本人の手紙で、観客が投げた称賛のしるしを彼女が受け止めたものだと分かりました。果物の意味が分かると、少女の表情まで誇らしげに見えてきます。"
+  ]
+ },
+ "7833596": {
+  "img": "__IMG_WORK_22__",
+  "alt": "二人の姉妹（テラスにて）",
+  "wide": false,
+  "paras": [
+   "セーヌ川の中州、フルネーズのテラスで描かれた二人です。赤い帽子の娘と、花かごを抱えた幼い子。題名は「姉妹」ですが、モデルの二人は実際の姉妹ではなかったといわれています。"
+  ]
+ },
+ "7833600": {
+  "img": "__IMG_WORK_23__",
+  "alt": "海辺にて",
+  "wide": false,
+  "paras": [
+   "浜辺に座る女性の肖像です。海辺の場面に見えますが、人物と背景は別々に、アトリエで描かれたと考えられています。青いドレスと大きな帽子が、夏の光を集めています。"
+  ]
+ },
+ "7833606": {
+  "img": "__IMG_WORK_24__",
+  "alt": "菊の花束",
+  "wide": false,
+  "paras": [
+   "人物画で知られるルノワールの、花だけの一枚です。菊の花束は、色と色をぶつけて試す実験の場でもありました。花びらの重なりが、そのまま色彩の練習帳になっています。"
+  ]
+ },
+ "7833609": {
+  "img": "__IMG_WORK_25__",
+  "alt": "フルネーズのレストランでの昼食",
+  "wide": false,
+  "paras": [
+   "セーヌ川に浮かぶフルネーズのレストランで、舟遊びの合間の昼食です。白いテーブルクロス、グラス、麦わら帽子。休日の昼下がりの軽やかさが、そのまま画面の明るさになっています。"
+  ]
+ },
+ "7833615": {
+  "img": "__IMG_WORK_26__",
+  "alt": "グランド・ジャット島の日曜日の午後",
+  "wide": false,
+  "paras": [
+   "パリ近郊の島で休日を過ごす人々を、無数の色の点で描いた点描の大作です。完成まで2年をかけ、後には画面の縁そのものも点描で描き加えられました。近づけば点、離れれば休日の光。見る距離で姿を変える絵です。"
+  ]
+ },
+ "7833618": {
+  "img": "__IMG_WORK_27__",
+  "alt": "サーカスの客寄せ",
+  "wide": false,
+  "paras": [
+   "描かれているのはサーカスの本番ではなく、開演前に客を集める呼び込みの舞台です。ガス灯のぼんやりした光と、整列した演者たち。夜の見世物の、始まる前のざわめきを点描で捉えました。"
+  ]
+ },
+ "7833621": {
+  "img": "__IMG_WORK_28__",
+  "alt": "オンフルールの灯台",
+  "wide": false,
+  "paras": [
+   "ノルマンディーの港町オンフルールの灯台です。スーラが点描の技法を本格的に使い始めた頃の海景で、淡い色の点が、静かな水面と空気の湿度まで描いています。"
+  ]
+ },
+ "7833624": {
+  "img": "__IMG_WORK_29__",
+  "alt": "曇天、グランド・ジャット島",
+  "wide": false,
+  "paras": [
+   "あの賑やかな日曜日と同じ島を、曇りの日に描いた一枚です。人物はほとんどなく、緑と水面だけが静かに広がります。大作の喧騒と対になる、もう一つのグランド・ジャットです。"
+  ]
+ },
+ "7833627": {
+  "img": "__IMG_WORK_30__",
+  "alt": "グランド・ジャット島の日曜日の午後の習作",
+  "wide": false,
+  "paras": [
+   "大作《グランド・ジャット島の日曜日の午後》に先立って描かれた、小さな油彩の習作です。完成作と見比べると、人物の配置や人数が変わっているのが分かります。2年がかりの大画面は、この小さな一枚から始まりました。"
+  ]
+ },
+ "7833629": {
+  "img": "__IMG_WORK_31__",
+  "alt": "猿のいる熱帯林",
+  "wide": false,
+  "paras": [
+   "オレンジに手を伸ばす猿たちのいる熱帯の森です。ただしルソーは、熱帯の土地へ一度も行ったことがありません。パリの植物園や動物園で見た植物と動物から、この密林を想像で組み立てました。行ったことのない場所を、本物らしく描く力の一枚です。"
+  ]
+ },
+ "7833631": {
+  "img": "__IMG_WORK_32__",
+  "alt": "ライオンの食事",
+  "wide": false,
+  "paras": [
+   "ジャングルの中で獲物を食べるライオンです。葉の一枚一枚まで描き分けられた植物に囲まれて、食事の場面は不思議なほど静か。残酷さよりも、森の秩序を感じさせる一枚です。"
+  ]
+ },
+ "7833633": {
+  "img": "__IMG_WORK_33__",
+  "alt": "赤道のジャングル",
+  "wide": false,
+  "paras": [
+   "赤道直下の密林を想像で描いた一枚です。重なり合う葉のあいだに、動物の姿が潜んでいます。探すように見る楽しさが、この絵の緑の深さを作っています。"
+  ]
+ },
+ "7833634": {
+  "img": "__IMG_WORK_34__",
+  "alt": "岩の上の少年",
+  "wide": false,
+  "paras": [
+   "大きな岩の上に立つ少年の、正面からの姿です。岩の大きさと少年の体の釣り合いがどこか不思議で、現実の風景のようでも、夢の中のようでもあります。その尺度のずれが、この絵の忘れがたさになっています。"
+  ]
+ },
+ "7833635": {
+  "img": "__IMG_WORK_35__",
+  "alt": "森での逢い引き",
+  "wide": false,
+  "paras": [
+   "深い森の中で人と人が出会う、初期の森の絵です。ジャングルの連作で知られるルソーの、森への想像力が育ち始めた頃の一枚。深い緑が、落ち着いた一着の表情になります。"
+  ]
+ },
+ "7833637": {
+  "img": "__IMG_WORK_36__",
+  "alt": "理性の眠りは怪物を生む",
+  "wide": false,
+  "paras": [
+   "机に突っ伏して眠る男の背後に、フクロウやコウモリが押し寄せます。風刺版画集《ロス・カプリチョス》全80枚の43番で、もとはシリーズの扉絵にする構想がありました。机に刻まれた言葉は「理性が眠れば、怪物が生まれる」。考えることをやめた社会への、ゴヤの警告です。"
+  ]
+ },
+ "7833639": {
+  "img": "__IMG_WORK_37__",
+  "alt": "マヌエル・オソリオ・マンリーケ・デ・スニガ",
+  "wide": false,
+  "paras": [
+   "赤い衣装の少年と、カササギを連れた足元、そしてじっとこちらを見る猫たち。愛らしい子どもの肖像でありながら、鳥と猫のあいだには小さな緊張が漂います。宮廷画家ゴヤの、甘さだけでは終わらない一枚です。"
+  ]
+ },
+ "7833642": {
+  "img": "__IMG_WORK_38__",
+  "alt": "座る巨人",
+  "wide": false,
+  "paras": [
+   "背を向けて座り込む、巨大な裸の男です。顔は見えず、大きさだけが圧倒する。孤独なのか、思索なのか。説明を拒む背中のシルエットが、この版画の強さです。"
+  ]
+ },
+ "7833644": {
+  "img": "__IMG_WORK_39__",
+  "alt": "祖父の代まで",
+  "wide": false,
+  "paras": [
+   "家系図を眺めて得意げなロバを描いた、風刺版画《ロス・カプリチョス》の第39番です。立派な先祖を誇る人間の虚栄を、ロバに置き換えて笑う。200年以上前の風刺が、今も少し痛い一枚です。"
+  ]
+ },
+ "7833645": {
+  "img": "__IMG_WORK_40__",
+  "alt": "アルタミラ伯爵夫人と娘マリア・アグスティナ",
+  "wide": false,
+  "paras": [
+   "アルタミラ伯爵夫人と幼い娘の、宮廷肖像です。風刺版画の毒とは対極にある、晴れやかな母娘の姿。衣装の色と、縦に伸びる構図の美しさが際立ちます。"
+  ]
+ },
+ "7833646": {
+  "img": "__IMG_WORK_41__",
+  "alt": "パンドラ",
+  "wide": false,
+  "paras": [
+   "ギリシャ神話の女性パンドラを描いた作品です。神々から贈られた箱（壺）を開けたことで、災いが世に放たれてしまった——。そんな神話の一場面を、ルドンは柔らかな色彩と幻想的なタッチで描きました。物語を知ると、美しい花園に、不穏な静けさも感じられるはずです。"
+  ]
+ },
+ "7833648": {
+  "img": "__IMG_WORK_42__",
+  "alt": "アポロンの馬車",
+  "wide": false,
+  "paras": [
+   "空を駆ける太陽神アポロンの馬車です。地面はなく、広がる色と光の中を馬が進む。ルドンが繰り返し描いた神話の主題で、晩年の明るい色彩が空いっぱいに広がります。"
+  ]
+ },
+ "7833649": {
+  "img": "__IMG_WORK_43__",
+  "alt": "花束（パステル）",
+  "wide": false,
+  "paras": [
+   "パステルで描かれた花束と蝶です。植物標本を集めるほど草花に詳しかったルドンの、花への愛着と想像力が溶け合う一枚。実在の花と、夢の中の花が同じ花瓶に生けられています。"
+  ]
+ },
+ "7833651": {
+  "img": "__IMG_WORK_44__",
+  "alt": "眼は奇妙な気球のように無限に向かう",
+  "wide": false,
+  "paras": [
+   "大きな眼が気球になって、空へ昇っていく。エドガー・アラン・ポーに捧げたリトグラフ集の一枚で、ルドンの初期を代表する奇妙な図像です。見るための器官が、見られる側になる逆転が、この絵のフックです。"
+  ]
+ },
+ "7833652": {
+  "img": "__IMG_WORK_45__",
+  "alt": "聖セバスティアヌス",
+  "wide": false,
+  "paras": [
+   "矢を受けた聖セバスティアヌスの、縦に長い静かな絵です。苦しみの主題なのに、色は穏やかで、人物は静かに立っている。その対比が、ルドンらしい夢のような迫力を作っています。"
+  ]
+ },
+ "7833653": {
+  "img": "__IMG_WORK_46__",
+  "alt": "青い肘掛け椅子の少女",
+  "wide": false,
+  "paras": [
+   "大きな青い肘掛け椅子に、だらしなく腰かける少女です。行儀の良さではなく、子どもの素の姿を描いたことが当時は新しく、ドガが背景などを手伝った記録も残っています。椅子の青と、少女のくつろいだ姿勢が印象的な一枚です。"
+  ]
+ },
+ "7833655": {
+  "img": "__IMG_WORK_47__",
+  "alt": "舟遊び",
+  "wide": false,
+  "paras": [
+   "舟を漕ぐ男の大きな背中と、子どもを抱く女性です。画面の端で大胆に切り取られた構図と、黄と青の大きな色面。浮世絵の構図から学んだ、思い切りのいい一枚です。"
+  ]
+ },
+ "7833656": {
+  "img": "__IMG_WORK_48__",
+  "alt": "子どもの入浴",
+  "wide": false,
+  "paras": [
+   "子どもを洗う女性を見下ろす視点で描いた、カサットの代表作です。縞模様と水の円、高い視点と平らな柄の組み合わせには、日本の浮世絵の影響が色濃く出ています。日常の世話が、そのまま美しい造形になっています。"
+  ]
+ },
+ "7833657": {
+  "img": "__IMG_WORK_49__",
+  "alt": "手紙",
+  "wide": false,
+  "paras": [
+   "封筒に封をする女性を描いた、多色刷り版画の最終ステートです。カサットが浮世絵展に触発されて集中的に制作した版画連作の一枚で、平面的な色面と仕草の優雅さが、服の柄のように映えます。"
+  ]
+ },
+ "7833658": {
+  "img": "__IMG_WORK_50__",
+  "alt": "お茶",
+  "wide": false,
+  "paras": [
+   "姉リディアをモデルに、ティーカップを手に取る社交の場面を描きました。ピンクのドレスと銀のポットの輝き。パリのブルジョワの午後の時間が、柔らかい色に閉じ込められています。"
   ]
  }
 };
@@ -1094,7 +1597,7 @@ html#mrbHtml body#mrbBody .itemCard a:hover{opacity:1 !important;}
       if (wbox) {
         var head = document.createElement('h3');
         head.className = 'catWorks__head';
-        head.innerHTML = '<span class="en">WORKS</span>\u3053\u306e\u4f5c\u8005\u306e\u4f5c\u54c1';
+        head.innerHTML = '<span class="en">WORKS</span>\u3053\u306e\u753b\u5bb6\u306e\u4f5c\u54c1';
         wbox.appendChild(head);
         var car = document.createElement('div');
         car.className = 'carousel carousel--works';
@@ -1216,8 +1719,7 @@ html#mrbHtml body#mrbBody .itemCard a:hover{opacity:1 !important;}
     }
     var box = document.createElement('div');
     box.className = 'listFilter';
-    box.appendChild(chipRow('種類', 'type', [['all', 'すべて'], ['tshirt', 'Tシャツ'], ['longt', 'ロンT'], ['parka', 'パーカー'], ['tote', 'トート']]));
-    box.appendChild(chipRow('色', 'color', [['all', 'すべて'], ['white', 'ホワイト'], ['black', 'ブラック'], ['red', 'レッド']]));
+    box.appendChild(chipRow('種類', 'type', [['all', 'すべて'], ['tshirt', 'Tシャツ'], ['longt', 'ロンT'], ['tote', 'トート']]));
     var row3 = document.createElement('div');
     row3.className = 'listFilter__row';
     var lab = document.createElement('label');
