@@ -48,3 +48,8 @@ Claude → スシ の受け渡し専用。mainとは履歴がつながってい�
 | `MIRABILIA_irises_reel_v1_silent.mp4` | 本編動画・音声なし |
 | `MIRABILIA_irises_reel_v1_narration.wav` | ナレーション1.3倍速（声の高さは変えていない、0秒始まり・39.7秒） |
 | `MIRABILIA_irises_reel_v1_music-sfx.wav` | 伴奏＋効果音 |
+
+## 投稿テキスト（2026-11-16〜・本人指示）
+完成版と同じフォルダに `…_posts.md`（Instagram／TikTok／YouTubeショートの投稿文）を置く。
+- `pandora/MIRABILIA_pandora_reel_v2_posts.md`
+- `irises/MIRABILIA_irises_reel_v1_posts.md`
