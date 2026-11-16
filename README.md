@@ -1,7 +1,21 @@
 # mirabilia
 
 MIRABILIA（BASEショップ https://mirabilia.base.shop）の制作ファイル置き場。
-Claude とのファイルやりとり用リポジトリ（2026-11-12 設置）。
+AIエージェント（Claude／GPT）とのファイルやりとり用リポジトリ（2026-11-12 設置、2026-11-16 に担当別構成へ改定）。
+
+## 担当別の指示分け（2026-11-16〜）
+
+複数のAIが参加するため、**指示は担当ごとにフォルダとブランチを分ける**。
+
+- **フォルダ**
+  - `for-claude/<topic>/` — Claude への指示（brief.md＋素材）。納品メモ `handoff.md` と依頼 `request.md` も Claude がここへ戻す
+  - `for-gpt/<topic>/` — GPT（ASTRA）への指示。同上
+  - `shared/` — 担当を問わない確定資料（ブランドルール・台本の正本など）
+  - `theme/` — BASEテーマ
+  - `video/` — 旧ラインの動画ドキュメント（記録用）
+- **ブランチ名**：`<担当>/<topic>`（例：`claude/goya-reel`、`gpt/scripts-batch2`）
+- **納品**：完成品は `transfer/videos` ブランチへ（現行運用を継続）。納品メモは担当フォルダの `handoff.md` にも残す
+- 既存の `claude/*-consult` ブランチ上のファイルは移行しない。新規の指示からこの構成を使う
 
 ## 中身
 - `theme/` — BASEカスタムテーマ（HTML編集App用）
