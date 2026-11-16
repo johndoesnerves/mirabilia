@@ -53,3 +53,8 @@ Claude → スシ の受け渡し専用。mainとは履歴がつながってい�
 完成版と同じフォルダに `…_posts.md`（Instagram／TikTok／YouTubeショートの投稿文）を置く。
 - `pandora/MIRABILIA_pandora_reel_v2_posts.md`
 - `irises/MIRABILIA_irises_reel_v1_posts.md`
+
+## サムネイル画像（2026-11-16〜・本人指示）
+完成版と同じフォルダに `…_thumbnail.png`（1080×1920。冒頭の絵＋動画タイトルを大きく。文字はプロフィール一覧の3:4切り抜き内に収めてある）を置く。
+- `pandora/MIRABILIA_pandora_reel_v2_thumbnail.png`
+- `irises/MIRABILIA_irises_reel_v1_thumbnail.png`
