@@ -22,3 +22,12 @@ Claude → スシ の受け渡し専用。mainとは履歴がつながってい�
 | `MIRABILIA_rhinoceros_reel_v2_music-sfx.wav` | 伴奏＋効果音のみ |
 
 - 暫定だった v1（旧音声）はこのブランチから削除済み。ドライブへはこの v2 を移してください。
+
+## pandora/（パンドラ v1・新ライン1本目・4点セット＋カバー画像）
+| ファイル | 中身 |
+|---|---|
+| `MIRABILIA_pandora_reel_v1.mp4` | 完成版（ミックス済み・49.1秒） |
+| `MIRABILIA_pandora_reel_v1_silent.mp4` | 本編動画・音声なし |
+| `MIRABILIA_pandora_reel_v1_narration.wav` | ナレーションのみ（確定版音声を0秒始まり・49.1秒にそろえたもの） |
+| `MIRABILIA_pandora_reel_v1_music-sfx.wav` | 伴奏＋効果音のみ |
+| `MIRABILIA_pandora_reel_v1_cover.png` | カバー画像（動画の0秒目と同じ。カバー文入り） |
