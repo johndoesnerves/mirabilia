@@ -40,3 +40,11 @@ Claude → スシ の受け渡し専用。mainとは履歴がつながってい�
 | `MIRABILIA_pandora_reel_v2_narration.wav` | ナレーション1.3倍速（声の高さは変えていない） |
 | `MIRABILIA_pandora_reel_v2_music-sfx.wav` | 伴奏＋効果音（新しい尺に合わせて作り直し。テンポは等倍） |
 | `MIRABILIA_pandora_reel_v2_cover.png` | カバー画像（v1と同じ） |
+
+## irises/（アイリス v1・新ライン2本目・4点セット）
+| ファイル | 中身 |
+|---|---|
+| `MIRABILIA_irises_reel_v1.mp4` | 完成版（39.7秒。本編1.3倍速、エンドカード等倍3.2秒） |
+| `MIRABILIA_irises_reel_v1_silent.mp4` | 本編動画・音声なし |
+| `MIRABILIA_irises_reel_v1_narration.wav` | ナレーション1.3倍速（声の高さは変えていない、0秒始まり・39.7秒） |
+| `MIRABILIA_irises_reel_v1_music-sfx.wav` | 伴奏＋効果音 |
