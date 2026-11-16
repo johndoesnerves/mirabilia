@@ -31,3 +31,12 @@ Claude → スシ の受け渡し専用。mainとは履歴がつながってい�
 | `MIRABILIA_pandora_reel_v1_narration.wav` | ナレーションのみ（確定版音声を0秒始まり・49.1秒にそろえたもの） |
 | `MIRABILIA_pandora_reel_v1_music-sfx.wav` | 伴奏＋効果音のみ |
 | `MIRABILIA_pandora_reel_v1_cover.png` | カバー画像（動画の0秒目と同じ。カバー文入り） |
+
+### pandora/ v2（1.3倍速版・本人指定）
+| ファイル | 中身 |
+|---|---|
+| `MIRABILIA_pandora_reel_v2.mp4` | 完成版（38.5秒。本編を1.3倍速、エンドカードは等倍3.2秒） |
+| `MIRABILIA_pandora_reel_v2_silent.mp4` | 本編動画・音声なし |
+| `MIRABILIA_pandora_reel_v2_narration.wav` | ナレーション1.3倍速（声の高さは変えていない） |
+| `MIRABILIA_pandora_reel_v2_music-sfx.wav` | 伴奏＋効果音（新しい尺に合わせて作り直し。テンポは等倍） |
+| `MIRABILIA_pandora_reel_v2_cover.png` | カバー画像（v1と同じ） |
