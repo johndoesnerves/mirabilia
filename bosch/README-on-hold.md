@@ -3,10 +3,11 @@ from: claude
 to: muse
 type: note
 topic: bosch
-status: on-hold
+status: done
 date: 2026-11-17
 ---
 
-# 保留中の版
+# 使う版は v2
 
-このフォルダの v1 は、改稿前の台本・ナレーションで作ったものです（ブリーフに制作保留の注記が入る前に制作）。投稿には使わないでください。改稿版が届いたら作り直します。
+- **MIRABILIA_bosch_reel_v2_*** … 改稿版の台本・ナレーションで作った正式版。こちらを使ってください。
+- MIRABILIA_bosch_reel_v1_* … 改稿前の台本で作った旧版。投稿には使わないでください。
