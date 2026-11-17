@@ -1,0 +1,267 @@
+"""MIRABILIA reel: Goya《Saturn Devouring His Son》 (horror line #2, brief 2026-11-17). Main part at 1.3x, end card at 1x.
+Times in SUBS / camera keys are on the original narration at 1x (image pixel coords); frame_at() maps output time."""
+import sys, os, subprocess
+import numpy as np
+from PIL import Image, ImageDraw, ImageFont, ImageFilter
+
+W, H, FPS = 1080, 1920, 30
+A = W / H
+D = '/tmp/sat/'
+OX, OY = 0, 0
+SRC = Image.open(D + 'saturn.jpg').convert('RGBA')
+SW, SH = SRC.size
+TEE = Image.open(D + 'saturn-blacktee-mockup.jpg').convert('RGBA')
+LOGO = Image.open('/tmp/iri/mirabilia-logo-white.png').convert('RGBA')
+LOGO = LOGO.crop(LOGO.getchannel('A').point(lambda v: 255 if v > 40 else 0).getbbox())
+RED = (0xE3, 0x4B, 0x3F)
+CJK = '/usr/share/fonts/opentype/noto/'
+def F(name, size): return ImageFont.truetype(CJK + name + '.ttc', size, index=0)
+
+f_sub = F('NotoSansCJK-Bold', 54)
+f_cover = F('NotoSansCJK-Black', 86)
+f_tag = F('NotoSansCJK-Bold', 32)
+f_artist = F('NotoSansCJK-Bold', 44)
+f_work = F('NotoSerifCJK-Bold', 96)
+f_meta = F('NotoSansCJK-Medium', 30)
+f_copy = F('NotoSansCJK-Black', 60)
+f_url = F('NotoSansCJK-Medium', 36)
+f_end_copy = F('NotoSansCJK-Bold', 44)
+f_cta = F('NotoSansCJK-Black', 52)
+
+def ease(x):
+    x = max(0.0, min(1.0, x)); return x * x * (3 - 2 * x)
+def eo(x):
+    x = max(0.0, min(1.0, x)); return 1 - (1 - x) ** 3
+def lerp(a, b, k): return a + (b - a) * k
+PUNCT_TAIL = '、。」』）'
+
+# ---------- text ----------
+def jp_width(s, font, track):
+    return sum(font.getlength(c, features=['palt']) for c in s) + track * (len(s) - 1)
+
+def draw_line(d, cx, y, s, font, fill, track=0, stroke=0, stroke_fill=None, colors=None):
+    ws = [font.getlength(c, features=['palt']) for c in s]
+    tw = sum(ws) + track * (len(s) - 1)
+    eff = tw - (ws[-1] * 0.5 if s and s[-1] in PUNCT_TAIL else 0)
+    x = cx - eff / 2
+    for i, (c, w) in enumerate(zip(s, ws)):
+        col = colors[i] if colors else fill
+        d.text((x, y), c, font=font, fill=col, features=['palt'], stroke_width=stroke, stroke_fill=stroke_fill)
+        x += w + track
+    return tw
+
+_cache = {}
+def layer(key, fn, size=(W, H)):
+    if key not in _cache:
+        im = Image.new('RGBA', size, (0, 0, 0, 0)); fn(ImageDraw.Draw(im)); _cache[key] = im
+    return _cache[key]
+
+def blit(fr, im, x, y, a):
+    if a <= 0: return
+    if a < 1:
+        im = im.copy(); im.putalpha(im.getchannel('A').point(lambda v: int(v * a)))
+    fr.alpha_composite(im, (int(x), int(y)))
+
+def text_block(key, lines, font, lh, track=2, stroke=4, colors=None):
+    def fn(d):
+        for i, l in enumerate(lines):
+            draw_line(d, W / 2, 10 + i * lh, l, font, (255, 255, 255, 255), track, stroke, (0, 0, 0, 200),
+                      colors[i] if colors else None)
+    im = layer(key, fn, (W, lh * len(lines) + 40))
+    skey = str(key) + '_sh'
+    if skey not in _cache:
+        sh = Image.new('RGBA', im.size, (0, 0, 0, 0)); sh.putalpha(im.getchannel('A').point(lambda v: int(v * 0.55)))
+        _cache[skey] = sh.filter(ImageFilter.GaussianBlur(8))
+    return im, _cache[skey]
+
+def put_block(fr, key, lines, font, lh, y, a, slide=0, track=2, stroke=4, colors=None):
+    if a <= 0: return
+    im, sh = text_block(key, lines, font, lh, track, stroke, colors)
+    blit(fr, sh, 0, y + 4 + slide, a); blit(fr, im, 0, y + slide, a)
+
+# ---------- camera ----------
+def cam_at(keys, t):
+    if t <= keys[0][0]: return keys[0][1:]
+    for (t0, *a), (t1, *b) in zip(keys, keys[1:]):
+        if t <= t1:
+            k = ease((t - t0) / (t1 - t0)); return tuple(lerp(p, q, k) for p, q in zip(a, b))
+    return keys[-1][1:]
+
+def view(src, cam, off=True):
+    cx, cy, w = cam; h = w / A
+    if off: cx, cy = cx - OX, cy - OY
+    box = (cx - w / 2, cy - h / 2, cx + w / 2, cy + h / 2)
+    return src.transform((W, H), Image.EXTENT, box, Image.BICUBIC, fillcolor=(0, 0, 0, 0))
+
+# blurred painting behind views that do not fill the frame
+_sc = max(W / SW, H / SH)
+_bg = SRC.convert('RGB').resize((int(SW * _sc) + 1, int(SH * _sc) + 1), Image.LANCZOS)
+_bg = _bg.crop(((_bg.width - W) // 2, (_bg.height - H) // 2, (_bg.width - W) // 2 + W, (_bg.height - H) // 2 + H)).filter(ImageFilter.GaussianBlur(40))
+BG = Image.blend(_bg, Image.new('RGB', (W, H), (0, 0, 0)), 0.45).convert('RGBA')
+
+FULL = (SW / 2, SH / 2, SH * A)          # whole painting incl. its dark margins (height-fit)
+EYES = (526, 479)
+SHOTS = [
+    (0.0,  [(0.0, 526, 560, 620), (3.9, 526, 540, 560)]),                                                   # the wide-open eyes
+    (4.4,  [(4.4, 700, 900, 760), (8.4, 720, 930, 700),                                                       # gripping fingers, red wound
+            (9.6, 560, 690, 560), (11.8, 545, 650, 520), (13.4, 526, 500, 400), (17.6, 526, 495, 380),       # mouth -> back to the eyes
+            (23.9, 600, 820, 900)]),                                                                          # pull back: the attacker who looks afraid
+    (24.2, [(24.2, *FULL), (32.1, FULL[0], FULL[1], FULL[2] * 0.97)]),                                         # whole painting with its darkness
+]
+T_PROD = 32.10; T_END = 36.88; T_FIN = 40.08
+XF = 0.45
+
+def painting(t):
+    idx = max(i for i, (ts, _) in enumerate(SHOTS) if t >= ts)
+    im = view(SRC, cam_at(SHOTS[idx][1], t))
+    ts = SHOTS[idx][0]
+    if idx > 0 and t < ts + XF:
+        im = Image.blend(view(SRC, cam_at(SHOTS[idx - 1][1], t)), im, ease((t - ts) / XF))
+    return im
+
+def to_screen(cam, x, y):
+    cx, cy, w = cam; h = w / A
+    return (x - (cx - w / 2)) / w * W, (y - (cy - h / 2)) / h * H
+
+def ring_at(fr, x, y, k, r=62):
+    lay = Image.new('RGBA', (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(lay)
+    r = r * (1.3 - 0.3 * k)
+    d.ellipse([x - r, y - r, x + r, y + r], outline=(0, 0, 0, int(120 * k)), width=9)
+    d.ellipse([x - r, y - r, x + r, y + r], outline=(255, 255, 255, int(255 * k)), width=5)
+    fr.alpha_composite(lay)
+
+def product_img(t):
+    k = (t - T_PROD) / (T_END - T_PROD); kk = ease(k) * 0.8 + k * 0.2
+    cam = (962, lerp(660, 650, kk), lerp(720, 680, kk))
+    return view(TEE, cam, off=False)
+
+def _grad(y0, y1, a0, a1):
+    g = np.zeros((H, W, 4), np.uint8)
+    ys = np.arange(H)
+    k = np.clip((ys - y0) / (y1 - y0), 0, 1)
+    g[..., 3] = (np.clip(lerp(a0, a1, k), 0, 1) * 255).astype(np.uint8)[:, None]
+    return Image.fromarray(g, 'RGBA')
+TOPG = _grad(0, 560, 0.55, 0.0)
+BOTG = _grad(1150, 1920, 0.0, 0.62)
+
+def logo(fr, a=1.0, width=300, cy=175):
+    key = ('logo', width)
+    if key not in _cache:
+        _cache[key] = LOGO.resize((width, int(LOGO.height * width / LOGO.width)), Image.LANCZOS)
+    lg = _cache[key]; blit(fr, lg, W / 2 - lg.width / 2, cy - lg.height / 2, a)
+
+SUB_Y = 1335; SUB_TOP = 300
+SUBS = [
+    (2.30, 4.20, ['目を見開いた男が', '浮かび上がります。']),
+    (4.60, 8.45, ['両手で小さな身体を握り、', 'その肩にかみついています。']),
+    (9.05, 11.95, ['でも怖いのは', '口だけではありません。']),
+    (12.10, 13.95, ['目を見てください。']),
+    (14.10, 17.40, ['誰かに見つかったように、', 'ぎょっとした表情です。']),
+    (17.75, 21.30, ['襲う側なのに、何かを', '恐れているように見える。']),
+    (21.55, 23.95, ['この目が恐怖を', '増しているのです。']),
+    (24.40, 27.75, ['この男は、何を怖がって', 'いるように見えますか。']),
+]
+
+def subtitles(fr, t):
+    for i, s in enumerate(SUBS):
+        a, b, lines = s[:3]; y = s[3] if len(s) > 3 else SUB_Y
+        if a <= t < b:
+            k = min(eo((t - a) / 0.2), eo((b - t) / 0.18))
+            put_block(fr, ('sub', i), lines, f_sub, 76, y, k, int(6 * (1 - k)))
+
+def cover_text(fr, t):
+    if t > 2.2: return
+    k = eo((2.2 - t) / 0.3)
+    l1, l2 = '食べている男の目が、', '怖い理由'
+    white = (255, 255, 255, 255); red = RED + (255,)
+    cols1 = [red if i == 7 else white for i in range(len(l1))]
+    put_block(fr, 'cover', [l1, l2], f_cover, 116, 300, k, 0, track=3, stroke=5, colors=[cols1, None])
+    put_block(fr, 'sub_first', ['真っ暗な画面から、'], f_sub, 76, SUB_Y, min(k, eo((t - 0.2) / 0.2)), 0)
+
+f_work2 = F('NotoSerifCJK-Bold', 84)
+def title_card(fr, t):
+    a, b = 28.45, T_PROD
+    if not (a <= t < b + XF): return
+    k = min(eo((t - a) / 0.5), 1.0 if t < b else max(0.0, 1 - (t - b) / XF))
+    put_block(fr, 'artist', ['フランシスコ・デ・ゴヤ'], f_artist, 60, 1130, k, int(8 * (1 - k)), track=4, stroke=3)
+    put_block(fr, 'work', ['《我が子を食らう', 'サトゥルヌス》'], f_work2, 108, 1200, k, int(8 * (1 - k)), track=6, stroke=4)
+    put_block(fr, 'meta', ['1820–23｜プラド美術館'], f_meta, 44, 1440, k * 0.95, 0, track=2, stroke=3)
+
+def product_text(fr, t):
+    kk = eo((t - T_PROD - 0.2) / 0.5)
+    put_block(fr, 'copy', ['名画を着る、', '知ればもっと着たくなる。'], f_copy, 86, 1470, kk, int(10 * (1 - kk)), track=3, stroke=4)
+    ku = eo((t - T_PROD - 0.9) / 0.5)
+    put_block(fr, 'url', ['mirabilia.base.shop'], f_url, 50, 1670, ku, 0, track=1, stroke=3)
+
+def endcard(t):
+    te = t - T_END
+    fr = Image.new('RGBA', (W, H), (0, 0, 0, 255))
+    steps = [0.0, 0.25, 0.5, 0.75]
+    k = eo((te - steps[0]) / 0.4); logo(fr, k, 620, 690 + int(10 * (1 - k)))
+    d = ImageDraw.Draw(fr); k = eo((te - steps[1]) / 0.4)
+    if k > 0: d.line([(W / 2 - 180 * k, 840), (W / 2 + 180 * k, 840)], fill=(255, 255, 255, 255), width=2)
+    k = eo((te - steps[2]) / 0.4)
+    put_block(fr, 'ecopy', ['名画を着る、知ればもっと着たくなる。'], f_end_copy, 60, 890, k, int(8 * (1 - k)), track=3, stroke=0)
+    k = eo((te - steps[3]) / 0.4)
+    if k > 0:
+        s = '購入はプロフィールから'
+        put_block(fr, 'cta', [s], f_cta, 70, 1030, k, int(8 * (1 - k)), track=3, stroke=0)
+        tw = jp_width(s, f_cta, 3); y = 1030 + 10 + 80 + int(8 * (1 - k))
+        lay = Image.new('RGBA', (W, H), (0, 0, 0, 0))
+        ImageDraw.Draw(lay).rectangle([W / 2 - tw / 2, y, W / 2 + tw / 2, y + 5], fill=(255, 255, 255, int(255 * k)))
+        fr.alpha_composite(lay)
+    return fr
+
+SPEED = 1.3
+T_END_OUT = T_END / SPEED
+T_FIN_OUT = T_END_OUT + (T_FIN - T_END)
+def src_time(t_out):
+    return t_out * SPEED if t_out < T_END_OUT else T_END + (t_out - T_END_OUT)
+
+def frame_at_orig(t):
+    if t >= T_END:
+        fr = endcard(t)
+        if t < T_END + 0.4:  # crossfade from product
+            prev = frame_at_main(t)
+            fr = Image.blend(prev, fr, ease((t - T_END) / 0.4))
+        return fr.convert('RGB')
+    return frame_at_main(t).convert('RGB')
+
+def frame_at_main(t):
+    fr = BG.copy()
+    if t < T_PROD:
+        fr.alpha_composite(painting(t))
+    else:
+        p = product_img(t)
+        if t < T_PROD + 0.5:
+            pa = BG.copy(); pa.alpha_composite(painting(t))
+            pb = BG.copy(); pb.alpha_composite(p)
+            fr = Image.blend(pa, pb, ease((t - T_PROD) / 0.5))
+        else:
+            fr.alpha_composite(p)
+    fr.alpha_composite(TOPG); fr.alpha_composite(BOTG)
+    logo(fr)
+    cover_text(fr, t); subtitles(fr, t); title_card(fr, t)
+    if t >= T_PROD: product_text(fr, t)
+    return fr
+
+def frame_at(t_out):
+    return frame_at_orig(src_time(t_out))
+
+SEGS = [(0.0, 8.0), (8.0, 16.0), (16.0, 24.0), (24.0, T_FIN_OUT)]
+
+if __name__ == '__main__':
+    if sys.argv[1] == 'stills':
+        for ts in sys.argv[2:]: frame_at(float(ts)).save(D + 'st_%s.png' % ts)
+    elif sys.argv[1] == 'cover':
+        frame_at(0.0).save(D + 'st_cover.png')
+    else:
+        i = int(sys.argv[2]); a, b = SEGS[i]
+        tmp = D + 'seg%d.tmp.mp4' % i
+        p = subprocess.Popen(['ffmpeg', '-y', '-loglevel', 'error', '-f', 'rawvideo', '-pix_fmt', 'rgb24', '-s', '%dx%d' % (W, H),
+                              '-r', str(FPS), '-i', '-', '-c:v', 'libx264', '-crf', '18', '-preset', 'veryfast',
+                              '-pix_fmt', 'yuv420p', '-r', str(FPS), tmp], stdin=subprocess.PIPE)
+        for n in range(round(a * FPS), round(b * FPS)): p.stdin.write(frame_at(n / FPS).tobytes())
+        p.stdin.close()
+        if p.wait() == 0: os.rename(tmp, D + 'seg%d.mp4' % i)
+        else: sys.exit(1)
