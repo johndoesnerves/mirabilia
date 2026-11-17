@@ -28,7 +28,8 @@
 `sample-goya-v2.md`（ゴヤ《理性の眠りは怪物を生む》v2台本）が、本人承認済みの基準作です。文の長さ・核の絞り方・問いの置き方をこれに合わせてください。
 
 ## 納品方法・順番
-- バッチ1（最優先）：ホラー拡張12作品（works-list.md の H1〜H12）→ `for-gpt/scripts/handoff-batch1-horror.md`
-- バッチ2〜5：既存ラインナップの残り40作品を works-list.md の順に10作品ずつ → `handoff-batch2.md` 〜 `handoff-batch5.md`
+- **ChatGPTからはGitHubへ書き込めないため、納品はChatGPTの会話上で行う**（バッチごとに成果物をまとめ、ZIPまたはテキストで提示。スシが会話へ取りに行き、リポジトリへの配置はスシが行う）。ファイル名の目安：`handoff-batch1-horror.md`（バッチ1）／`handoff-batch2.md`〜`handoff-batch5.md`
+- バッチ1（最優先）：ホラー拡張12作品（works-list.md の H1〜H12）
+- バッチ2〜5：既存ラインナップの残り40作品を works-list.md の順に10作品ずつ
 - 各バッチ、全作品を上記の形式で1ファイルにまとめてください
 - 判断に迷う事実があったら、無理に断定せず事実メモに「要確認」と書いてください（こちらで事実チェックします）
