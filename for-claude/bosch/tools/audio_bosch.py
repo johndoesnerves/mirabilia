@@ -3,8 +3,8 @@ import numpy as np, subprocess
 from scipy.io import wavfile
 from scipy.signal import butter, sosfilt
 
-SR = 44100; DUR = 28.462; N = int(SR * DUR)
-raw = subprocess.run(['ffmpeg', '-v', 'error', '-i', '/tmp/bos/narr_x13.wav', '-ac', '1', '-ar', str(SR),
+SR = 44100; DUR = 29.908; N = int(SR * DUR)
+raw = subprocess.run(['ffmpeg', '-v', 'error', '-i', '/tmp/bos2/narr_x13.wav', '-ac', '1', '-ar', str(SR),
                       '-f', 's16le', '-'], capture_output=True).stdout
 voice = np.frombuffer(raw, np.int16).astype(np.float64) / 32768
 v = np.zeros(N); v[:min(N, len(voice))] = voice[:N]
@@ -46,19 +46,19 @@ def tick(f):
 S = np.zeros(N)
 def sfx(sig, t, g):
     i = int(t * SR); j = min(N, i + len(sig)); S[i:j] += sig[:j - i] * g
-for tc in [1.6 / 1.3, 21.8 / 1.3, 27.9 / 1.3]: sfx(whoosh(), tc - 0.3, 0.05)   # shot changes + product
-sfx(chime(1047), 25.30 / 1.3, 0.07)     # title card
-sfx(chime(1319), 28.20 / 1.3, 0.06)     # product
-TE = 32.84 / 1.3
+for tc in [8.0 / 1.3, 22.5 / 1.3, 29.95 / 1.3]: sfx(whoosh(), tc - 0.3, 0.05)   # shot changes + product
+sfx(chime(1047), 26.90 / 1.3, 0.07)     # title card
+sfx(chime(1319), 30.25 / 1.3, 0.06)     # product
+TE = 34.72 / 1.3
 for k, f in enumerate([880, 988, 1175, 1319]): sfx(tick(f), TE + 0.25 * k, 0.10)   # end-card steps
-sfx(tick(1568), 0.6 / 1.3, 0.07)   # frame around the right wing
+sfx(tick(1568), 13.5 / 1.3, 0.07)   # ring on the man under the lute
 # ducking under the voice
 env = np.convolve(np.abs(v), np.ones(int(0.05 * SR)) / int(0.05 * SR), 'same')
 active = np.convolve((env > 0.02).astype(float), np.ones(int(0.3 * SR)) / int(0.3 * SR), 'same')
 gain = 0.55 - 0.30 * np.clip(active * 2, 0, 1)
 t = np.arange(N) / SR
-# climax: one step down on the crushed people
-climax = np.clip((t - 12.9 / 1.3) / 0.4, 0, 1) * np.clip((16.5 / 1.3 - t) / 0.5, 0, 1)   # crushed people (hold)
+# climax: one step down on the person caught in the harp strings
+climax = np.clip((t - 3.7 / 1.3) / 0.4, 0, 1) * np.clip((7.2 / 1.3 - t) / 0.5, 0, 1)   # the person caught in the strings
 gain *= 1 - 0.55 * climax
 fade = np.clip((DUR - t) / 1.5, 0, 1) * np.clip(t / 0.05, 0, 1)
 bed = M * gain * 0.6 * fade + S
@@ -66,5 +66,5 @@ mix = v + bed
 norm = 0.89 / np.max(np.abs(mix))
 for name, sig in [('stem_mix', mix), ('stem_narration', v), ('stem_bed', bed)]:
     x = sig * norm
-    wavfile.write('/tmp/bos/%s.wav' % name, SR, (np.stack([x, x], 1) * 32767).astype(np.int16))
+    wavfile.write('/tmp/bos2/%s.wav' % name, SR, (np.stack([x, x], 1) * 32767).astype(np.int16))
 print('ok', DUR, 'peaks', [round(float(np.max(np.abs(z * norm))), 3) for z in (mix, v, bed)])

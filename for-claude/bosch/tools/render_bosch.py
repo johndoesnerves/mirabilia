@@ -1,4 +1,4 @@
-"""MIRABILIA reel: Bosch《The Garden of Earthly Delights》, right wing (horror line #4, brief 2026-11-17). Main part at 1.3x, end card at 1x.
+"""MIRABILIA reel: Bosch《The Garden of Earthly Delights》, right wing — revised script v2 (horror line #4, brief 2026-11-17 rev.). Main part at 1.3x, end card at 1x.
 Times in SUBS / camera keys are on the original narration at 1x (image pixel coords); frame_at() maps output time."""
 import sys, os, subprocess
 import numpy as np
@@ -6,9 +6,9 @@ from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
 W, H, FPS = 1080, 1920, 30
 A = W / H
-D = '/tmp/bos/'
+D = '/tmp/bos2/'
 OX, OY = 0, 0
-SRC = Image.open(D + 'bosch.jpg').convert('RGBA')
+SRC = Image.open(D + 'bosch-right-panel.jpg').convert('RGBA')   # right wing, cut from the 3840 px scan
 SW, SH = SRC.size
 TEE = Image.open(D + 'bosch-blacktee-mockup.jpg').convert('RGBA')
 LOGO = Image.open('/tmp/iri/mirabilia-logo-white.png').convert('RGBA')
@@ -99,20 +99,15 @@ _bg = SRC.convert('RGB').resize((int(SW * _sc) + 1, int(SH * _sc) + 1), Image.LA
 _bg = _bg.crop(((_bg.width - W) // 2, (_bg.height - H) // 2, (_bg.width - W) // 2 + W, (_bg.height - H) // 2 + H)).filter(ImageFilter.GaussianBlur(40))
 BG = Image.blend(_bg, Image.new('RGB', (W, H), (0, 0, 0)), 0.45).convert('RGBA')
 
-# whole triptych, width-fit, sitting in the middle-low part of the frame (screen y 680..1295)
-_wf = SW; _hf = _wf / A
-FULLW = (SW / 2, -680 / H * _hf + _hf / 2, _wf)
-HELL = (1680, SH / 2, SH * A)          # right wing, full height (a strip of the centre panel on the left)
+STRINGS = (250, 1335, 300); HARP = (380, 1380, 760); LUTE = (265, 1515, 480); HARPW = (300, 1370, 600)
 SHOTS = [
-    (0.0,  [(0.0, *FULLW), (1.5, *FULLW), (3.4, *HELL), (4.0, *HELL),                                       # triptych -> right wing
-            (6.4, 1680, 700, 430), (9.9, 1665, 735, 380),                                                     # the giant instruments in hell
-            (12.9, 1622, 795, 300), (16.5, 1622, 795, 296),                                                   # small people crushed by them (hold)
-            (18.6, 1605, 705, 310), (21.4, 1680, 720, 470)]),                                                 # the man on the harp -> instruments again
-    (21.8, [(21.8, *HELL), (27.9, HELL[0], HELL[1], HELL[2] * 0.97)]),                                       # whole right wing
+    (0.0,  [(0.0, 255, 1335, 360), (3.0, 252, 1330, 330), (6.9, *STRINGS),                                   # a person caught in the harp strings
+            (7.9, *STRINGS), (10.6, *HARP), (11.3, *HARP), (13.4, 260, 1500, 520), (15.8, *LUTE),            # pull back: the giant harp -> the lute and the man pressed under it
+            (16.2, *LUTE), (22.0, 490, 1310, 980)]),                                                          # wider: instruments as punishment
+    (22.5, [(22.5, *HARPW), (29.95, HARPW[0], HARPW[1], HARPW[2] * 0.96)]),                                  # back to the whole harp + title
 ]
-T_PROD = 27.90; T_END = 32.84; T_FIN = 36.04
+T_PROD = 29.95; T_END = 34.72; T_FIN = 37.92
 XF = 0.45
-
 def painting(t):
     idx = max(i for i, (ts, _) in enumerate(SHOTS) if t >= ts)
     im = view(SRC, cam_at(SHOTS[idx][1], t))
@@ -130,18 +125,6 @@ def ring_at(fr, x, y, k, r=62):
     r = r * (1.3 - 0.3 * k)
     d.ellipse([x - r, y - r, x + r, y + r], outline=(0, 0, 0, int(120 * k)), width=9)
     d.ellipse([x - r, y - r, x + r, y + r], outline=(255, 255, 255, int(255 * k)), width=5)
-    fr.alpha_composite(lay)
-
-def wing_frame(fr, t):
-    """thin white frame around the right wing while the triptych is shown (line 1)"""
-    a, b = 0.6, 2.9
-    if not (a <= t < b): return
-    k = min(eo((t - a) / 0.35), eo((b - t) / 0.35))
-    cam = cam_at(SHOTS[0][1], t)
-    x0, y0 = to_screen(cam, 1530, 12); x1, y1 = to_screen(cam, 1994, 1128)
-    lay = Image.new('RGBA', (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(lay)
-    d.rectangle([x0, y0, x1, y1], outline=(0, 0, 0, int(120 * k)), width=9)
-    d.rectangle([x0, y0, x1, y1], outline=(255, 255, 255, int(255 * k)), width=5)
     fr.alpha_composite(lay)
 
 def product_img(t):
@@ -164,15 +147,21 @@ def logo(fr, a=1.0, width=300, cy=175):
         _cache[key] = LOGO.resize((width, int(LOGO.height * width / LOGO.width)), Image.LANCZOS)
     lg = _cache[key]; blit(fr, lg, W / 2 - lg.width / 2, cy - lg.height / 2, a)
 
+def lute_ring(fr, t):
+    a, b = 13.5, 15.6
+    if a <= t < b:
+        k = min(eo((t - a) / 0.35), eo((b - t) / 0.35))
+        x, y = to_screen(cam_at(SHOTS[0][1], t), 255, 1600); ring_at(fr, x, y, k, 120)
+
 SUB_Y = 1335; SUB_TOP = 300
 SUBS = [
-    (0.10, 3.00, ['三枚の絵の、', '一番右を見てください。'], 1420),
-    (3.50, 6.60, ['巨大な楽器が、', '暗い地獄に置かれています。']),
-    (7.25, 10.15, ['どうして怖い場所に、', '楽器があるのでしょう。']),
-    (10.65, 12.98, ['よく見ると、', '小さな人たちが']),
-    (13.10, 16.15, ['楽器のそばで押し潰される', 'ように描かれています。']),
-    (16.75, 21.20, ['音楽を楽しむ道具が、人間を', '苦しめる道具になっているのです。']),
-    (21.95, 24.85, ['見慣れた楽器が、', '怖く見えてきませんか。']),
+    (0.10, 3.20, ['地獄の絵に、', '巨大なハープが立っています。']),
+    (3.75, 7.15, ['その弦には、', '人間が絡め取られています。']),
+    (7.80, 10.95, ['どうして楽器が、', '人を苦しめているのでしょう。']),
+    (11.65, 15.35, ['隣の大きなリュートにも、', '人が押さえつけられています。']),
+    (15.95, 18.85, ['生前に世俗の音楽に', 'ふけった人々が、']),
+    (19.05, 22.30, ['その楽器で罰を受けていると', '解釈されています。']),
+    (22.80, 26.35, ['このハープからは、どんな音が', '聞こえてきそうですか。']),
 ]
 
 def subtitles(fr, t):
@@ -183,20 +172,20 @@ def subtitles(fr, t):
             put_block(fr, ('sub', i), lines, f_sub, 76, y, k, int(6 * (1 - k)))
 
 def cover_text(fr, t):
-    if t > 2.9: return
-    k = eo((2.9 - t) / 0.3)
-    l1, l2 = '地獄で楽器が', '拷問道具に？'
+    if t > 3.0: return
+    k = eo((3.0 - t) / 0.3)
+    l1, l2 = '地獄の楽器が、', '人を苦しめる理由は？'
     white = (255, 255, 255, 255); red = RED + (255,)
-    cols2 = [red if i <= 3 else white for i in range(len(l2))]
+    cols2 = [red if 2 <= i <= 5 else white for i in range(len(l2))]
     put_block(fr, 'cover', [l1, l2], f_cover, 116, 400, k, 0, track=3, stroke=5, colors=[None, cols2])
 
 def title_card(fr, t):
-    a, b = 25.30, T_PROD
+    a, b = 26.90, T_PROD
     if not (a <= t < b + XF): return
     k = min(eo((t - a) / 0.5), 1.0 if t < b else max(0.0, 1 - (t - b) / XF))
     put_block(fr, 'artist', ['ヒエロニムス・ボス'], f_artist, 60, 1170, k, int(8 * (1 - k)), track=4, stroke=3)
     put_block(fr, 'work', ['《快楽の園》'], f_work, 120, 1240, k, int(8 * (1 - k)), track=6, stroke=4)
-    put_block(fr, 'meta', ['c.1490–1500｜プラド美術館'], f_meta, 44, 1385, k * 0.95, 0, track=2, stroke=3)
+    put_block(fr, 'meta', ['c.1490–1500｜プラド美術館（右扉）'], f_meta, 44, 1385, k * 0.95, 0, track=2, stroke=3)
 
 def product_text(fr, t):
     kk = eo((t - T_PROD - 0.2) / 0.5)
@@ -252,14 +241,14 @@ def frame_at_main(t):
             fr.alpha_composite(p)
     fr.alpha_composite(TOPG); fr.alpha_composite(BOTG)
     logo(fr)
-    cover_text(fr, t); wing_frame(fr, t); subtitles(fr, t); title_card(fr, t)
+    cover_text(fr, t); lute_ring(fr, t); subtitles(fr, t); title_card(fr, t)
     if t >= T_PROD: product_text(fr, t)
     return fr
 
 def frame_at(t_out):
     return frame_at_orig(src_time(t_out))
 
-SEGS = [(0.0, 7.0), (7.0, 14.0), (14.0, 21.0), (21.0, T_FIN_OUT)]
+SEGS = [(0.0, 8.0), (8.0, 16.0), (16.0, 23.0), (23.0, T_FIN_OUT)]
 
 if __name__ == '__main__':
     if sys.argv[1] == 'stills':

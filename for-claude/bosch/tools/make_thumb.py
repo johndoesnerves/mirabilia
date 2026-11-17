@@ -27,9 +27,9 @@ cfg = {
     'caravaggio': dict(script='/tmp/car/render_caravaggio.py', t=0.0, cam=(820, 866, 974), top=720, sub_size=44,
                    lines=['勝った少年が', '笑って', 'いない？'], accent=('笑って', (0xE3, 0x4B, 0x3F)),
                    sub='カラヴァッジョ《ゴリアテの頭を持つダヴィデ》', out='/tmp/posts/MIRABILIA_caravaggio_reel_v1_thumbnail.png'),
-    'bosch': dict(script='/tmp/bos/render_bosch.py', t=0.0, cam=(1680, 569, 640), top=520,
-                  lines=['地獄で楽器が', '拷問道具に？'], accent=('拷問道具', (0xE3, 0x4B, 0x3F)),
-                  sub='ボス《快楽の園》', out='/tmp/posts/MIRABILIA_bosch_reel_v1_thumbnail.png'),
+    'bosch': dict(script='/tmp/bos2/render_bosch.py', t=0.0, cam=(330, 1100, 680), top=320,
+                  lines=['地獄の楽器が、', '人を苦しめる', '理由は？'], accent=('苦しめる', (0xE3, 0x4B, 0x3F)),
+                  sub='ボス《快楽の園》', out='/tmp/posts/MIRABILIA_bosch_reel_v2_thumbnail.png'),
 }[name]
 spec = importlib.util.spec_from_file_location('R', cfg['script']); R = importlib.util.module_from_spec(spec)
 sys.argv = ['x', 'none']; spec.loader.exec_module(R)
