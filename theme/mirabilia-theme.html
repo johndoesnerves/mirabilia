@@ -231,8 +231,8 @@ h1,h2,h3,p{margin:0;}
   -webkit-overflow-scrolling:touch;scrollbar-width:none;
 }
 .itemGallery__main::-webkit-scrollbar{display:none;}
-.itemGallery__main figure{flex:0 0 100%;margin:0;scroll-snap-align:start;}
-.itemGallery__main img{width:100%;}
+.itemGallery__main figure{flex:0 0 100%;margin:0;scroll-snap-align:start;aspect-ratio:1/1;}
+.itemGallery__main img{width:100%;height:100%;object-fit:contain;display:block;}
 .itemGallery__hint{margin-top:6px;font-family:var(--f-en);font-size:11px;letter-spacing:.2em;color:var(--c-sub);text-align:right;}
 /* ===== item related (v4.2) ===== */
 .itemRel{margin-top:72px;}
