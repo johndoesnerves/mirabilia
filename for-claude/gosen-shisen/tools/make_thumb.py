@@ -39,6 +39,9 @@ cfg = {
     'gosen-shisen': dict(script='/tmp/gos/render_gosen.py', t=0.0, cam=(714, 1530, 760), top=330, painting='sistine-madonna',
                   lines=['視線の先には', '何がある？'], accent=('視線', (0xE3, 0x4B, 0x3F)),
                   sub='名画の視線を追う五選', out='/tmp/posts/MIRABILIA_gosen-shisen_v1_thumbnail.png'),
+    'gosen-shisen-v2': dict(script='/tmp/gos/render_gosen_v2.py', t=0.0, cam=(1060, 477, 537), top=980, painting='painting-medusa', ring=(1139, 382),
+                  lines=['視線の先には', '何がある？'], accent=('視線', (0xE3, 0x4B, 0x3F)),
+                  sub='名画の視線を追う五選', out='/tmp/posts/MIRABILIA_gosen-shisen_reel_v2_thumbnail.png'),
 }[name]
 spec = importlib.util.spec_from_file_location('R', cfg['script']); R = importlib.util.module_from_spec(spec)
 sys.argv = ['x', 'none']; spec.loader.exec_module(R)
