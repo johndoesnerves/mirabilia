@@ -235,6 +235,15 @@ h1,h2,h3,p{margin:0;}
 .itemGallery__main figure{flex:0 0 100%;margin:0;scroll-snap-align:start;}
 .itemGallery__main img{width:100%;}
 .itemGallery__hint{margin-top:6px;font-family:var(--f-en);font-size:11px;letter-spacing:.2em;color:var(--c-sub);text-align:right;}
+/* ===== item related (v4.2) ===== */
+.itemRel{margin-top:72px;}
+.itemRel__sec{margin-top:60px;}
+.itemRel__sec:first-child{margin-top:0;}
+.itemRel .secHead{margin-bottom:26px;}
+.carousel--rel .carousel__slide{flex-basis:64%;}
+.relSlide .itemCard{width:100%;}
+@media (min-width:768px){.carousel--rel .carousel__slide{flex-basis:31.5%;}}
+@media (min-width:1024px){.carousel--rel .carousel__slide{flex-basis:23.2%;}}
 .itemInfo__title{font-size:20px;font-weight:500;line-height:1.6;letter-spacing:.06em;}
 .itemInfo__price{margin-top:12px;padding-bottom:18px;border-bottom:1px solid var(--c-line);font-family:var(--f-en);font-size:24px;letter-spacing:.06em;}
 .itemInfo__price s{color:var(--c-sub);font-size:16px;margin-right:8px;}
@@ -295,8 +304,8 @@ h1,h2,h3,p{margin:0;}
   .typeTile a{min-height:190px;padding-bottom:24px;}
   .quality__body{grid-template-columns:1.1fr 1fr;align-items:center;gap:48px;}
   .itemPage{padding:56px 0 96px;}
-  .itemPage__layout{grid-template-columns:1.15fr 1fr;gap:56px;align-items:center;}
-  .itemInfo{position:sticky;top:90px;}
+  .itemPage__layout{grid-template-columns:1.15fr 1fr;gap:56px;align-items:start;}
+  .itemGallery{position:sticky;top:90px;align-self:start;}
   .limited{padding:104px 0;}
   .limited__title{font-size:48px;}
 }
@@ -706,6 +715,20 @@ html#mrbHtml body#mrbBody .itemCard a:hover{opacity:1 !important;}
         <div class="itemInfo__report">{IllegalReportTag}</div>
       </div>
 
+    </div>
+    <div class="itemRel" data-item-rel hidden>
+      <section class="itemRel__sec" data-rel-work hidden>
+        <h2 class="secHead"><span class="secHead__en">SAME WORK</span><span class="secHead__ja">同じ作品の商品</span></h2>
+        <div data-rel-work-list></div>
+      </section>
+      <section class="itemRel__sec" data-rel-painter hidden>
+        <h2 class="secHead"><span class="secHead__en">SAME PAINTER</span><span class="secHead__ja">同じ画家の作品</span></h2>
+        <div data-rel-painter-list></div>
+      </section>
+      <section class="itemRel__sec" data-rel-rec hidden>
+        <h2 class="secHead"><span class="secHead__en">RECOMMENDED</span><span class="secHead__ja">おすすめ商品</span></h2>
+        <div data-rel-rec-list></div>
+      </section>
     </div>
   </div>
 </article>
@@ -1766,6 +1789,105 @@ html#mrbHtml body#mrbBody .itemCard a:hover{opacity:1 !important;}
         .catch(function(){ more.disabled = false; });
     });
   }
+
+  /* --- item page related (v4.2): 同じ作品の商品／同じ画家の作品／おすすめ --- */
+  var ITEM_REL = {"アイリス":{"wid":7833547,"pid":7833517,"works":[["アイリス",7833547,"__IMG_WORK_01__"],["夜のカフェ",7833549,"__IMG_WORK_02__"],["糸杉のある麦畑",7833551,"__IMG_WORK_03__"],["薔薇",7833553,"__IMG_WORK_04__"],["麦わら帽子をかぶった自画像",7833556,"__IMG_WORK_05__"]]},"夜のカフェ":{"wid":7833549,"pid":7833517,"works":[["アイリス",7833547,"__IMG_WORK_01__"],["夜のカフェ",7833549,"__IMG_WORK_02__"],["糸杉のある麦畑",7833551,"__IMG_WORK_03__"],["薔薇",7833553,"__IMG_WORK_04__"],["麦わら帽子をかぶった自画像",7833556,"__IMG_WORK_05__"]]},"糸杉のある麦畑":{"wid":7833551,"pid":7833517,"works":[["アイリス",7833547,"__IMG_WORK_01__"],["夜のカフェ",7833549,"__IMG_WORK_02__"],["糸杉のある麦畑",7833551,"__IMG_WORK_03__"],["薔薇",7833553,"__IMG_WORK_04__"],["麦わら帽子をかぶった自画像",7833556,"__IMG_WORK_05__"]]},"薔薇":{"wid":7833553,"pid":7833517,"works":[["アイリス",7833547,"__IMG_WORK_01__"],["夜のカフェ",7833549,"__IMG_WORK_02__"],["糸杉のある麦畑",7833551,"__IMG_WORK_03__"],["薔薇",7833553,"__IMG_WORK_04__"],["麦わら帽子をかぶった自画像",7833556,"__IMG_WORK_05__"]]},"麦わら帽子をかぶった自画像":{"wid":7833556,"pid":7833517,"works":[["アイリス",7833547,"__IMG_WORK_01__"],["夜のカフェ",7833549,"__IMG_WORK_02__"],["糸杉のある麦畑",7833551,"__IMG_WORK_03__"],["薔薇",7833553,"__IMG_WORK_04__"],["麦わら帽子をかぶった自画像",7833556,"__IMG_WORK_05__"]]},"日本の太鼓橋":{"wid":7833558,"pid":7833521,"works":[["日本の太鼓橋",7833558,"__IMG_WORK_06__"],["睡蓮",7833561,"__IMG_WORK_07__"],["積みわら（夏の終わり）",7833565,"__IMG_WORK_08__"],["プールヴィルの断崖の散歩",7833567,"__IMG_WORK_09__"],["日傘をさす女―モネ夫人と息子",7833571,"__IMG_WORK_10__"]]},"睡蓮":{"wid":7833561,"pid":7833521,"works":[["日本の太鼓橋",7833558,"__IMG_WORK_06__"],["睡蓮",7833561,"__IMG_WORK_07__"],["積みわら（夏の終わり）",7833565,"__IMG_WORK_08__"],["プールヴィルの断崖の散歩",7833567,"__IMG_WORK_09__"],["日傘をさす女―モネ夫人と息子",7833571,"__IMG_WORK_10__"]]},"積みわら（夏の終わり）":{"wid":7833565,"pid":7833521,"works":[["日本の太鼓橋",7833558,"__IMG_WORK_06__"],["睡蓮",7833561,"__IMG_WORK_07__"],["積みわら（夏の終わり）",7833565,"__IMG_WORK_08__"],["プールヴィルの断崖の散歩",7833567,"__IMG_WORK_09__"],["日傘をさす女―モネ夫人と息子",7833571,"__IMG_WORK_10__"]]},"プールヴィルの断崖の散歩":{"wid":7833567,"pid":7833521,"works":[["日本の太鼓橋",7833558,"__IMG_WORK_06__"],["睡蓮",7833561,"__IMG_WORK_07__"],["積みわら（夏の終わり）",7833565,"__IMG_WORK_08__"],["プールヴィルの断崖の散歩",7833567,"__IMG_WORK_09__"],["日傘をさす女―モネ夫人と息子",7833571,"__IMG_WORK_10__"]]},"日傘をさす女―モネ夫人と息子":{"wid":7833571,"pid":7833521,"works":[["日本の太鼓橋",7833558,"__IMG_WORK_06__"],["睡蓮",7833561,"__IMG_WORK_07__"],["積みわら（夏の終わり）",7833565,"__IMG_WORK_08__"],["プールヴィルの断崖の散歩",7833567,"__IMG_WORK_09__"],["日傘をさす女―モネ夫人と息子",7833571,"__IMG_WORK_10__"]]},"天秤を持つ女":{"wid":7833575,"pid":7833524,"works":[["天秤を持つ女",7833575,"__IMG_WORK_11__"],["青衣の女、手紙を読む",7833576,"__IMG_WORK_12__"],["牛乳を注ぐ女",7833578,"__IMG_WORK_13__"],["水差しを持つ女",7833579,"__IMG_WORK_14__"],["眠る女",7833581,"__IMG_WORK_15__"]]},"青衣の女、手紙を読む":{"wid":7833576,"pid":7833524,"works":[["天秤を持つ女",7833575,"__IMG_WORK_11__"],["青衣の女、手紙を読む",7833576,"__IMG_WORK_12__"],["牛乳を注ぐ女",7833578,"__IMG_WORK_13__"],["水差しを持つ女",7833579,"__IMG_WORK_14__"],["眠る女",7833581,"__IMG_WORK_15__"]]},"牛乳を注ぐ女":{"wid":7833578,"pid":7833524,"works":[["天秤を持つ女",7833575,"__IMG_WORK_11__"],["青衣の女、手紙を読む",7833576,"__IMG_WORK_12__"],["牛乳を注ぐ女",7833578,"__IMG_WORK_13__"],["水差しを持つ女",7833579,"__IMG_WORK_14__"],["眠る女",7833581,"__IMG_WORK_15__"]]},"水差しを持つ女":{"wid":7833579,"pid":7833524,"works":[["天秤を持つ女",7833575,"__IMG_WORK_11__"],["青衣の女、手紙を読む",7833576,"__IMG_WORK_12__"],["牛乳を注ぐ女",7833578,"__IMG_WORK_13__"],["水差しを持つ女",7833579,"__IMG_WORK_14__"],["眠る女",7833581,"__IMG_WORK_15__"]]},"眠る女":{"wid":7833581,"pid":7833524,"works":[["天秤を持つ女",7833575,"__IMG_WORK_11__"],["青衣の女、手紙を読む",7833576,"__IMG_WORK_12__"],["牛乳を注ぐ女",7833578,"__IMG_WORK_13__"],["水差しを持つ女",7833579,"__IMG_WORK_14__"],["眠る女",7833581,"__IMG_WORK_15__"]]},"神奈川沖浪裏":{"wid":7833583,"pid":7833528,"works":[["神奈川沖浪裏",7833583,"__IMG_WORK_16__"],["凱風快晴",7833585,"__IMG_WORK_17__"],["山下白雨",7833586,"__IMG_WORK_18__"],["甲州石班沢",7833587,"__IMG_WORK_19__"],["木曽路ノ奥阿弥陀ヶ瀧",7833590,"__IMG_WORK_20__"]]},"凱風快晴":{"wid":7833585,"pid":7833528,"works":[["神奈川沖浪裏",7833583,"__IMG_WORK_16__"],["凱風快晴",7833585,"__IMG_WORK_17__"],["山下白雨",7833586,"__IMG_WORK_18__"],["甲州石班沢",7833587,"__IMG_WORK_19__"],["木曽路ノ奥阿弥陀ヶ瀧",7833590,"__IMG_WORK_20__"]]},"山下白雨":{"wid":7833586,"pid":7833528,"works":[["神奈川沖浪裏",7833583,"__IMG_WORK_16__"],["凱風快晴",7833585,"__IMG_WORK_17__"],["山下白雨",7833586,"__IMG_WORK_18__"],["甲州石班沢",7833587,"__IMG_WORK_19__"],["木曽路ノ奥阿弥陀ヶ瀧",7833590,"__IMG_WORK_20__"]]},"甲州石班沢":{"wid":7833587,"pid":7833528,"works":[["神奈川沖浪裏",7833583,"__IMG_WORK_16__"],["凱風快晴",7833585,"__IMG_WORK_17__"],["山下白雨",7833586,"__IMG_WORK_18__"],["甲州石班沢",7833587,"__IMG_WORK_19__"],["木曽路ノ奥阿弥陀ヶ瀧",7833590,"__IMG_WORK_20__"]]},"木曽路ノ奥阿弥陀ヶ瀧":{"wid":7833590,"pid":7833528,"works":[["神奈川沖浪裏",7833583,"__IMG_WORK_16__"],["凱風快晴",7833585,"__IMG_WORK_17__"],["山下白雨",7833586,"__IMG_WORK_18__"],["甲州石班沢",7833587,"__IMG_WORK_19__"],["木曽路ノ奥阿弥陀ヶ瀧",7833590,"__IMG_WORK_20__"]]},"フェルナンド・サーカスの曲芸師たち":{"wid":7833593,"pid":7833531,"works":[["フェルナンド・サーカスの曲芸師たち",7833593,"__IMG_WORK_21__"],["二人の姉妹（テラスにて）",7833596,"__IMG_WORK_22__"],["海辺にて",7833600,"__IMG_WORK_23__"],["菊の花束",7833606,"__IMG_WORK_24__"],["フルネーズのレストランでの昼食",7833609,"__IMG_WORK_25__"]]},"二人の姉妹（テラスにて）":{"wid":7833596,"pid":7833531,"works":[["フェルナンド・サーカスの曲芸師たち",7833593,"__IMG_WORK_21__"],["二人の姉妹（テラスにて）",7833596,"__IMG_WORK_22__"],["海辺にて",7833600,"__IMG_WORK_23__"],["菊の花束",7833606,"__IMG_WORK_24__"],["フルネーズのレストランでの昼食",7833609,"__IMG_WORK_25__"]]},"海辺にて":{"wid":7833600,"pid":7833531,"works":[["フェルナンド・サーカスの曲芸師たち",7833593,"__IMG_WORK_21__"],["二人の姉妹（テラスにて）",7833596,"__IMG_WORK_22__"],["海辺にて",7833600,"__IMG_WORK_23__"],["菊の花束",7833606,"__IMG_WORK_24__"],["フルネーズのレストランでの昼食",7833609,"__IMG_WORK_25__"]]},"菊の花束":{"wid":7833606,"pid":7833531,"works":[["フェルナンド・サーカスの曲芸師たち",7833593,"__IMG_WORK_21__"],["二人の姉妹（テラスにて）",7833596,"__IMG_WORK_22__"],["海辺にて",7833600,"__IMG_WORK_23__"],["菊の花束",7833606,"__IMG_WORK_24__"],["フルネーズのレストランでの昼食",7833609,"__IMG_WORK_25__"]]},"フルネーズのレストランでの昼食":{"wid":7833609,"pid":7833531,"works":[["フェルナンド・サーカスの曲芸師たち",7833593,"__IMG_WORK_21__"],["二人の姉妹（テラスにて）",7833596,"__IMG_WORK_22__"],["海辺にて",7833600,"__IMG_WORK_23__"],["菊の花束",7833606,"__IMG_WORK_24__"],["フルネーズのレストランでの昼食",7833609,"__IMG_WORK_25__"]]},"グランド・ジャット島の日曜日の午後":{"wid":7833615,"pid":7833534,"works":[["グランド・ジャット島の日曜日の午後",7833615,"__IMG_WORK_26__"],["サーカスの客寄せ",7833618,"__IMG_WORK_27__"],["オンフルールの灯台",7833621,"__IMG_WORK_28__"],["曇天、グランド・ジャット島",7833624,"__IMG_WORK_29__"],["グランド・ジャット島の日曜日の午後の習作",7833627,"__IMG_WORK_30__"]]},"サーカスの客寄せ":{"wid":7833618,"pid":7833534,"works":[["グランド・ジャット島の日曜日の午後",7833615,"__IMG_WORK_26__"],["サーカスの客寄せ",7833618,"__IMG_WORK_27__"],["オンフルールの灯台",7833621,"__IMG_WORK_28__"],["曇天、グランド・ジャット島",7833624,"__IMG_WORK_29__"],["グランド・ジャット島の日曜日の午後の習作",7833627,"__IMG_WORK_30__"]]},"オンフルールの灯台":{"wid":7833621,"pid":7833534,"works":[["グランド・ジャット島の日曜日の午後",7833615,"__IMG_WORK_26__"],["サーカスの客寄せ",7833618,"__IMG_WORK_27__"],["オンフルールの灯台",7833621,"__IMG_WORK_28__"],["曇天、グランド・ジャット島",7833624,"__IMG_WORK_29__"],["グランド・ジャット島の日曜日の午後の習作",7833627,"__IMG_WORK_30__"]]},"曇天、グランド・ジャット島":{"wid":7833624,"pid":7833534,"works":[["グランド・ジャット島の日曜日の午後",7833615,"__IMG_WORK_26__"],["サーカスの客寄せ",7833618,"__IMG_WORK_27__"],["オンフルールの灯台",7833621,"__IMG_WORK_28__"],["曇天、グランド・ジャット島",7833624,"__IMG_WORK_29__"],["グランド・ジャット島の日曜日の午後の習作",7833627,"__IMG_WORK_30__"]]},"グランド・ジャット島の日曜日の午後の習作":{"wid":7833627,"pid":7833534,"works":[["グランド・ジャット島の日曜日の午後",7833615,"__IMG_WORK_26__"],["サーカスの客寄せ",7833618,"__IMG_WORK_27__"],["オンフルールの灯台",7833621,"__IMG_WORK_28__"],["曇天、グランド・ジャット島",7833624,"__IMG_WORK_29__"],["グランド・ジャット島の日曜日の午後の習作",7833627,"__IMG_WORK_30__"]]},"猿のいる熱帯林":{"wid":7833629,"pid":7833537,"works":[["猿のいる熱帯林",7833629,"__IMG_WORK_31__"],["ライオンの食事",7833631,"__IMG_WORK_32__"],["赤道のジャングル",7833633,"__IMG_WORK_33__"],["岩の上の少年",7833634,"__IMG_WORK_34__"],["森での逢い引き",7833635,"__IMG_WORK_35__"]]},"ライオンの食事":{"wid":7833631,"pid":7833537,"works":[["猿のいる熱帯林",7833629,"__IMG_WORK_31__"],["ライオンの食事",7833631,"__IMG_WORK_32__"],["赤道のジャングル",7833633,"__IMG_WORK_33__"],["岩の上の少年",7833634,"__IMG_WORK_34__"],["森での逢い引き",7833635,"__IMG_WORK_35__"]]},"赤道のジャングル":{"wid":7833633,"pid":7833537,"works":[["猿のいる熱帯林",7833629,"__IMG_WORK_31__"],["ライオンの食事",7833631,"__IMG_WORK_32__"],["赤道のジャングル",7833633,"__IMG_WORK_33__"],["岩の上の少年",7833634,"__IMG_WORK_34__"],["森での逢い引き",7833635,"__IMG_WORK_35__"]]},"岩の上の少年":{"wid":7833634,"pid":7833537,"works":[["猿のいる熱帯林",7833629,"__IMG_WORK_31__"],["ライオンの食事",7833631,"__IMG_WORK_32__"],["赤道のジャングル",7833633,"__IMG_WORK_33__"],["岩の上の少年",7833634,"__IMG_WORK_34__"],["森での逢い引き",7833635,"__IMG_WORK_35__"]]},"森での逢い引き":{"wid":7833635,"pid":7833537,"works":[["猿のいる熱帯林",7833629,"__IMG_WORK_31__"],["ライオンの食事",7833631,"__IMG_WORK_32__"],["赤道のジャングル",7833633,"__IMG_WORK_33__"],["岩の上の少年",7833634,"__IMG_WORK_34__"],["森での逢い引き",7833635,"__IMG_WORK_35__"]]},"理性の眠りは怪物を生む":{"wid":7833637,"pid":7833540,"works":[["理性の眠りは怪物を生む",7833637,"__IMG_WORK_36__"],["マヌエル・オソリオ・マンリーケ・デ・スニガ",7833639,"__IMG_WORK_37__"],["座る巨人",7833642,"__IMG_WORK_38__"],["祖父の代まで",7833644,"__IMG_WORK_39__"],["アルタミラ伯爵夫人と娘マリア・アグスティナ",7833645,"__IMG_WORK_40__"]]},"マヌエル・オソリオ・マンリーケ・デ・スニガ":{"wid":7833639,"pid":7833540,"works":[["理性の眠りは怪物を生む",7833637,"__IMG_WORK_36__"],["マヌエル・オソリオ・マンリーケ・デ・スニガ",7833639,"__IMG_WORK_37__"],["座る巨人",7833642,"__IMG_WORK_38__"],["祖父の代まで",7833644,"__IMG_WORK_39__"],["アルタミラ伯爵夫人と娘マリア・アグスティナ",7833645,"__IMG_WORK_40__"]]},"座る巨人":{"wid":7833642,"pid":7833540,"works":[["理性の眠りは怪物を生む",7833637,"__IMG_WORK_36__"],["マヌエル・オソリオ・マンリーケ・デ・スニガ",7833639,"__IMG_WORK_37__"],["座る巨人",7833642,"__IMG_WORK_38__"],["祖父の代まで",7833644,"__IMG_WORK_39__"],["アルタミラ伯爵夫人と娘マリア・アグスティナ",7833645,"__IMG_WORK_40__"]]},"祖父の代まで":{"wid":7833644,"pid":7833540,"works":[["理性の眠りは怪物を生む",7833637,"__IMG_WORK_36__"],["マヌエル・オソリオ・マンリーケ・デ・スニガ",7833639,"__IMG_WORK_37__"],["座る巨人",7833642,"__IMG_WORK_38__"],["祖父の代まで",7833644,"__IMG_WORK_39__"],["アルタミラ伯爵夫人と娘マリア・アグスティナ",7833645,"__IMG_WORK_40__"]]},"アルタミラ伯爵夫人と娘マリア・アグスティナ":{"wid":7833645,"pid":7833540,"works":[["理性の眠りは怪物を生む",7833637,"__IMG_WORK_36__"],["マヌエル・オソリオ・マンリーケ・デ・スニガ",7833639,"__IMG_WORK_37__"],["座る巨人",7833642,"__IMG_WORK_38__"],["祖父の代まで",7833644,"__IMG_WORK_39__"],["アルタミラ伯爵夫人と娘マリア・アグスティナ",7833645,"__IMG_WORK_40__"]]},"パンドラ":{"wid":7833646,"pid":7833542,"works":[["パンドラ",7833646,"__IMG_WORK_41__"],["アポロンの馬車",7833648,"__IMG_WORK_42__"],["花束（パステル）",7833649,"__IMG_WORK_43__"],["眼は奇妙な気球のように無限に向かう",7833651,"__IMG_WORK_44__"],["聖セバスティアヌス",7833652,"__IMG_WORK_45__"]]},"アポロンの馬車":{"wid":7833648,"pid":7833542,"works":[["パンドラ",7833646,"__IMG_WORK_41__"],["アポロンの馬車",7833648,"__IMG_WORK_42__"],["花束（パステル）",7833649,"__IMG_WORK_43__"],["眼は奇妙な気球のように無限に向かう",7833651,"__IMG_WORK_44__"],["聖セバスティアヌス",7833652,"__IMG_WORK_45__"]]},"花束（パステル）":{"wid":7833649,"pid":7833542,"works":[["パンドラ",7833646,"__IMG_WORK_41__"],["アポロンの馬車",7833648,"__IMG_WORK_42__"],["花束（パステル）",7833649,"__IMG_WORK_43__"],["眼は奇妙な気球のように無限に向かう",7833651,"__IMG_WORK_44__"],["聖セバスティアヌス",7833652,"__IMG_WORK_45__"]]},"眼は奇妙な気球のように無限に向かう":{"wid":7833651,"pid":7833542,"works":[["パンドラ",7833646,"__IMG_WORK_41__"],["アポロンの馬車",7833648,"__IMG_WORK_42__"],["花束（パステル）",7833649,"__IMG_WORK_43__"],["眼は奇妙な気球のように無限に向かう",7833651,"__IMG_WORK_44__"],["聖セバスティアヌス",7833652,"__IMG_WORK_45__"]]},"聖セバスティアヌス":{"wid":7833652,"pid":7833542,"works":[["パンドラ",7833646,"__IMG_WORK_41__"],["アポロンの馬車",7833648,"__IMG_WORK_42__"],["花束（パステル）",7833649,"__IMG_WORK_43__"],["眼は奇妙な気球のように無限に向かう",7833651,"__IMG_WORK_44__"],["聖セバスティアヌス",7833652,"__IMG_WORK_45__"]]},"青い肘掛け椅子の少女":{"wid":7833653,"pid":7833545,"works":[["青い肘掛け椅子の少女",7833653,"__IMG_WORK_46__"],["舟遊び",7833655,"__IMG_WORK_47__"],["子どもの入浴",7833656,"__IMG_WORK_48__"],["手紙",7833657,"__IMG_WORK_49__"],["お茶",7833658,"__IMG_WORK_50__"]]},"舟遊び":{"wid":7833655,"pid":7833545,"works":[["青い肘掛け椅子の少女",7833653,"__IMG_WORK_46__"],["舟遊び",7833655,"__IMG_WORK_47__"],["子どもの入浴",7833656,"__IMG_WORK_48__"],["手紙",7833657,"__IMG_WORK_49__"],["お茶",7833658,"__IMG_WORK_50__"]]},"子どもの入浴":{"wid":7833656,"pid":7833545,"works":[["青い肘掛け椅子の少女",7833653,"__IMG_WORK_46__"],["舟遊び",7833655,"__IMG_WORK_47__"],["子どもの入浴",7833656,"__IMG_WORK_48__"],["手紙",7833657,"__IMG_WORK_49__"],["お茶",7833658,"__IMG_WORK_50__"]]},"手紙":{"wid":7833657,"pid":7833545,"works":[["青い肘掛け椅子の少女",7833653,"__IMG_WORK_46__"],["舟遊び",7833655,"__IMG_WORK_47__"],["子どもの入浴",7833656,"__IMG_WORK_48__"],["手紙",7833657,"__IMG_WORK_49__"],["お茶",7833658,"__IMG_WORK_50__"]]},"お茶":{"wid":7833658,"pid":7833545,"works":[["青い肘掛け椅子の少女",7833653,"__IMG_WORK_46__"],["舟遊び",7833655,"__IMG_WORK_47__"],["子どもの入浴",7833656,"__IMG_WORK_48__"],["手紙",7833657,"__IMG_WORK_49__"],["お茶",7833658,"__IMG_WORK_50__"]]}};
+  (function(){
+    var relRoot = document.querySelector('[data-item-rel]');
+    if (!relRoot) return;
+    var titleEl = document.querySelector('.itemInfo__title');
+    if (!titleEl) return;
+    var tm = titleEl.textContent.match(/《(.+?)》/);
+    if (!tm) return;
+    var cur = tm[1];
+    var d = ITEM_REL[cur];
+    if (!d) return;
+    var CATURL = 'https://mirabilia.base.shop/categories/';
+    function buildCarousel(slides, cls) {
+      var car = document.createElement('div');
+      car.className = 'carousel ' + cls;
+      var track = document.createElement('ul');
+      track.className = 'carousel__track';
+      track.setAttribute('data-carousel-track', '');
+      slides.forEach(function(li){ track.appendChild(li); });
+      car.appendChild(track);
+      if (slides.length >= 3) {
+        car.setAttribute('data-carousel', '');
+        var ui = document.createElement('div');
+        ui.className = 'carousel__ui';
+        ui.innerHTML = '<button type="button" class="carousel__arrow" data-carousel-prev aria-label="\u524d\u3078">&lsaquo;</button><div class="carousel__dots" data-carousel-dots></div><button type="button" class="carousel__arrow" data-carousel-next aria-label="\u6b21\u3078">&rsaquo;</button>';
+        car.appendChild(ui);
+      }
+      return car;
+    }
+    function show(name, car) {
+      var sec = relRoot.querySelector('[data-rel-' + name + ']');
+      if (!sec) return;
+      sec.querySelector('[data-rel-' + name + '-list]').appendChild(car);
+      sec.hidden = false;
+      relRoot.hidden = false;
+      if (car.hasAttribute('data-carousel')) initCarousel(car);
+    }
+    function itemIdOf(path) { var x = /\/items\/(\d+)/.exec(path || ''); return x ? x[1] : ''; }
+    var curId = itemIdOf(location.pathname);
+    function fetchCards(catId) {
+      return fetch(CATURL + catId, { credentials: 'same-origin' })
+        .then(function(r){ return r.text(); })
+        .then(function(html){
+          var doc = new DOMParser().parseFromString(html, 'text/html');
+          return Array.prototype.slice.call(doc.querySelectorAll('.itemCard'));
+        })
+        .catch(function(){ return []; });
+    }
+    function cardItemId(card) {
+      var a = card.querySelector('a');
+      return a ? itemIdOf(a.getAttribute('href')) : '';
+    }
+    function cardTitle(card) {
+      var t = card.querySelector('.itemCard__title');
+      return t ? t.textContent : '';
+    }
+    function productSlides(cards) {
+      return cards.map(function(card){
+        var li = document.createElement('li');
+        li.className = 'carousel__slide relSlide';
+        li.appendChild(document.importNode(card, true));
+        return li;
+      });
+    }
+    fetchCards(d.wid).then(function(cards){
+      var others = cards.filter(function(c){ return cardItemId(c) !== curId; });
+      if (others.length) show('work', buildCarousel(productSlides(others), 'carousel--rel'));
+    });
+    var pworks = d.works.filter(function(w){ return w[0] !== cur; });
+    if (pworks.length) {
+      var slides = pworks.map(function(w){
+        var li = document.createElement('li');
+        li.className = 'carousel__slide';
+        var a = document.createElement('a');
+        a.href = CATURL + w[1];
+        var im = document.createElement('img');
+        im.src = w[2]; im.alt = w[0]; im.loading = 'lazy';
+        var nm = document.createElement('span');
+        nm.className = 'workTile__name';
+        nm.textContent = w[0];
+        a.appendChild(im); a.appendChild(nm); li.appendChild(a);
+        return li;
+      });
+      show('painter', buildCarousel(slides, 'carousel--works'));
+    }
+    fetchCards(d.pid).then(function(cards){
+      var pool = cards.filter(function(c){
+        return cardItemId(c) !== curId && cardTitle(c).indexOf('《' + cur + '》') < 0;
+      });
+      for (var i = pool.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var tmp = pool[i]; pool[i] = pool[j]; pool[j] = tmp;
+      }
+      var picks = pool.slice(0, 8);
+      if (picks.length) show('rec', buildCarousel(productSlides(picks), 'carousel--rel'));
+    });
+  })();
 })();
 </script>
 </body>
